@@ -19,12 +19,12 @@ public class BoutiqueFurButton : MonoBehaviour
 
     void Start()
     {
-        /*make sure item is not unlocked at the start of game
-         *item will be unlocked through merchant system*/
+        /* make sure item is not unlocked at the start of game
+         * item will be unlocked through merchant system */
         furItem.isPurchased = false;
         lockedImage.gameObject.SetActive(true);
 
-        /*---connect fur item attributes to this button---*/
+        /*---Connect fur item attributes to this button---*/
         _button = GetComponent<Button>();
         buttonText.text = furItem.name;
         itemImage.sprite = furItem.buttonImage;
@@ -33,7 +33,7 @@ public class BoutiqueFurButton : MonoBehaviour
 
     void Update()
     {
-        /*---unlock button if the item was purchased---*/
+        /*---Unlock button if the item was purchased---*/
         if(furItem.isPurchased == false)
         {
             _button.interactable = false;
@@ -48,6 +48,6 @@ public class BoutiqueFurButton : MonoBehaviour
 
     public void ChangeFur()
     {
-        /*Debug.Log("Changing fur of selected animal: " + animal.name);*/
+        //changes material of animal based on furID
     }
 }

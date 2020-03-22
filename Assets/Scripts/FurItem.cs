@@ -6,8 +6,9 @@ using UnityEngine.UI;
 [CreateAssetMenu]
 public class FurItem : ScriptableObject
 {
-    /*---necessary info for our fur items---*/
+    /*---Necessary info for our fur items---*/
     public new string name;
+    public int furID;
     public int cost;
     public bool isPurchased;
     
