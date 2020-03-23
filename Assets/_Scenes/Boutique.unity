@@ -554,6 +554,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: f44a08c5d90a84e448dc37994a2966e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3be7b7597aee4b43a904560c5a5b6c3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f44a08c5d90a84e448dc37994a2966e7, type: 3}
 --- !u!1 &164963192
@@ -5723,7 +5728,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1162316501}
   m_HandleRect: {fileID: 1162316500}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
