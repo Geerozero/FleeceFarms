@@ -6,27 +6,57 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    static public int money = 0;
+    //Inventory manager focuses on what money the player has, what kinds of Fur owned by player and what amounts, and what clothes they have purchased
+   
+    //money should be a static variable
+    public static int money = 0;
     public TextMeshProUGUI moneyUIText;
+
+    //the array of these should match the array of shop values
+    public static int[] ownedFurInventory = new int[3] { 0, 0, 0 };
+
 
     private void Start()
     {
         UpdateText();
     }
+
+    //updates money text within UI
+    private void UpdateText()
+    {
+        moneyUIText.SetText("Money: " + money);
+    }
+
+    //adds money to inventory from passed in amount
     public void AddMoney(int increaseAmount)
     {
         money += increaseAmount;
         UpdateText();
     }
 
+    //subtracts money from passed in amount
     public void SubtractMoney(int decreaseAmount)
     {
         money -= decreaseAmount;
         UpdateText();
     }
 
-    private void UpdateText()
+    //variable Getter
+    public int GetMoney()
     {
-        moneyUIText.SetText("Money: " + money);
+        return money;
+    }
+
+    /////////INVENTORY
+    ///
+    
+    public void AddToFurInventory(int furArray, int amountToAdd)
+    {
+        ownedFurInventory[furArray] += amountToAdd;
+    }
+
+    public void SubtractFromFurInventory(int furArray, int amountToSubtract)
+    {
+        ownedFurInventory[furArray] += amountToSubtract;
     }
 }
