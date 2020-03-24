@@ -49,14 +49,25 @@ public class InventoryManager : MonoBehaviour
 
     /////////INVENTORY
     ///
-    
+
     public void AddToFurInventory(int furArray, int amountToAdd)
     {
         ownedFurInventory[furArray] += amountToAdd;
+
+        //print amount in log
+        Debug.Log("Have " + ownedFurInventory[furArray] + " furs in Index:" + furArray);
     }
 
     public void SubtractFromFurInventory(int furArray, int amountToSubtract)
     {
-        ownedFurInventory[furArray] += amountToSubtract;
+        ownedFurInventory[furArray] -= amountToSubtract;
+
+        //print amount debug
+        Debug.Log("Have " + ownedFurInventory[furArray] + " furs in Index:" + furArray);
+    }
+
+    public int GetFurInventoryIndex(int furArray)
+    {
+        return ownedFurInventory[furArray];
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarketManager : MonoBehaviour
+public class MarketUIManager : MonoBehaviour
 {
     public GameObject BuyContainer;
     public GameObject SellContainer;
