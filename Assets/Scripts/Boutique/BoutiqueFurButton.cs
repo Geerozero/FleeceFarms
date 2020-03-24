@@ -48,6 +48,8 @@ public class BoutiqueFurButton : MonoBehaviour
 
     public void ChangeFur()
     {
-        //changes material of animal based on furID
+        /*---Changes furItem and changes animals material---*/
+        BoutiqueManager.instance.animalInfo.fur = furItem;
+        BoutiqueManager.instance.animal.GetComponent<MeshRenderer>().material = LevelManager.instance.furs[furItem.furID].furMaterial;
     }
 }

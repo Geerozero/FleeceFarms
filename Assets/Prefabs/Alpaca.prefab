@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4816435889982966801}
   - component: {fileID: 4816435889982966800}
   - component: {fileID: 4816435889982966803}
+  - component: {fileID: 1635851708396706686}
   m_Layer: 0
   m_Name: Alpaca
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,5 +107,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalID: 0
   animalType: 1
-  fur: {fileID: 0}
-  meshRenderer: {fileID: 0}
+  fur: {fileID: 11400000, guid: f6927c6925bd08b428bcdaf804f2ca9f, type: 2}
+--- !u!114 &1635851708396706686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4816435889982966805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704c2bbf492c00b4087b877559d3ebfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customizeButton: {fileID: 5225092015963035633, guid: 926213c2b85cbd44d81d7a9d87631531,
+    type: 3}

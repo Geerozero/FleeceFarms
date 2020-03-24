@@ -13,13 +13,10 @@ public class Animal : MonoBehaviour
     public AnimalType animalType;
 
     public FurItem fur;
-    
-    public Renderer meshRenderer;
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.material = fur.furMaterial;
+
     }
 
     public LevelManager.AnimalSave GetAnimalSave()

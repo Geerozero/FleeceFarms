@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BoutiqueManager : MonoBehaviour
+public class BoutiqueUIManager : MonoBehaviour
 {
-    public GameObject FurSelection;
+    public GameObject furSelection;
 
     public GameObject basicContainer;
     public GameObject specialContainer;
@@ -13,7 +13,7 @@ public class BoutiqueManager : MonoBehaviour
 
     void Start()
     {
-        FurSelection.SetActive(true);
+        furSelection.SetActive(true);
         basicContainer.SetActive(true);
         specialContainer.SetActive(false);
         royalContainer.SetActive(false);
@@ -42,6 +42,10 @@ public class BoutiqueManager : MonoBehaviour
 
     public void GoToFarm()
     {
+        /*---Saves furID for animal that was cusotmized before leaving the Boutique scene---*/
+        LevelManager.instance.saves[BoutiqueManager.instance.animalInfo.animalID].furID = BoutiqueManager.instance.animalInfo.fur.furID;
+        //clothing items will be saved here as well
+
         SceneManager.LoadScene("Farm_test");
     }
 }

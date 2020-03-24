@@ -43,11 +43,10 @@ public class LevelManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        /* Loads animals if the player is in the farm scene */
-
         if(scene.name == "Boutique")
         {
-            //do something
+            /*---Calls BoutiqueManager to spawn animal that needs to be cutomizzed, when in the Boputique scene---*/
+            BoutiqueManager.instance.SpawnAnimalToCustomize();
         }
         else if(scene.name == "Market")
         {
@@ -126,6 +125,7 @@ public class LevelManager : MonoBehaviour
         Animal animalInfo = newAnimal.GetComponent<Animal>();
 
         InitializeNewAnimal(animalInfo, animalType);
+        newAnimal.GetComponent<MeshRenderer>().material = furs[animalInfo.fur.furID].furMaterial;
 
         animals.Add(animalInfo);
         //other animals to be added later(sheep, rabbit)
@@ -158,7 +158,7 @@ public class LevelManager : MonoBehaviour
         /* Clears saves dictionary to allow for a new save
          * Then adds animals that currently exist into the saves Dictionary */
 
-    saves.Clear();
+        saves.Clear();
 
         for (int i = 0; i < animals.Count; i++)
         {
@@ -189,9 +189,11 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < saves.Count; i++)
         {
             GameObject newAnimal = SpawnAnimalType(saves[i].animalType);
-            Animal animalInfo= newAnimal.GetComponent<Animal>();
+            Animal animalInfo = newAnimal.GetComponent<Animal>();
 
             animalInfo.LoadAnimalSave(saves.ElementAt(i).Value);
+            newAnimal.GetComponent<MeshRenderer>().material = furs[animalInfo.fur.furID].furMaterial;
+
             animals.Add(animalInfo);
         }
     }
