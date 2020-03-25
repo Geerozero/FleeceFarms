@@ -6,7 +6,7 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
 
-    private void Awake()
+    void Awake()
     {
         if (instance != null)
         {
@@ -16,16 +16,24 @@ public class BuildManager : MonoBehaviour
         
     }
 
-    public GameObject standardPenPrefab;
+    //add effect for build and sell
+
+    
+    //public GameObject standardPenPrefab;
+
+    private AnimalpenBlueprint penToBuild;
+    
     private node selectedPen;
+    
 
     public nodeUIscript nodeUI;
 
-    void Start()
-    {
-        penToBuild = standardPenPrefab;
-    }
-    private GameObject penToBuild;
+    public bool CanBuild { get { return penToBuild != null; } }
+    public bool HasMoney { get { return InventoryManager.money >= pnToBuild.cost; } }
+
+
+   
+    //private GameObject penToBuild;
 
     public GameObject GetPenToBuild ()
     {
@@ -41,7 +49,8 @@ public class BuildManager : MonoBehaviour
 
         }
         selectedPen = node;
-        //penToBuild = null;
+        penToBuild = null;
+
         nodeUI.SetTarget(node);
     }
     public void DeselectNode()
@@ -55,6 +64,11 @@ public class BuildManager : MonoBehaviour
         selectedPen = null;
 
         nodeUI.Hide();
+    }
+
+    public AnimalPenBlueprint GetPenToBuild()
+    {
+        return penToBuild;
     }
     //add type of pen to select "level of pen"
     //selectedpen = null;

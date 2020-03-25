@@ -66,13 +66,57 @@ void Start ()
 
         //add effect
 
-        Debug.
+        Debug.Log("pen has built");
     }
 
+    public void UpgradePen()
+    {
+        if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+        {
+            Debug.Log("no upgrade for you");
+            return;
+        }
+        InventoryManager.money -= animalPenBlueprint.upgradeCost;
+        //goodbye old pen
+        Destroy(animalPen);
+
+        //build pen 2.0
+        GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPostion(), Quaternion.identity);
+        animalPen = _pen;
+
+        //add effect
+
+        isUpgraded = true;
+
+        Debug.Log("pen 2.0");
+
+    }
+
+    public void SellPen()
+    {
+        InventoryManager.money += animalPenBlueprint.GetSellAmount();
+
+        //add effect
+
+        Destroy(animalPen);
+        animalPenBlueprint = null;
+    }
     
     void OnMouseEnter()
     {
-        
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        if (!buildManager.Canbuild)
+            return;
+
+        if (buildManager.HasMoney)
+        {
+            rend.material.color = hoverColor;
+        }
+        else
+        {
+            rend.material.color = notEnoughMoneyColor;
+        }
         rend.material.color = hoverColor;
     }
 
