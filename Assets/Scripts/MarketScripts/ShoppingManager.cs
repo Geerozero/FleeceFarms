@@ -9,7 +9,10 @@ public class ShoppingManager : MonoBehaviour
     //Shopping Manager processes transactions within the Market, facilitates cost checks and transfer of items into player inventory
     public GameObject InventoryManager;
     private InventoryManager inventoryManagerScript;
+
+    [Header("Feedback text for shop")]
     public TextMeshProUGUI buySellAnnounceText;
+
     private bool announcingText = false;
 
     private void Start()

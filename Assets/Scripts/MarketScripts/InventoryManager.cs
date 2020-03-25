@@ -7,13 +7,15 @@ using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     //Inventory manager focuses on what money the player has, what kinds of Fur owned by player and what amounts, and what clothes they have purchased
-   
+
     //money should be a static variable
+    [Header("Money!")]
     public static int money = 0;
     public TextMeshProUGUI moneyUIText;
 
     //the array of these should match the array of shop values
-    public static int[] ownedFurInventory = new int[3] { 0, 0, 0 };
+    [Header("Inventory array")]
+    private static int[] ownedFurInventory = new int[3] { 0, 0, 0 };
 
 
     private void Start()

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MarketUIManager : MonoBehaviour
 {
+    [Header("UI containers")]
     public GameObject BuyContainer;
     public GameObject SellContainer;
+
     void Start()
     {
         
