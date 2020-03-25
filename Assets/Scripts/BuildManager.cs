@@ -18,10 +18,10 @@ public class BuildManager : MonoBehaviour
 
     //add effect for build and sell
 
-    
-    //public GameObject standardPenPrefab;
 
-    private AnimalpenBlueprint penToBuild;
+    //public GameObject standardPenPrefab;
+    public AnimalPenBlueprint standardPen;
+    private AnimalPenBlueprint penToBuild;
     
     private node selectedPen;
     
@@ -29,16 +29,13 @@ public class BuildManager : MonoBehaviour
     public nodeUIscript nodeUI;
 
     public bool CanBuild { get { return penToBuild != null; } }
-    public bool HasMoney { get { return InventoryManager.money >= pnToBuild.cost; } }
+    public bool HasMoney { get { return InventoryManager.money >= penToBuild.cost; } }
 
 
    
     //private GameObject penToBuild;
 
-    public GameObject GetPenToBuild ()
-    {
-        return penToBuild;
-    }
+    
 
     public void selectPen(node node)
     {
@@ -58,7 +55,7 @@ public class BuildManager : MonoBehaviour
         selectedPen = null;
         nodeUI.Hide();
     }
-    public void SelectAnimalPenToBuild (AnimalPenBluePrint pen)
+    public void SelectAnimalPenToBuild (AnimalPenBlueprint pen)
     {
         penToBuild = pen;
         selectedPen = null;

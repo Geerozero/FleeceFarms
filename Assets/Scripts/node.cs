@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class node : MonoBehaviour {
     BuildManager buildManager;
     public Color hoverColor;
     public Vector3 positionOffset;
+    public Color notEnoughMoneyColor;
 
     private GameObject animalPen;
+    
     public bool isUpgraded = false;
 
     public AnimalPenBlueprint animalPenBlueprint;
+
     private Color startColor;
     
     private Renderer rend;
@@ -23,6 +27,10 @@ void Start ()
     buildManager = BuildManager.instance;
 }
 
+    public Vector3 GetBuildPosition ()
+    {
+        return transform.position + positionOffset;
+    }
     void OnMouseDown()
     {
         //if (UnityEventQueueSystem.current.IsPointerOverGameObject())
@@ -52,17 +60,17 @@ void Start ()
     }
     void BuildAnimalPen (AnimalPenBlueprint blueprint)
     {
-        if (InventoryManager.money < penToBuild.cost)
+        if (InventoryManager.money < blueprint.cost)
         {
             Debug.Log("you poor");
             return;
         }
 
         InventoryManager.money -= blueprint.cost;
-        GameObject _pen = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(), Quaterion.identity);
+        GameObject _pen = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
         animalPen = _pen;
 
-        AnimalPenBlueprint = blueprint;
+        animalPenBlueprint = blueprint;
 
         //add effect
 
@@ -81,7 +89,7 @@ void Start ()
         Destroy(animalPen);
 
         //build pen 2.0
-        GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPostion(), Quaternion.identity);
+        GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
         animalPen = _pen;
 
         //add effect
@@ -106,7 +114,7 @@ void Start ()
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        if (!buildManager.Canbuild)
+        if (!buildManager.CanBuild)
             return;
 
         if (buildManager.HasMoney)
