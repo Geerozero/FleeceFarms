@@ -17,6 +17,11 @@ public class BasicInteractions : MonoBehaviour
     [Header("Farm UI handler")]
     public FarmUIButtonHandler FarmUI;
 
+    //TO IMPLEMENT
+    //telling UI which animal on the scene to apply Feed/Brush/Sheer logic
+    //AKA pass reference of this object to FarmUI when GetMouseButtonDown is active
+
+    //
 
 
     private void Start()

@@ -20,6 +20,11 @@ public class FarmUIButtonHandler : MonoBehaviour
     //boolean for other functions to check
     private bool isInteracting;
 
+    //create function to receive reference to particular animal on farm scene that we're acting on
+    //like Public Void SetAnimalReference
+    private GameObject animalReference;
+
+
     private void Start()
     {
         isInteracting = false;
