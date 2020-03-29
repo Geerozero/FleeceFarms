@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 98bb6e813b677514aaeee26f41eaf579
+guid: e77bba76f23032542b9e4fbf97b517fe
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LE_Fence_Mat
-    second: {fileID: 2100000, guid: e169d0d9f32cdd243b4792ddbf3c5b10, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LE_Nails_Mat
-    second: {fileID: 2100000, guid: 31c1423371582714b962f57b9f95bde1, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -44,7 +34,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +80,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
