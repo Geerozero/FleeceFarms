@@ -14,8 +14,8 @@ public class BoutiqueFurButton : MonoBehaviour
     public Image lockedImage;
     
     /*---Private Variables---*/
-    private Button _button;
-    private Material _material;
+    private Button button;
+    private Material material;
 
     void Start()
     {
@@ -25,10 +25,10 @@ public class BoutiqueFurButton : MonoBehaviour
         lockedImage.gameObject.SetActive(true);
 
         /*---Connect fur item attributes to this button---*/
-        _button = GetComponent<Button>();
+        button = GetComponent<Button>();
         buttonText.text = furItem.name;
         itemImage.sprite = furItem.buttonImage;
-        _material = furItem.furMaterial;
+        material = furItem.furMaterial;
     }
 
     void Update()
@@ -36,12 +36,12 @@ public class BoutiqueFurButton : MonoBehaviour
         /*---Unlock button if the item was purchased---*/
         if(furItem.isPurchased == false)
         {
-            _button.interactable = false;
+            button.interactable = false;
             lockedImage.gameObject.SetActive(true);
         }
         else if(furItem.isPurchased)
         {
-            _button.interactable = true;
+            button.interactable = true;
             lockedImage.gameObject.SetActive(false);
         }
     }

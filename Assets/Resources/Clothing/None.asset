@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c2f71d82ce262b4193db817cefb07f5, type: 3}
-  m_Name: OrangeFur
+  m_Script: {fileID: 11500000, guid: ce5fac8605ff0a54d9f3f52a6e064006, type: 3}
+  m_Name: None
   m_EditorClassIdentifier: 
-  name: Orange Fur
-  furID: 1001
-  cost: 200
+  name: None
+  clothingID: 2000
+  cost: 0
   isPurchased: 0
   buttonImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  furMaterial: {fileID: 2100000, guid: 82d38542fc63d674284cdb8927777c2d, type: 2}
+  item: {fileID: 5213725007868277587, guid: 45d17b41a11886d4886ac8aca0debf0f, type: 3}
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnScale: {x: 0, y: 0, z: 0}
