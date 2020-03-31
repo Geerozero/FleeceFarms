@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4816435889982966805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,9 +108,6 @@ MonoBehaviour:
   animalID: 0
   animalType: 1
   fur: {fileID: 11400000, guid: f6927c6925bd08b428bcdaf804f2ca9f, type: 2}
-  slot01: {fileID: 0}
-  slot02: {fileID: 0}
-  slot03: {fileID: 0}
 --- !u!114 &1635851708396706686
 MonoBehaviour:
   m_ObjectHideFlags: 0

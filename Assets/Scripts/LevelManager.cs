@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
 
     public List<Animal> animals = new List<Animal>();
     public FurItem startingFurItem;
-    public OutfitItem startingOutfitItem;
     public GameObject alpacaPrefab;
     public GameObject sheepPrefab;
     public GameObject rabbitPrefab;
@@ -69,9 +68,6 @@ public class LevelManager : MonoBehaviour
         public Animal.AnimalType animalType;
 
         public int furID;
-        public int slot01ClothID;
-        public int slot02ClothID;
-        public int slot03ClothID;
 
         public SerializableVector3 position;
         public SerializableVector3 rotation;
@@ -142,7 +138,6 @@ public class LevelManager : MonoBehaviour
          * assigns their type */
 
         animalInfo.animalID = saves.Count;
-        
         while(saves.ContainsKey(animalInfo.animalID))
         {
             animalInfo.animalID += 1;
@@ -150,46 +145,13 @@ public class LevelManager : MonoBehaviour
         
         animalInfo.animalType = animalType;
         animalInfo.fur = startingFurItem;
-        animalInfo.slot01 = startingOutfitItem;
-        animalInfo.slot02 = startingOutfitItem;
-        animalInfo.slot03 = startingOutfitItem;
 
         saves.Add(animalInfo.animalID, animalInfo.GetAnimalSave());
 
         return;
     }
 
-    public void SpawnClothesOnAnimal(GameObject animal, Animal.AnimalType animalType, int clothingID)
-    {
-        /*---Spawns clothing according to what animal type the item is intended for---*/
-
-        if(animalType == Animal.AnimalType.Alpaca)
-        {
-            GameObject newOutfitItem = Instantiate(ClothingManager.instance.clothes[clothingID].item);
-            newOutfitItem.transform.localScale = ClothingManager.instance.clothes[clothingID].spawnScaleAlpaca;
-            newOutfitItem.transform.parent = animal.transform;
-            newOutfitItem.transform.localPosition = ClothingManager.instance.clothes[clothingID].spawnPositionAlpaca;
-            newOutfitItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if(animalType == Animal.AnimalType.Sheep)
-        {
-            GameObject newOutfitItem = Instantiate(ClothingManager.instance.clothes[clothingID].item);
-            newOutfitItem.transform.localScale = ClothingManager.instance.clothes[clothingID].spawnScaleSheep;
-            newOutfitItem.transform.parent = animal.transform;
-            newOutfitItem.transform.localPosition = ClothingManager.instance.clothes[clothingID].spawnPositionSheep;
-            newOutfitItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if(animalType == Animal.AnimalType.Rabbit)
-        {
-            GameObject newOutfitItem = Instantiate(ClothingManager.instance.clothes[clothingID].item);
-            newOutfitItem.transform.localScale = ClothingManager.instance.clothes[clothingID].spawnScaleRabbit;
-            newOutfitItem.transform.parent = animal.transform;
-            newOutfitItem.transform.localPosition = ClothingManager.instance.clothes[clothingID].spawnPositionRabbit;
-            newOutfitItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-    }
-
-    /*----------------Animal Management------------------------------------------------------*/
+    /*----------------Animal Managemt------------------------------------------------------*/
 
     void StoreAnimals()
     {
@@ -231,16 +193,6 @@ public class LevelManager : MonoBehaviour
 
             animalInfo.LoadAnimalSave(saves.ElementAt(i).Value);
             newAnimal.GetComponent<MeshRenderer>().material = furs[animalInfo.fur.furID].furMaterial;
-            
-            /*---filling in clothing slots with appropriate clothing ID---*/
-            animalInfo.slot01 = ClothingManager.instance.clothes[saves.ElementAt(i).Value.slot01ClothID];
-            animalInfo.slot02 = ClothingManager.instance.clothes[saves.ElementAt(i).Value.slot02ClothID];
-            animalInfo.slot03 = ClothingManager.instance.clothes[saves.ElementAt(i).Value.slot03ClothID];
-
-            /*---Begin spawning clothing on the animals---*/
-            SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
-            SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
-            SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
 
             animals.Add(animalInfo);
         }
