@@ -68,40 +68,24 @@ public class FarmUIManager : MonoBehaviour
     public void FeedCall()
     {
         //0 is hungry, 100 is full
-<<<<<<< HEAD:Assets/Scripts/AnimalInteraction/FarmUIManager.cs
         animalStats.ChangeAnimalFood(20);
 
         SetAnnounceText("Jeremy is fed, hunger is at: " + animalStats.GetAnimalHunger());
-=======
-        animalStats.changeAnimalHunger(5);
 
-        SetAnnounceText("Jeremy is fed, hunger is at: " + animalStats.GetAnimalHunger());
-
-        //add to fur growth
-
-        animalStats.changeAnimalFurGrowth(25);
->>>>>>> parent of fa9024c... Adding Terrain to Farm_test:Assets/Scripts/AnimalInteraction/FarmUIButtonHandler.cs
  
     }
 
     public void BrushCall()
     {
-<<<<<<< HEAD:Assets/Scripts/AnimalInteraction/FarmUIManager.cs
+
         animalStats.ChangeAnimalClean(20);
 
         SetAnnounceText("Jeremy is brushed, clean is at: " + animalStats.GetAnimalClean());
-=======
-        animalStats.changeAnimalBond(10);
 
-        SetAnnounceText("Jeremy is brushed, bond is at: " + animalStats.GetAnimalBond());
-
-        animalStats.changeAnimalFurGrowth(25);
->>>>>>> parent of fa9024c... Adding Terrain to Farm_test:Assets/Scripts/AnimalInteraction/FarmUIButtonHandler.cs
     }
 
     public void ShearCall()
     {
-<<<<<<< HEAD:Assets/Scripts/AnimalInteraction/FarmUIManager.cs
         //check if animal is sheerable
         if(animalStats.CheckIfAnimalSheerable())
         {
@@ -109,12 +93,6 @@ public class FarmUIManager : MonoBehaviour
             animalStats.ChangeAnimalFurGrowth(-100);
 
             inventory.AddToFurInventory(animalStats.GetAnimalFurInventoryIndex(), 1);
-=======
-        if(animalStats.GetAnimalFurGrowth() >= 100)
-        {
-            SetAnnounceText("Jeremy is sheared. Got ___ amount of ___ fur");
-            animalStats.changeAnimalFurGrowth(-100);
->>>>>>> parent of fa9024c... Adding Terrain to Farm_test:Assets/Scripts/AnimalInteraction/FarmUIButtonHandler.cs
         }
 
         else
