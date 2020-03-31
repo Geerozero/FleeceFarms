@@ -36,18 +36,11 @@ public class BoutiqueManager : MonoBehaviour
         animalInfo = animal.GetComponent<Animal>();
 
         animalInfo.animalID = selectedAnimal.animalID;
-        
         animalInfo.fur = LevelManager.instance.furs[selectedAnimal.furID];
         animalInfo.fur.furID = selectedAnimal.furID;
+        //will also need to add clothing later
+
         animal.GetComponent<MeshRenderer>().material = LevelManager.instance.furs[selectedAnimal.furID].furMaterial;
-
-        animalInfo.slot01 = ClothingManager.instance.clothes[selectedAnimal.slot01ClothID];
-        animalInfo.slot02 = ClothingManager.instance.clothes[selectedAnimal.slot02ClothID];
-        animalInfo.slot03 = ClothingManager.instance.clothes[selectedAnimal.slot03ClothID];
-
-        LevelManager.instance.SpawnClothesOnAnimal(animal, animalInfo.animalType, animalInfo.slot01.clothingID);
-        LevelManager.instance.SpawnClothesOnAnimal(animal, animalInfo.animalType, animalInfo.slot02.clothingID);
-        LevelManager.instance.SpawnClothesOnAnimal(animal, animalInfo.animalType, animalInfo.slot03.clothingID);
 
         //puts animal in postion to be customized
         animal.transform.position = spawnPos;

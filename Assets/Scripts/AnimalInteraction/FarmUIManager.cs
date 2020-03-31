@@ -23,12 +23,10 @@ public class FarmUIManager : MonoBehaviour
     //boolean for other functions to check
     private bool isInteracting;
 
-    //reference for Animal being interacted with for working with and calling functions
+    //create function to receive reference to particular animal on farm scene that we're acting on
+    //like Public Void SetAnimalReference
     private GameObject animalReference;
-    private AnimalStatistics animalStats;
 
-    //variable for messing with coroutine logic
-    private Coroutine lastCoroutine;
 
     private void Start()
     {
@@ -51,17 +49,12 @@ public class FarmUIManager : MonoBehaviour
         FarmUIContainer.SetActive(true);
     }
 
-    //  ////////////////////
     //back on UI hit
     public void BackCallDeactivateUI()
     {
-        //set interacting to false
         SetIsInteracting(false);
-        //reset camera position
         cameraScript.DefaultCameraPositionSet();
-        //deactivate UI
         FarmUIContainer.SetActive(false);
-        //
     }
 
     //events to be called through UI Buttons
@@ -98,22 +91,16 @@ public class FarmUIManager : MonoBehaviour
         }
     }
 
-    //function to call to set announcement text that appears on screen for two seconds, should reset timer if clicked while running
-    private void SetAnnounceText(string textToDisplay)
+    public void ShearCall()
     {
-        if(announcingText)
+        if (!announcingText)
         {
-            Debug.Log("Already displaying");
-            StopCoroutine(lastCoroutine);
-            announcingText = false;
+            //see text display below
+            StartCoroutine(SetAnnounceText("Jeremy is sheared. Got X amount of fleece"));
         }
-
-        //see text display below
-        lastCoroutine = StartCoroutine(AnnounceTextTimer(textToDisplay));
     }
 
-    //timer yield return enumerator
-    IEnumerator AnnounceTextTimer(string announceText)
+    IEnumerator SetAnnounceText(string announceText)
     {
         announcingText = true;
         farmAnnounceText.SetText(announceText);
@@ -123,22 +110,6 @@ public class FarmUIManager : MonoBehaviour
         farmAnnounceText.SetText("");
 
         announcingText = false;
-    
 
-    }
-
-    //set reference to Animal to apply UI actions to
-    public void GetReferenceOfAnimalBeingInteractedWith(GameObject animalGameObject)
-    {
-        Debug.Log("Setting to reference: " + animalGameObject);
-        animalReference = animalGameObject;
-        animalStats = animalReference.GetComponent<AnimalStatistics>();
-
-    }
-
-    public void ResetReferenceOfAnimalBeingInteractedWith()
-    {
-        Debug.Log("Resetting animal reference");
-        animalReference = null;
     }
 }

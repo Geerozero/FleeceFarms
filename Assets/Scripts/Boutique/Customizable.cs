@@ -26,7 +26,7 @@ public class Customizable : MonoBehaviour
     void Update()
     {
         /*---Input code is temporary, i needed it to test animal selection from player input---*/
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Farm_test")) //<---------------------put actual farm scene here
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Farm_test"))
         {
             if (Input.GetMouseButtonDown(0))
             {
