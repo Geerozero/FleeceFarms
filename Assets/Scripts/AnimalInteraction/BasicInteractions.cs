@@ -11,7 +11,7 @@ public class BasicInteractions : MonoBehaviour
     public CameraFarmMovement cameraSnapScript;
 
     [Header("Farm UI handler")]
-    public FarmUIButtonHandler FarmUI;
+    public FarmUIManager FarmUI;
 
 
     private void Start()

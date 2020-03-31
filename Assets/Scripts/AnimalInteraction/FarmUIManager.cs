@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class FarmUIButtonHandler : MonoBehaviour
+public class FarmUIManager : MonoBehaviour
 {
     [Header("Feedback text")]
     public TextMeshProUGUI farmAnnounceText;
@@ -16,6 +16,9 @@ public class FarmUIButtonHandler : MonoBehaviour
     //camera script for resetting camera to view
     [Header("Camera reference")]
     public CameraFarmMovement cameraScript;
+
+    [Header("Inventory Manager")]
+    public InventoryManager inventory;
 
     //boolean for other functions to check
     private bool isInteracting;
@@ -65,31 +68,28 @@ public class FarmUIButtonHandler : MonoBehaviour
     public void FeedCall()
     {
         //0 is hungry, 100 is full
-        animalStats.changeAnimalHunger(5);
+        animalStats.ChangeAnimalFood(20);
 
         SetAnnounceText("Jeremy is fed, hunger is at: " + animalStats.GetAnimalHunger());
-
-        //add to fur growth
-
-        animalStats.changeAnimalFurGrowth(25);
  
     }
 
     public void BrushCall()
     {
-        animalStats.changeAnimalBond(10);
+        animalStats.ChangeAnimalClean(20);
 
-        SetAnnounceText("Jeremy is brushed, bond is at: " + animalStats.GetAnimalBond());
-
-        animalStats.changeAnimalFurGrowth(25);
+        SetAnnounceText("Jeremy is brushed, clean is at: " + animalStats.GetAnimalClean());
     }
 
     public void ShearCall()
     {
-        if(animalStats.GetAnimalFurGrowth() >= 100)
+        //check if animal is sheerable
+        if(animalStats.CheckIfAnimalSheerable())
         {
-            SetAnnounceText("Jeremy is sheared. Got ___ amount of ___ fur");
-            animalStats.changeAnimalFurGrowth(-100);
+            SetAnnounceText("Jeremy is sheared. Got 1 fur");
+            animalStats.ChangeAnimalFurGrowth(-100);
+
+            inventory.AddToFurInventory(animalStats.GetAnimalFurInventoryIndex(), 1);
         }
 
         else

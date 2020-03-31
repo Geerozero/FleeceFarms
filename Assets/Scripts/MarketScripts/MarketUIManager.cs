@@ -12,16 +12,9 @@ public class MarketUIManager : MonoBehaviour
     [Header("UI to set active when pressing Sell")]
     public GameObject[] ObjectsForSelling;
 
-    void Start()
-    {
-        
-    }
+    [Header("Sell buttons")]
+    public GameObject[] SellButtons;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     //set UI objects true/false for BUY
@@ -35,9 +28,10 @@ public class MarketUIManager : MonoBehaviour
     //set UI objects true/false for SELL
     public void DisplaySell()
     {
-
-        SetActiveStateOfArray(ObjectsForBuying, false);
         SetActiveStateOfArray(ObjectsForSelling, true);
+        SetActiveStateOfArray(ObjectsForBuying, false);
+
+        UpdateSellButtonsOwnedNumber();
     }
 
 
@@ -53,4 +47,21 @@ public class MarketUIManager : MonoBehaviour
         }
     }
 
+    //update how many is owned by player
+    private void UpdateSellButtonsOwnedNumber()
+    {
+        int length = SellButtons.Length;
+        int i;
+        MarketItemIndexProcessing buttonScriptReference;
+
+        for (i = 0; i < length; i++)
+        {
+            SellButtons[i].SetActive(true);
+
+            buttonScriptReference = SellButtons[i].GetComponent<MarketItemIndexProcessing>();
+
+            buttonScriptReference.UpdateOwnedAmountText();
+        }
+    }
+    
 }

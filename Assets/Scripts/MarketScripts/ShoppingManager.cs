@@ -15,32 +15,39 @@ public class ShoppingManager : MonoBehaviour
 
     private bool announcingText = false;
 
+    //variable for messing with coroutine logic
+    private Coroutine lastCoroutine;
+
     private void Start()
     {
         inventoryManagerScript = InventoryManager.GetComponent<InventoryManager>();
     }
     
+    //for referencing by scripts
+    public int GetInventoryOwnedFurAtIndex(int itemIndex)
+    {
+        Debug.Log(itemIndex);
+
+        return inventoryManagerScript.GetFurInventoryIndex(itemIndex);
+    }
+
     //for testing, 100 is index 0, 500 is index 1, 1000 is index 2
     public void ProcessPurchase(int itemIndex, int itemBuyCost, int itemAmountBuying)
     {
         //checks if Player has enough money - stops if they don't
         if (inventoryManagerScript.GetMoney() < itemBuyCost)
         {
-            if (!announcingText)
-            {
+            
                 //see text display below
-                StartCoroutine(SetAnnounceText("Not enough money"));
-            }
+                SetAnnounceText("Not enough money");
+
         }
         //Player has enough money
         else
         {
-            //Boolean for making text appear smoothly
-            if(!announcingText)
-            {
+  
                 //see text display below
-                StartCoroutine(SetAnnounceText("Got index in Index: " + itemIndex));
-            }
+                SetAnnounceText("Got index in Index: " + itemIndex);
 
             //subtract money, add ONE to inventory in given index
             inventoryManagerScript.SubtractMoney(itemBuyCost);
@@ -53,21 +60,14 @@ public class ShoppingManager : MonoBehaviour
         //checks if Player has enough of item to sell in inventory to attempt sale - stop if they don't
         if(inventoryManagerScript.GetFurInventoryIndex(itemIndex) < itemAmountSelling)
         {
-            if(!announcingText)
-            {
-                //see text display below
-                StartCoroutine(SetAnnounceText("Not enough items in inventory"));
-            }
+            SetAnnounceText("Not enough items in inventory");
         }
 
         //player has enough in inventory to sell!
         else
         {
-            if (!announcingText)
-            {
-                //see text display below
-                StartCoroutine(SetAnnounceText("Selling item in inventory index: " + itemIndex));
-            }
+            SetAnnounceText("Selling item in inventory index: " + itemIndex);
+
 
             //remove from inventory, add money
             inventoryManagerScript.SubtractFromFurInventory(itemIndex, itemAmountSelling);
@@ -76,9 +76,22 @@ public class ShoppingManager : MonoBehaviour
     }
 
 
-    //need to add functionality for Selling
-    
-    IEnumerator SetAnnounceText(string announceText)
+    //function to call to set announcement text that appears on screen for two seconds, should reset timer if clicked while running
+    private void SetAnnounceText(string textToDisplay)
+    {
+        if (announcingText)
+        {
+            Debug.Log("Already displaying");
+            StopCoroutine(lastCoroutine);
+            announcingText = false;
+        }
+
+        //see text display below
+        lastCoroutine = StartCoroutine(AnnounceTextTimer(textToDisplay));
+    }
+
+    //timer yield return enumerator
+    IEnumerator AnnounceTextTimer(string announceText)
     {
         announcingText = true;
         buySellAnnounceText.SetText(announceText);
@@ -89,5 +102,7 @@ public class ShoppingManager : MonoBehaviour
 
         announcingText = false;
 
+
     }
+
 }

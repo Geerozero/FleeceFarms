@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     //the array of these should match the array of shop values
     [Header("Inventory array")]
-    private static int[] ownedFurInventory = new int[3] { 0, 0, 0 };
+    public static int[] ownedFurInventory = new int[] { 0, 0, 0 };
 
 
     private void Start()
@@ -70,6 +70,7 @@ public class InventoryManager : MonoBehaviour
 
     public int GetFurInventoryIndex(int furArray)
     {
-        return ownedFurInventory[furArray];
+        int returnNum = ownedFurInventory[furArray];
+        return returnNum;
     }
 }
