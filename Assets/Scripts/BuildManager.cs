@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
-
+    AudioSource audioSource;
     void Awake()
     {
         if (instance != null)
