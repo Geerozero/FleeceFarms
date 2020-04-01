@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Red Fur
   furID: 1000
   cost: 100
-  isPurchased: 1
+  isPurchased: 0
   buttonImage: {fileID: 21300000, guid: a2bd37ba954b36c40839b044399b5924, type: 3}
   furMaterial: {fileID: 2100000, guid: c1413347f52eace43afa8e7466f84fa4, type: 2}

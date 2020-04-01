@@ -26,11 +26,6 @@ public class BoutiqueOutfitButton : MonoBehaviour
     
     void Start()
     {
-        /* make sure item is not unlocked at the start of game
-         * item will be unlocked through merchant system */
-        outfitItem.isPurchased = false;
-        lockedImage.gameObject.SetActive(true);
-
         /*---Connect fur item attributes to this button---*/
         button = GetComponent<Button>();
         buttonText.text = outfitItem.name;
