@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FarmUIManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class FarmUIManager : MonoBehaviour
     //reference for Animal being interacted with for working with and calling functions
     private GameObject animalReference;
     private AnimalStatistics animalStats;
+    private string animalName;
 
     //variable for messing with coroutine logic
     private Coroutine lastCoroutine;
@@ -35,6 +37,13 @@ public class FarmUIManager : MonoBehaviour
         isInteracting = false;
     }
 
+
+    //SCENE TRANSITIONS
+
+    public void LoadMarket()
+    {
+        SceneManager.LoadScene("Market");
+    }
     public void SetIsInteracting(bool newInteractingStatus)
     {
         isInteracting = newInteractingStatus;
@@ -70,7 +79,7 @@ public class FarmUIManager : MonoBehaviour
         //0 is hungry, 100 is full
         animalStats.ChangeAnimalFood(20);
 
-        SetAnnounceText("Jeremy is fed, hunger is at: " + animalStats.GetAnimalHunger());
+        SetAnnounceText(animalName + " is fed, hunger is at: " + animalStats.GetAnimalHunger());
 
  
     }
@@ -80,7 +89,7 @@ public class FarmUIManager : MonoBehaviour
 
         animalStats.ChangeAnimalClean(20);
 
-        SetAnnounceText("Jeremy is brushed, clean is at: " + animalStats.GetAnimalClean());
+        SetAnnounceText(animalName + " is brushed, clean is at: " + animalStats.GetAnimalClean());
 
     }
 
@@ -89,7 +98,7 @@ public class FarmUIManager : MonoBehaviour
         //check if animal is sheerable
         if(animalStats.CheckIfAnimalSheerable())
         {
-            SetAnnounceText("Jeremy is sheared. Got 1 fur");
+            SetAnnounceText(animalName + " is sheared. Got 1 fur");
             animalStats.ChangeAnimalFurGrowth(-100);
 
             inventory.AddToFurInventory(animalStats.GetAnimalFurInventoryIndex(), 1);
@@ -97,7 +106,7 @@ public class FarmUIManager : MonoBehaviour
 
         else
         {
-            SetAnnounceText("Jeremy is not ready to be sheared, currently at " + animalStats.GetAnimalFurGrowth() + "% fur growth");
+            SetAnnounceText(animalName + " is not ready to be sheared, currently at " + animalStats.GetAnimalFurGrowth() + "% fur growth");
         }
     }
 
@@ -136,6 +145,7 @@ public class FarmUIManager : MonoBehaviour
         Debug.Log("Setting to reference: " + animalGameObject);
         animalReference = animalGameObject;
         animalStats = animalReference.GetComponent<AnimalStatistics>();
+        animalName = animalStats.GetAnimalName();
 
     }
 

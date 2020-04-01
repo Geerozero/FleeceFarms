@@ -44,6 +44,7 @@ public class AnimalStatistics : MonoBehaviour
 
     private static float statsTickDelay;
     private float tickPreviousCheckTime;
+    public static int furGrowthModifier = 20;
 
     void Start()
     {
@@ -75,6 +76,10 @@ public class AnimalStatistics : MonoBehaviour
         }
     }
 
+    public string GetAnimalName()
+    {
+        return animalName;
+    }
 
     //change Animal Fur Inventory Index
     public void SetAnimalFurInventoryIndex(int newFurInventoryIndex)
@@ -122,7 +127,7 @@ public class AnimalStatistics : MonoBehaviour
         if(animalHappy)
         {
             Debug.Log("Fur growing");
-            ChangeAnimalFurGrowth(5 * GetAnimalBond());
+            ChangeAnimalFurGrowth(furGrowthModifier * GetAnimalBond());
         }
 
 

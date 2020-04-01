@@ -37,9 +37,16 @@ public class MarketUIManager : MonoBehaviour
         SetActiveStateOfArray(ObjectsForSelling, false);
     } */
 
+     
     void Start()
     {
         DisplayBuyOptions();
+    }
+
+    private void Update()
+    {
+        //FIXME: make this not call constantly. Maybe just call a few times on displaying sell
+        UpdateSellButtonsOwnedNumber();
     }
 
     //set UI objects true/false for SELL
@@ -47,8 +54,7 @@ public class MarketUIManager : MonoBehaviour
     {
         SetActiveStateOfArray(ObjectsForSelling, true);
         //SetActiveStateOfArray(ObjectsForBuying, false);
-
-        UpdateSellButtonsOwnedNumber();
+        
     }
 
 
@@ -80,6 +86,7 @@ public class MarketUIManager : MonoBehaviour
             buttonScriptReference.UpdateOwnedAmountText();
         }
     }
+
 
     /*---Display UI elements---*/
 
