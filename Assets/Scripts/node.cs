@@ -77,27 +77,126 @@ void Start ()
         Debug.Log("pen has built");
     }
 
+    public int penLevel = 0;
+    public double penCost = 0;
+    public int penSpeed = 0;
+
     public void UpgradePen()
     {
-        if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+        switch (penLevel)
         {
-            Debug.Log("no upgrade for you");
-            return;
+            case 0:
+                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                {
+                    Debug.Log("no upgrade for you");
+                    return;
+                }else
+                {
+                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    //goodbye old pen
+                    Destroy(animalPen);
+
+                    //build pen 2.0
+                    GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+                    animalPen = _pen;
+
+                    //add effect
+
+                    isUpgraded = true;
+                    penLevel += 1;
+                    penCost = penCost + (penCost * 1.5);
+                    penSpeed = penSpeed * 2;
+
+                    Debug.Log("level:" + penLevel);
+                }
+                break;
+
+            case 1:
+                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                {
+                    Debug.Log("no upgrade for you");
+                    return;
+                }
+                else
+                {
+                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    //goodbye old pen
+                    Destroy(animalPen);
+
+                    //build pen 2.0
+                    GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+                    animalPen = _pen;
+
+                    //add effect
+
+                    isUpgraded = true;
+                    penLevel += 1;
+                    penCost = penCost + (penCost * 1.5);
+                    penSpeed = penSpeed * 2;
+
+                    Debug.Log("level:" + penLevel);
+                }
+
+                break;
+
+            case 2:
+                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                {
+                    Debug.Log("no upgrade for you");
+                    return;
+                }
+                else
+                {
+                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    //goodbye old pen
+                    Destroy(animalPen);
+
+                    //build pen 2.0
+                    GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+                    animalPen = _pen;
+
+                    //add effect
+
+                    isUpgraded = true;
+                    penLevel += 1;
+                    penCost = penCost + (penCost * 2);
+                    penSpeed = penSpeed * 2;
+
+                    Debug.Log("level:" + penLevel);
+                }
+
+                break;
+
+            case 3:
+                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                {
+                    Debug.Log("no upgrade for you");
+                    return;
+                }
+                else
+                {
+                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    //goodbye old pen
+                    Destroy(animalPen);
+
+                    //build pen 3.0
+                    GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
+                    animalPen = _pen;
+
+                    //add effect
+
+                    isUpgraded = true;
+                    penLevel += 1;
+                    penCost = penCost + (penCost * 2.5);
+                    penSpeed = penSpeed * 2;
+
+                    Debug.Log("level:" + penLevel);
+                }
+                print("max level");
+                //Destroy(Canvas);
+                break;                   
+        
         }
-        InventoryManager.money -= animalPenBlueprint.upgradeCost;
-        //goodbye old pen
-        Destroy(animalPen);
-
-        //build pen 2.0
-        GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
-        animalPen = _pen;
-
-        //add effect
-
-        isUpgraded = true;
-
-        Debug.Log("pen 2.0");
-
     }
 
     public void SellPen()
