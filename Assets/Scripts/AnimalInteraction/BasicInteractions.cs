@@ -6,17 +6,27 @@ public class BasicInteractions : MonoBehaviour
 {
     //This sets up basic interaction on the farm with the animal
 
-    [Header("Camera snapping for interaction references")]
+    [Header("Snap point inside animal prefab")]
     public Transform InteractionCameraSnap;
-    public CameraFarmMovement cameraSnapScript;
 
-    [Header("Farm UI handler")]
-    public FarmUIManager FarmUI;
+    //camera in game
+    private GameObject mainCamera;
+    public CameraFarmMovement cameraSnapScript;     //keep this public for now
+
+    //managers of scene that are local to this scene
+    private GameObject managersLocalToScene;
+    public FarmUIManager FarmUI;     //keep this public for now
 
 
     private void Start()
     {
+        //gets managers local to scene to work with
+        managersLocalToScene = GameObject.Find("ManagersLocalToScene");
+        FarmUI = managersLocalToScene.GetComponent<FarmUIManager>();
 
+        //gets main camera in scene when instancing this object - gets script for camera snapping
+        mainCamera = GameObject.Find("MainCamera");
+        cameraSnapScript = mainCamera.GetComponent<CameraFarmMovement>();
     }
     private void Update()
     {

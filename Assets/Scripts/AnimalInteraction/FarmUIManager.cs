@@ -14,6 +14,9 @@ public class FarmUIManager : MonoBehaviour
     [Header("UI References")]
     public GameObject FarmUIContainer;
 
+    [Header("Animal Name text")]
+    public TextMeshProUGUI animalNameText;
+
     //camera script for resetting camera to view
     [Header("Camera reference")]
     public CameraFarmMovement cameraScript;
@@ -27,7 +30,10 @@ public class FarmUIManager : MonoBehaviour
     //reference for Animal being interacted with for working with and calling functions
     private GameObject animalReference;
     private AnimalStatistics animalStats;
+
     private string animalName;
+    [Header("Name field")]
+    public GameObject nameInputTextField;
 
     //variable for messing with coroutine logic
     private Coroutine lastCoroutine;
@@ -46,6 +52,7 @@ public class FarmUIManager : MonoBehaviour
     }
     public void SetIsInteracting(bool newInteractingStatus)
     {
+        Debug.Log("Set interacting!");
         isInteracting = newInteractingStatus;
     }
 
@@ -58,6 +65,9 @@ public class FarmUIManager : MonoBehaviour
     public void ActivateUI()
     {
         FarmUIContainer.SetActive(true);
+
+        //set name of animal in UI
+        animalNameText.SetText(animalName);
     }
 
     //  ////////////////////
@@ -109,6 +119,31 @@ public class FarmUIManager : MonoBehaviour
             SetAnnounceText(animalName + " is not ready to be sheared, currently at " + animalStats.GetAnimalFurGrowth() + "% fur growth");
         }
     }
+
+    // ////////////INPUT TEXT FIELD START
+    //change animal name
+    public void ChangeAnimalName(string newName)
+    {
+        //change in animal stats
+        animalStats.ChangeAnimalName(newName);
+
+        //change in UI reference
+        animalName = newName;
+    }
+
+    public void ShowNameFieldInput()
+    {
+        nameInputTextField.SetActive(true);
+        animalNameText.SetText("");
+    }
+
+    public void HideNameFieldInput()
+    {
+        nameInputTextField.SetActive(false);
+        animalNameText.SetText(animalName);
+    }
+
+    // //////////////// INPUT TEXT FIELD END
 
     //function to call to set announcement text that appears on screen for two seconds, should reset timer if clicked while running
     private void SetAnnounceText(string textToDisplay)

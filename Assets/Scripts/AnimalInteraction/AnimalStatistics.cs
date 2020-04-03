@@ -81,6 +81,11 @@ public class AnimalStatistics : MonoBehaviour
         return animalName;
     }
 
+    public void ChangeAnimalName(string newName)
+    {
+        animalName = newName;
+    }
+
     //change Animal Fur Inventory Index
     public void SetAnimalFurInventoryIndex(int newFurInventoryIndex)
     {
