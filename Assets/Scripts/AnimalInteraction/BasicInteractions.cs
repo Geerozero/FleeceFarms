@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BasicInteractions : MonoBehaviour
 {
@@ -16,29 +17,39 @@ public class BasicInteractions : MonoBehaviour
     //managers of scene that are local to this scene
     private GameObject managersLocalToScene;
     public FarmUIManager FarmUI;     //keep this public for now
+    
+    private Scene currentScene;
+    private GameObject selectedAnimal; //gameobject reference of selected animal
 
 
     private void Start()
     {
-        //gets managers local to scene to work with
-        managersLocalToScene = GameObject.Find("ManagersLocalToScene");
-        FarmUI = managersLocalToScene.GetComponent<FarmUIManager>();
+        currentScene = SceneManager.GetActiveScene();
+        Debug.Log("Scene: " + currentScene.name);
 
-        //gets main camera in scene when instancing this object - gets script for camera snapping
-        mainCamera = GameObject.Find("MainCamera");
-        cameraSnapScript = mainCamera.GetComponent<CameraFarmMovement>();
+        if (currentScene.name == "Farm_design")
+        {
+            //gets managers local to scene to work with
+            managersLocalToScene = GameObject.Find("ManagersLocalToScene");
+            FarmUI = managersLocalToScene.GetComponent<FarmUIManager>();
+
+            //gets main camera in scene when instancing this object - gets script for camera snapping
+            mainCamera = GameObject.Find("MainCamera");
+            cameraSnapScript = mainCamera.GetComponent<CameraFarmMovement>();
+        }
     }
     private void Update()
     {
-
-        CheckClickRaycast();
-
         //calls UI Manager to see if player is interacting
-        if(FarmUI.GetIsInteracting())
+        if(currentScene.name == "Farm_design")
         {
-            MoveCamera(InteractionCameraSnap);
-        }
+            CheckClickRaycast();
 
+            if (FarmUI.GetIsInteracting())
+            {
+                MoveCamera(InteractionCameraSnap);
+            }
+        }
     }
 
     //checks for raycast of player click if it hit this animal
@@ -61,6 +72,7 @@ public class BasicInteractions : MonoBehaviour
                 if (hit.transform.tag == "Animal")
                 {
                     Debug.Log("Clicked Animal");
+                    selectedAnimal = hit.transform.gameObject;
                     //set isInteracting true
                     SetIsInteractingInUIHandler(true);
                     //pass reference to UI
@@ -90,7 +102,7 @@ public class BasicInteractions : MonoBehaviour
     private void PassReferenceToUIManager()
     {
         //gets parent of this object to pass up
-        FarmUI.GetReferenceOfAnimalBeingInteractedWith(transform.parent.gameObject);
+        FarmUI.GetReferenceOfAnimalBeingInteractedWith(selectedAnimal);
     }
 
 }

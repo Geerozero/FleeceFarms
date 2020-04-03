@@ -100,6 +100,6 @@ public class BoutiqueUIManager : MonoBehaviour
         LevelManager.instance.saves[BoutiqueManager.instance.animalInfo.animalID].slot02ClothID = BoutiqueManager.instance.animalInfo.slot02.clothingID;
         LevelManager.instance.saves[BoutiqueManager.instance.animalInfo.animalID].slot03ClothID = BoutiqueManager.instance.animalInfo.slot03.clothingID;
 
-        SceneManager.LoadScene("Farm_test");
+        SceneManager.LoadScene("Farm_design");
     }
 }

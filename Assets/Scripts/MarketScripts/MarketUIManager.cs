@@ -131,7 +131,7 @@ public class MarketUIManager : MonoBehaviour
 
     public void GoToFarm()
     {
-        SceneManager.LoadScene("Farm_test");
+        SceneManager.LoadScene("Farm_design");
     }
     
 }

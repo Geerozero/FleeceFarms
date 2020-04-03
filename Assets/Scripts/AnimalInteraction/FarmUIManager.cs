@@ -13,6 +13,7 @@ public class FarmUIManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject FarmUIContainer;
+    public GameObject marketButton;
 
     [Header("Animal Name text")]
     public TextMeshProUGUI animalNameText;
@@ -25,11 +26,12 @@ public class FarmUIManager : MonoBehaviour
     public InventoryManager inventory;
 
     //boolean for other functions to check
+    [SerializeField]
     private bool isInteracting;
 
     //reference for Animal being interacted with for working with and calling functions
     private GameObject animalReference;
-    private AnimalStatistics animalStats;
+    private Animal animalStats;
 
     private string animalName;
     [Header("Name field")]
@@ -37,6 +39,8 @@ public class FarmUIManager : MonoBehaviour
 
     //variable for messing with coroutine logic
     private Coroutine lastCoroutine;
+
+    private LevelManager.AnimalSave animalSave;
 
     private void Start()
     {
@@ -48,8 +52,17 @@ public class FarmUIManager : MonoBehaviour
 
     public void LoadMarket()
     {
+        LevelManager.instance.SaveAnimalsToFile();
         SceneManager.LoadScene("Market");
     }
+
+    public void LoadBoutique()
+    {
+        BoutiqueManager.instance.selectedAnimal = animalSave;
+        LevelManager.instance.SaveAnimalsToFile();
+        SceneManager.LoadScene("Boutique");
+    }
+
     public void SetIsInteracting(bool newInteractingStatus)
     {
         Debug.Log("Set interacting!");
@@ -65,7 +78,7 @@ public class FarmUIManager : MonoBehaviour
     public void ActivateUI()
     {
         FarmUIContainer.SetActive(true);
-
+        marketButton.SetActive(false);
         //set name of animal in UI
         animalNameText.SetText(animalName);
     }
@@ -80,6 +93,7 @@ public class FarmUIManager : MonoBehaviour
         cameraScript.DefaultCameraPositionSet();
         //deactivate UI
         FarmUIContainer.SetActive(false);
+        marketButton.SetActive(true);
         //
     }
 
@@ -90,17 +104,13 @@ public class FarmUIManager : MonoBehaviour
         animalStats.ChangeAnimalFood(20);
 
         SetAnnounceText(animalName + " is fed, hunger is at: " + animalStats.GetAnimalHunger());
-
- 
     }
 
     public void BrushCall()
     {
-
         animalStats.ChangeAnimalClean(20);
 
         SetAnnounceText(animalName + " is brushed, clean is at: " + animalStats.GetAnimalClean());
-
     }
 
     public void ShearCall()
@@ -170,8 +180,6 @@ public class FarmUIManager : MonoBehaviour
         farmAnnounceText.SetText("");
 
         announcingText = false;
-    
-
     }
 
     //set reference to Animal to apply UI actions to
@@ -179,9 +187,9 @@ public class FarmUIManager : MonoBehaviour
     {
         Debug.Log("Setting to reference: " + animalGameObject);
         animalReference = animalGameObject;
-        animalStats = animalReference.GetComponent<AnimalStatistics>();
+        animalStats = animalReference.GetComponent<Animal>();
+        animalSave = animalStats.GetAnimalSave();
         animalName = animalStats.GetAnimalName();
-
     }
 
     public void ResetReferenceOfAnimalBeingInteractedWith()

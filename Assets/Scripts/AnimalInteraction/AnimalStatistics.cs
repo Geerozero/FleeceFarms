@@ -6,12 +6,12 @@ public class AnimalStatistics : MonoBehaviour
 {
     //holds the stats of the animal including:
     /*
-    Name
-    AnimalID
-    FurID
-    Bond
-    Hunger
-    Fur Growth
+    Name - added
+    AnimalID - added
+    FurID - added
+    Bond - added
+    Hunger - added
+    Fur Growth - added
     */
 
     //this should implement Kaitlin's Animal ID aspects later (this week probably)
@@ -31,7 +31,7 @@ public class AnimalStatistics : MonoBehaviour
     [SerializeField]
     private int animalFurGrowth = 0;
     [SerializeField]
-    private int animalBond = 0;
+    private int animalBond = 0; //changing to public to be saved as well
 
     [Header("Bond to increase every feed/clean")]
     public int animalBondIncreasePerInteraction;
@@ -49,7 +49,8 @@ public class AnimalStatistics : MonoBehaviour
     void Start()
     {
         statsTickDelay = statsTickDelayInput;
-        animalHappy = true;
+        animalHappy = true; //changing this to a public variable to be saved from scene to scene
+                            //otherwise every animal will be happy when scenes change
 
         animalBond = 100;
     }
@@ -76,23 +77,23 @@ public class AnimalStatistics : MonoBehaviour
         }
     }
 
-    public string GetAnimalName()
+    public string GetAnimalName() // - added
     {
         return animalName;
     }
 
-    public void ChangeAnimalName(string newName)
+    public void ChangeAnimalName(string newName) // - added
     {
         animalName = newName;
     }
 
     //change Animal Fur Inventory Index
-    public void SetAnimalFurInventoryIndex(int newFurInventoryIndex)
+    public void SetAnimalFurInventoryIndex(int newFurInventoryIndex) // - added
     {
         animalFurInventoryIndex = newFurInventoryIndex;
     }
 
-    public int GetAnimalFurInventoryIndex()
+    public int GetAnimalFurInventoryIndex() // - added
     {
         return animalFurInventoryIndex;
     }
@@ -100,7 +101,7 @@ public class AnimalStatistics : MonoBehaviour
 
     // ///////////////////////////////INTERACTION STATS SYSTEM
 
-    private void CheckAnimalHappy()
+    private void CheckAnimalHappy() // - added
     {
         if(animalClean > 0 && animalFood > 0)
         {
@@ -126,7 +127,7 @@ public class AnimalStatistics : MonoBehaviour
         
     }
 
-    private void TickAnimalStats()
+    private void TickAnimalStats() // - added not implemented
     {
         //tick fur growth only if animal is happy
         if(animalHappy)
@@ -145,7 +146,7 @@ public class AnimalStatistics : MonoBehaviour
     //only want to ADJUST statistics of animal, not set fully
     //can pass in negative or positive integer
 
-    public void ChangeAnimalClean(int cleanValueChange)
+    public void ChangeAnimalClean(int cleanValueChange) // - added
     {
         CheckToIncreaseBond(cleanValueChange);
         animalClean += cleanValueChange;
@@ -162,13 +163,13 @@ public class AnimalStatistics : MonoBehaviour
         }
     }
 
-    public int GetAnimalClean()
+    public int GetAnimalClean() // - added
     {
         return animalClean;
     }
 
     //animal hunger should always just be added
-    public void ChangeAnimalFood(int hungerValueChange)
+    public void ChangeAnimalFood(int hungerValueChange) // - added
     {
         CheckToIncreaseBond(hungerValueChange);
         animalFood += hungerValueChange;
@@ -185,14 +186,14 @@ public class AnimalStatistics : MonoBehaviour
         }
     }
 
-    public int GetAnimalHunger()
+    public int GetAnimalHunger() // - added
     {
         return animalFood;
     }
 
 
     //fur growth
-    public void ChangeAnimalFurGrowth(int furGrowthValueChange)
+    public void ChangeAnimalFurGrowth(int furGrowthValueChange) // - added
     {
         animalFurGrowth += furGrowthValueChange;
 
@@ -209,14 +210,14 @@ public class AnimalStatistics : MonoBehaviour
     }
 
     //get fur growth
-    public int GetAnimalFurGrowth()
+    public int GetAnimalFurGrowth() // - added
     {
         return animalFurGrowth;
     }
    
 
     //checks if FurGrowht is at 100, returns true if it is, false if it is NOT
-    public bool CheckIfAnimalSheerable()
+    public bool CheckIfAnimalSheerable() // - added
     {
         if(animalFurGrowth >= 100)
         {
@@ -233,7 +234,7 @@ public class AnimalStatistics : MonoBehaviour
     //animal Bond is general affection for player that increases as player interacts with animal
     //bond can constantly increase up to a max of 1000
     //bond make Fur grow faster
-    public void ChangeAnimalBond(int bondValueChange)
+    public void ChangeAnimalBond(int bondValueChange) // - added
     {
         animalBond += bondValueChange;
 
@@ -250,7 +251,7 @@ public class AnimalStatistics : MonoBehaviour
     }
 
     //call whenever feeding or cleaning to check if a positive value is being added, if so add bond points
-    private void CheckToIncreaseBond(int valueChangeToCheck)
+    private void CheckToIncreaseBond(int valueChangeToCheck) //- added
     {
         if(valueChangeToCheck > 0)
         {
@@ -259,7 +260,7 @@ public class AnimalStatistics : MonoBehaviour
     }
 
     //return Animal Bond divided by 100
-    public int GetAnimalBond()
+    public int GetAnimalBond() // - added
     {
         return (animalBond/100);
     }

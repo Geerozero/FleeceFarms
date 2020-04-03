@@ -53,7 +53,7 @@ public class LevelManager : MonoBehaviour
         {
             //do something
         }
-        else
+        else if(scene.name == "Farm_design")
         {
             /*---Restores animals when in the Farm scene---*/
             Debug.Log("Loading Scene...");
@@ -65,6 +65,7 @@ public class LevelManager : MonoBehaviour
     public class AnimalSave
     {
         /*---Data container for animal traits---*/
+        public string animalName;
         public int animalID;
         public Animal.AnimalType animalType;
 
@@ -72,6 +73,11 @@ public class LevelManager : MonoBehaviour
         public int slot01ClothID;
         public int slot02ClothID;
         public int slot03ClothID;
+
+        public bool animalIsHappy;
+        public int animalBond;
+        public int animalHunger;
+        public int animalFurGrowth;
 
         public SerializableVector3 position;
         public SerializableVector3 rotation;
@@ -129,7 +135,11 @@ public class LevelManager : MonoBehaviour
         Animal animalInfo = newAnimal.GetComponent<Animal>();
 
         InitializeNewAnimal(animalInfo, animalType);
+        
         newAnimal.GetComponent<MeshRenderer>().material = furs[animalInfo.fur.furID].furMaterial;
+        SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
+        SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
+        SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
 
         animals.Add(animalInfo);
         //other animals to be added later(sheep, rabbit)
@@ -147,7 +157,8 @@ public class LevelManager : MonoBehaviour
         {
             animalInfo.animalID += 1;
         }
-        
+
+        animalInfo.name = "NewAnimal";
         animalInfo.animalType = animalType;
         animalInfo.fur = startingFurItem;
         animalInfo.slot01 = startingOutfitItem;
