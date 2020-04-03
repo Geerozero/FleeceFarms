@@ -3,7 +3,12 @@ guid: 5f9e4fee846b06b44b833b5193d1e2d0
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wheelBarrow_Bolts_Mat
+    second: {fileID: 2100000, guid: ae0dfdfc03a9bfc4e83bd8a485852f1b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
