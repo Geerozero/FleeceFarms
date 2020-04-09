@@ -23,4 +23,14 @@ public class TempUIManager : MonoBehaviour
     {
         LevelManager.instance.SpawnNewAnimal(Animal.AnimalType.Alpaca);
     }
+
+    public void LoadGame()
+    {
+        DataManager.instance.Load();
+    }
+
+    public void SaveGame()
+    {
+        DataManager.instance.Save();
+    }
 }

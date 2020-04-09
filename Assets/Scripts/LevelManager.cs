@@ -10,7 +10,9 @@ public class LevelManager : MonoBehaviour
 
     public List<Animal> animals = new List<Animal>();
     public FurItem startingFurItem;
-    public OutfitItem startingOutfitItem;
+    public OutfitItem startingAccessory;
+    public OutfitItem startingTorso;
+    public OutfitItem startingShoe;
     public GameObject alpacaPrefab;
     public GameObject sheepPrefab;
     public GameObject rabbitPrefab;
@@ -161,9 +163,9 @@ public class LevelManager : MonoBehaviour
         animalInfo.name = "NewAnimal";
         animalInfo.animalType = animalType;
         animalInfo.fur = startingFurItem;
-        animalInfo.slot01 = startingOutfitItem;
-        animalInfo.slot02 = startingOutfitItem;
-        animalInfo.slot03 = startingOutfitItem;
+        animalInfo.slot01 = startingAccessory;
+        animalInfo.slot02 = startingTorso;
+        animalInfo.slot03 = startingShoe;
 
         saves.Add(animalInfo.animalID, animalInfo.GetAnimalSave());
 

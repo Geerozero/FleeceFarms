@@ -5492,6 +5492,76 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573916014}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &706852952
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3284520276245537012}
+    m_Modifications:
+    - target: {fileID: 3186168536575813166, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_Name
+      value: HatButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580449851350900360, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: outfitItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 95d957287169fb14ba6d707540298bf8,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6054e46f0dc7caa40b67a44fdcad6421, type: 3}
 --- !u!1 &850170377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6830,6 +6900,76 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009953131}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &2059705027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3284520276245537012}
+    m_Modifications:
+    - target: {fileID: 3186168536575813166, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_Name
+      value: BowButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3186168536575813167, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580449851350900360, guid: 6054e46f0dc7caa40b67a44fdcad6421,
+        type: 3}
+      propertyPath: outfitItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e570c66cd9ddfa44a930b6ed2287924,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6054e46f0dc7caa40b67a44fdcad6421, type: 3}
 --- !u!1 &2065469308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7214,5 +7354,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6523205021003955829, guid: c3978e871faf3464ba07b605b68a9da0,
+        type: 3}
+      propertyPath: m_Name
+      value: None
+      objectReference: {fileID: 0}
+    - target: {fileID: 118077297441785555, guid: c3978e871faf3464ba07b605b68a9da0,
+        type: 3}
+      propertyPath: outfitItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 47d2b825c7e5d894eb34a1b54c4dffc4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3978e871faf3464ba07b605b68a9da0, type: 3}
+--- !u!224 &3284520276245537012 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3284520278234014845, guid: c3978e871faf3464ba07b605b68a9da0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3284520276245537011}
+  m_PrefabAsset: {fileID: 0}

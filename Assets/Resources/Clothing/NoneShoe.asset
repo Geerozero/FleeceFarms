@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce5fac8605ff0a54d9f3f52a6e064006, type: 3}
-  m_Name: Hat
+  m_Name: NoneShoe
   m_EditorClassIdentifier: 
-  name: Hat
-  clothingID: 2003
-  clothingType: 0
-  cost: 100
+  name: None
+  clothingID: 2001
+  clothingType: 2
+  cost: 0
   isPurchased: 1
   buttonImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  item: {fileID: 899554409006551491, guid: 5164cacf8631f0d4ca16c0a630262e1f, type: 3}
-  spawnPositionAlpaca: {x: 0, y: 0.87, z: 0}
-  spawnScaleAlpaca: {x: 0.75, y: 0.75, z: 0.75}
+  item: {fileID: 4952177126105472652, guid: 62b5288f8a1ef234b9af18efcf3d3fe4, type: 3}
+  spawnPositionAlpaca: {x: 0, y: 0, z: 0}
+  spawnScaleAlpaca: {x: 0, y: 0, z: 0}
   spawnPositionSheep: {x: 0, y: 0, z: 0}
-  spawnScaleSheep: {x: 1, y: 1, z: 1}
+  spawnScaleSheep: {x: 0, y: 0, z: 0}
   spawnPositionRabbit: {x: 0, y: 0, z: 0}
-  spawnScaleRabbit: {x: 1, y: 1, z: 1}
+  spawnScaleRabbit: {x: 0, y: 0, z: 0}

@@ -87,6 +87,8 @@ public class BoutiqueOutfitButton : MonoBehaviour
         Debug.Log("Putting outfit item on...");
         if(BoutiqueManager.instance.selectedAnimal.animalType == Animal.AnimalType.Alpaca)
         {
+            DeletePreviousOutfitItem();
+
             GameObject newOutfitItem = Instantiate(outfitObject);
             
             newOutfitItem.transform.localScale = scaleA;
@@ -97,23 +99,53 @@ public class BoutiqueOutfitButton : MonoBehaviour
         }
         else if (BoutiqueManager.instance.selectedAnimal.animalType == Animal.AnimalType.Sheep)
         {
+            DeletePreviousOutfitItem();
+
             GameObject newOutfitItem = Instantiate(outfitObject);
 
             newOutfitItem.transform.localScale = scaleS;
             newOutfitItem.transform.parent = BoutiqueManager.instance.animal.transform;
             newOutfitItem.transform.localPosition = spawnS;
+
+            DetermineClothingSlot();
         }
         else if (BoutiqueManager.instance.selectedAnimal.animalType == Animal.AnimalType.Rabbit)
         {
+            DeletePreviousOutfitItem();
+
             GameObject newOutfitItem = Instantiate(outfitObject);
 
             newOutfitItem.transform.localScale = scaleR;
             newOutfitItem.transform.parent = BoutiqueManager.instance.animal.transform;
             newOutfitItem.transform.localPosition = spawnR;
+
+            DetermineClothingSlot();
         }
         else
         {
             Debug.Log("Invalid animal type... sorry :(");
+        }
+    }
+
+    public void DeletePreviousOutfitItem()
+    {
+        for (int i = 0; i < BoutiqueManager.instance.animal.transform.childCount; i++)
+        {
+            if (outfitItem.clothingType == OutfitItem.ClothingType.Accessory && BoutiqueManager.instance.animal.transform.GetChild(i).gameObject.CompareTag("Accessory"))
+            {
+                Debug.Log("destroying: " + BoutiqueManager.instance.animal.transform.GetChild(i).gameObject);
+                Destroy(BoutiqueManager.instance.animal.transform.GetChild(i).gameObject);
+            }
+            else if (outfitItem.clothingType == OutfitItem.ClothingType.Torso && BoutiqueManager.instance.animal.transform.GetChild(i).gameObject.CompareTag("Torso"))
+            {
+                Debug.Log("destroying: " + BoutiqueManager.instance.animal.transform.GetChild(i).gameObject);
+                Destroy(BoutiqueManager.instance.animal.transform.GetChild(i).gameObject);
+            }
+            else if (outfitItem.clothingType == OutfitItem.ClothingType.Shoe && BoutiqueManager.instance.animal.transform.GetChild(i).gameObject.CompareTag("Shoe"))
+            {
+                Debug.Log("destroying: " + BoutiqueManager.instance.animal.transform.GetChild(i).gameObject);
+                Destroy(BoutiqueManager.instance.animal.transform.GetChild(i).gameObject);
+            }
         }
     }
 }

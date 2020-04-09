@@ -7,6 +7,10 @@ TagManager:
   - animalPen
   - Animal
   - LocalManagers
+  - FarmUI
+  - Accessory
+  - Torso
+  - Shoe
   layers:
   - Default
   - TransparentFX

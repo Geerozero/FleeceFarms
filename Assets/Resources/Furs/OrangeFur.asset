@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Orange Fur
   furID: 1001
   cost: 200
-  isPurchased: 0
+  isPurchased: 1
   buttonImage: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   furMaterial: {fileID: 2100000, guid: 82d38542fc63d674284cdb8927777c2d, type: 2}
