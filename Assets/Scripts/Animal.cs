@@ -1,6 +1,8 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class Animal : MonoBehaviour
 {
@@ -21,23 +23,20 @@ public class Animal : MonoBehaviour
     public OutfitItem slot01;
     public OutfitItem slot02;
     public OutfitItem slot03;
-
-    [Header("Animal Stats")]
-    public bool isHappy;
-    public int bond;
-    public int hunger;
-    public int furGrowth;
+    
 
     /*--------------------Animal Stats-------------------*/
 
     private int animalFurInventoryIndex = 0; //index within inventory array
 
     [Header("Watching stats")]
+    public bool isHappy;
     [SerializeField]
     private int animalClean = 0;
     [SerializeField]
     private int animalFood = 0;
-
+    [SerializeField]
+    private int animalBond = 0;
     [SerializeField]
     private int animalFurGrowth = 0;
 
@@ -45,13 +44,23 @@ public class Animal : MonoBehaviour
     public int animalBondIncreasePerInteraction;
 
     //stats tick delay should be shared with ALL objects
-    [Header("Delay between ticks for stats")]
-    public float statsTickDelayInput;
+    private float statsTickDelayInput = 2;
 
     private static float statsTickDelay;
     private float tickPreviousCheckTime;
     public static int furGrowthModifier = 20;
-    
+
+
+    /*--------------------Animal Movement-------------------*/
+    [Header("Time to let animal wait in place")]
+    public float timeWaiting;
+    private float lastTimeMoved;
+
+    private Vector3 nextPositionToMoveTo;
+    private NavMeshAgent navAgent;
+    private bool isMoving;
+
+
     /*------------------------------Animal Data Management----------------------------*/
 
     public LevelManager.AnimalSave GetAnimalSave()
@@ -70,9 +79,9 @@ public class Animal : MonoBehaviour
         newSave.slot03ClothID = slot03.clothingID;
 
         newSave.animalIsHappy = isHappy;
-        newSave.animalBond = bond;
-        newSave.animalHunger = hunger;
-        newSave.animalFurGrowth = furGrowth;
+        newSave.animalBond = animalBond;
+        newSave.animalHunger = animalFood;
+        newSave.animalFurGrowth = animalFurGrowth;
 
         newSave.position = transform.position;
         newSave.rotation = transform.eulerAngles;
@@ -96,9 +105,9 @@ public class Animal : MonoBehaviour
         slot03 = ClothingManager.instance.clothes[save.slot03ClothID];
 
         isHappy = save.animalIsHappy;
-        bond = save.animalBond;
-        hunger = save.animalHunger;
-        furGrowth = save.animalFurGrowth;
+        animalBond = save.animalBond;
+        animalFood = save.animalHunger;
+        animalFurGrowth = save.animalFurGrowth;
 
         transform.position = save.position;
         transform.eulerAngles = save.rotation;
@@ -109,11 +118,19 @@ public class Animal : MonoBehaviour
     void Start()
     {
         statsTickDelay = statsTickDelayInput;
+
+
+        /*-------Movement*------*/
+        //get navmesh agent of this object
+        navAgent = gameObject.GetComponent<NavMeshAgent>();
+        isMoving = false;
+        lastTimeMoved = Time.time;
+
     }
 
     void Update()
     {
-        /*
+        /*STATS
         * Tick system to constantly update the status of animals
         * Basically as time passes animal becomes hungry, gets dirty, and grows wool
         */
@@ -130,7 +147,17 @@ public class Animal : MonoBehaviour
             //check happiness always
             CheckAnimalHappy();
         }
+
+
+        /*MOVEMENT
+         * Animal should randomly move around to a random point in a circle around the animal
+         * 
+         */
+        AnimalWander();
+        
     }
+
+   
 
     public string GetAnimalName()
     {
@@ -285,17 +312,17 @@ public class Animal : MonoBehaviour
     
     public void ChangeAnimalBond(int bondValueChange)
     {
-        bond += bondValueChange;
+        animalBond += bondValueChange;
 
         //set lower and upper bounds
-        if (bond > 1000)
+        if (animalBond > 1000)
         {
-            bond = 1000;
+            animalBond = 1000;
         }
 
-        if (bond < 0)
+        if (animalBond < 0)
         {
-            bond = 0;
+            animalBond = 0;
         }
     }
 
@@ -311,6 +338,39 @@ public class Animal : MonoBehaviour
     //return Animal Bond divided by 100
     public int GetAnimalBond()
     {
-        return (bond / 100);
+        return (animalBond / 100);
+    }
+
+
+    /*--------------------Animal Movement System-------------------*/
+    private void AnimalWander()
+    {
+        if (isMoving)           //if currently moving - check remaining distance
+        {
+            //checks if within navAgent stopping distance
+            if (navAgent.remainingDistance <= navAgent.stoppingDistance)
+            {
+                isMoving = false;
+
+                //sets time that animal stopped moving
+                lastTimeMoved = Time.time;
+
+            }
+        }
+        else    //if done moving, check if enough time passed to move to next random position
+        {
+            //let animal wait before moving it
+            if (Time.time - lastTimeMoved >= timeWaiting)
+            {
+                //set moving boolean true
+                isMoving = true;
+
+                //get random position inside a sphere
+                nextPositionToMoveTo = transform.position + (Random.insideUnitSphere * 5);
+                //move to location
+                navAgent.SetDestination(nextPositionToMoveTo);
+
+            }
+        }
     }
 }

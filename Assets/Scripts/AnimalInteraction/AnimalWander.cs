@@ -16,7 +16,7 @@ public class AnimalWander : MonoBehaviour
     private float lastTimeMoved;
 
     // Start is called before the first frame update
-    void Start()
+    void Start() //-added
     {
         //get navmesh agent of this object
         navAgent = this.GetComponent<NavMeshAgent>();
