@@ -270,6 +270,8 @@ public class LevelManager : MonoBehaviour
     {
         /*---Gets data from file and then restores animal list---*/
         saves = FileHelper.LoadDataFile<Dictionary<int, AnimalSave>>("AnimalData");
+        if (saves == null)
+            saves = new Dictionary<int, AnimalSave>();
         RestoreAnimals();
     }
 

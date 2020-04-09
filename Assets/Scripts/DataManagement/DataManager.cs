@@ -23,16 +23,7 @@ public class DataManager : MonoBehaviour
 
     void Update()
     {
-        /* Save and Load data when S and L key is pressed
-         * this can be changed later */
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Load();
-        }
+
     }
 
     public void Save()

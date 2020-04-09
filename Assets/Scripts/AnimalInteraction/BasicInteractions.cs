@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,10 +9,10 @@ public class BasicInteractions : MonoBehaviour
     //This sets up basic interaction on the farm with the animal
 
     [Header("Snap point inside animal prefab")]
-    public Transform InteractionCameraSnap;
+    //public Transform InteractionCameraSnap;
 
     //camera in game
-    private GameObject mainCamera;
+    public GameObject mainCamera;
     public CameraFarmMovement cameraSnapScript;     //keep this public for now
 
     //managers of scene that are local to this scene
@@ -21,6 +22,9 @@ public class BasicInteractions : MonoBehaviour
     private Scene currentScene;
     private GameObject selectedAnimal; //gameobject reference of selected animal
 
+    //camera positioning
+    private float xdist;
+    private float zdist;
 
     private void Start()
     {
@@ -34,7 +38,7 @@ public class BasicInteractions : MonoBehaviour
             FarmUI = managersLocalToScene.GetComponent<FarmUIManager>();
 
             //gets main camera in scene when instancing this object - gets script for camera snapping
-            mainCamera = GameObject.Find("MainCamera");
+            //mainCamera = GameObject.Find("MainCamera");
             cameraSnapScript = mainCamera.GetComponent<CameraFarmMovement>();
         }
     }
@@ -47,7 +51,7 @@ public class BasicInteractions : MonoBehaviour
 
             if (FarmUI.GetIsInteracting())
             {
-                MoveCamera(InteractionCameraSnap);
+                MoveCamera();
             }
         }
     }
@@ -73,6 +77,9 @@ public class BasicInteractions : MonoBehaviour
                 {
                     Debug.Log("Clicked Animal");
                     selectedAnimal = hit.transform.gameObject;
+                    xdist = selectedAnimal.transform.position.x - selectedAnimal.transform.GetChild(0).transform.position.x;
+                    zdist = selectedAnimal.transform.position.z - selectedAnimal.transform.GetChild(0).transform.position.z;
+                    
                     //set isInteracting true
                     SetIsInteractingInUIHandler(true);
                     //pass reference to UI
@@ -91,11 +98,13 @@ public class BasicInteractions : MonoBehaviour
     }
 
     //move camera to given position
-    private void MoveCamera(Transform newCameraPosition)
+    private void MoveCamera()
     {
-        //ping camera script
-        cameraSnapScript.NewCameraPositionSet(newCameraPosition);
-        
+        //moves camera to appropriate animal
+        //cameras positioning needs to be constantly updated so it can follow the animal and not rotate with the animal
+        //keeping camera movement here on player
+        mainCamera.transform.position = new Vector3(selectedAnimal.transform.position.x - xdist, selectedAnimal.transform.GetChild(0).transform.position.y, selectedAnimal.transform.position.z - zdist);
+        mainCamera.transform.LookAt(selectedAnimal.transform);
     }
 
     //pass reference to this gameObject to UI

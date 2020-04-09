@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8826045600701475734}
   - component: {fileID: 8826045600701475733}
   - component: {fileID: 8826045600701475732}
-  - component: {fileID: 8826045600701475731}
   m_Layer: 0
   m_Name: Alpaca
   m_TagString: Animal
@@ -122,21 +121,6 @@ MonoBehaviour:
   animalFurGrowth: 0
   animalBondIncreasePerInteraction: 0
   statsTickDelayInput: 0
---- !u!114 &8826045600701475731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8826045600701475730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f058d05a7a5e4cf4b9931fe2f58c5b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractionCameraSnap: {fileID: 8826045601629691383}
-  cameraSnapScript: {fileID: 0}
-  FarmUI: {fileID: 0}
 --- !u!1 &8826045601629691382
 GameObject:
   m_ObjectHideFlags: 0

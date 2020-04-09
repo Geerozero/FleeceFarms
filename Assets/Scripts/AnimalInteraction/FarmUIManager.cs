@@ -14,6 +14,7 @@ public class FarmUIManager : MonoBehaviour
     [Header("UI References")]
     public GameObject FarmUIContainer;
     public GameObject marketButton;
+    public TextMeshProUGUI editNameButtonText;
 
     [Header("Animal Name text")]
     public TextMeshProUGUI animalNameText;
@@ -80,7 +81,7 @@ public class FarmUIManager : MonoBehaviour
         FarmUIContainer.SetActive(true);
         marketButton.SetActive(false);
         //set name of animal in UI
-        animalNameText.SetText(animalName);
+        animalNameText.SetText(animalStats.name);
     }
 
     //  ////////////////////
@@ -141,10 +142,20 @@ public class FarmUIManager : MonoBehaviour
         animalName = newName;
     }
 
-    public void ShowNameFieldInput()
+    public void ShowOrHideNameFieldInput()
     {
-        nameInputTextField.SetActive(true);
-        animalNameText.SetText("");
+        if(!nameInputTextField.activeSelf)
+        {
+            animalNameText.SetText("");
+            nameInputTextField.SetActive(true);
+            editNameButtonText.text = "Save Name";
+        }
+        else
+        {
+            nameInputTextField.SetActive(false);
+            animalNameText.SetText(animalName);
+            editNameButtonText.text = "Edit Name";
+        }
     }
 
     public void HideNameFieldInput()
