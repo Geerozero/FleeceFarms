@@ -32,8 +32,7 @@ public class BoutiqueManager : MonoBehaviour
         }
 
         /*---Spawns animal based on selectedAnimals info---*/
-        GameObject placeholder = GameObject.FindWithTag("BoutiqueSpawn");
-        animal = LevelManager.instance.SpawnAnimalType(selectedAnimal.animalType, placeholder);
+        animal = LevelManager.instance.SpawnAnimalType(selectedAnimal.animalType);
         animalInfo = animal.GetComponent<Animal>();
 
         animalInfo.animalID = selectedAnimal.animalID;

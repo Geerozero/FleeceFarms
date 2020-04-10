@@ -19,10 +19,10 @@ public class TempUIManager : MonoBehaviour
         SceneManager.LoadScene("Boutique");
     }
 
-    public void SpawnTest()
-    {
-        LevelManager.instance.SpawnNewAnimal(Animal.AnimalType.Sheep, LevelManager.instance.spawnPen01);
-    }
+    //public void SpawnTest()
+    //{
+        //LevelManager.instance.SpawnNewAnimal(Animal.AnimalType.Sheep, LevelManager.instance.spawnPen01);
+    //}
 
     public void LoadGame()
     {

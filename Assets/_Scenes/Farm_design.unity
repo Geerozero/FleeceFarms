@@ -7221,6 +7221,7 @@ MonoBehaviour:
   penChoice: 0
   animalToCreate: 0
   text: {fileID: 6819449626427094521}
+  player: {fileID: 1289172836}
 --- !u!1 &597915476
 GameObject:
   m_ObjectHideFlags: 0
@@ -9435,7 +9436,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775592521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36, y: 3.2, z: -30.3}
+  m_LocalPosition: {x: -36, y: 3.2, z: 184.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15666,6 +15667,9 @@ MonoBehaviour:
   mainCamera: {fileID: 769769702}
   cameraSnapScript: {fileID: 0}
   FarmUI: {fileID: 483454856}
+  penPopUp: {fileID: 5954782513913477235}
+  spawnPen01: {fileID: 775592521}
+  spawnPen02: {fileID: 1910013779}
 --- !u!4 &1289172838
 Transform:
   m_ObjectHideFlags: 0
@@ -23512,7 +23516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &6075679142779558107
 CanvasRenderer:
   m_ObjectHideFlags: 0

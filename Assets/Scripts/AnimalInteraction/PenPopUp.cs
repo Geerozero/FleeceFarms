@@ -10,6 +10,13 @@ public class PenPopUp : MonoBehaviour
     public int penChoice = 0;
     public Animal.AnimalType animalToCreate;
     public TextMeshProUGUI text;
+    public GameObject player;
+    private BasicInteractions basicInteractions;
+
+    private void Start()
+    {
+        basicInteractions = player.GetComponent<BasicInteractions>();
+    }
 
     void Update()
     {
@@ -21,7 +28,19 @@ public class PenPopUp : MonoBehaviour
     public void PickPen1()
     {
         penChoice = 1;
-        LevelManager.instance.SpawnNewAnimal(animalToCreate, LevelManager.instance.spawnPen01);
+        GameObject newAnimal = LevelManager.instance.SpawnAnimalType(animalToCreate);
+        Animal animalInfo = newAnimal.GetComponent<Animal>();
+        
+        LevelManager.instance.InitializeNewAnimal(animalInfo, animalToCreate);
+
+        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
+        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
+        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
+        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
+
+        newAnimal.transform.position = basicInteractions.spawnPen01.transform.position;
+
+        LevelManager.instance.animals.Add(animalInfo);
 
         if (animalToCreate == Animal.AnimalType.Sheep)
             LevelManager.instance.sheepToCreate--;
@@ -37,8 +56,20 @@ public class PenPopUp : MonoBehaviour
     public void PickPen2()
     {
         penChoice = 2;
-        LevelManager.instance.SpawnNewAnimal(animalToCreate, LevelManager.instance.spawnPen02);
+        GameObject newAnimal = LevelManager.instance.SpawnAnimalType(animalToCreate);
+        Animal animalInfo = newAnimal.GetComponent<Animal>();
         
+        LevelManager.instance.InitializeNewAnimal(animalInfo, animalToCreate);
+
+        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
+        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
+        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
+        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
+        
+        newAnimal.transform.position = basicInteractions.spawnPen02.transform.position;
+
+        LevelManager.instance.animals.Add(animalInfo);
+
         if (animalToCreate == Animal.AnimalType.Sheep)
             LevelManager.instance.sheepToCreate--;
         else if (animalToCreate == Animal.AnimalType.Alpaca)

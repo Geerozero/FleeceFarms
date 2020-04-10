@@ -19,9 +19,6 @@ public class LevelManager : MonoBehaviour
     public GameObject sheepPrefab;
     public GameObject rabbitPrefab;
 
-    public GameObject penPopUp;
-    public GameObject spawnPen01;
-    public GameObject spawnPen02;
     public int sheepToCreate;
     public int alpacaToCreate;
 
@@ -59,41 +56,8 @@ public class LevelManager : MonoBehaviour
         {
             /*---Restores animals when in the Farm scene---*/
             Debug.Log("Loading Scene...");
-            
-            //getting references when returning to the farm
-            //in case animals were bought in the market
-            penPopUp = GameObject.FindWithTag("PopUp");
-            penPopUp.SetActive(false);
-            spawnPen01 = GameObject.FindWithTag("Pen1");
-            spawnPen02 = GameObject.FindWithTag("Pen2");
 
             RestoreAnimals();
-        }
-    }
-
-    void Update()
-    {
-        //checking if there were animals bought from the market
-        if (SceneManager.GetActiveScene().name == "Farm_design")
-        {
-            if (sheepToCreate > 0 || alpacaToCreate > 0)
-            {
-                if (sheepToCreate > 0 && alpacaToCreate == 0)
-                {
-                    penPopUp.SetActive(true);
-                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
-                }
-                if (alpacaToCreate > 0 && sheepToCreate == 0)
-                {
-                    penPopUp.SetActive(true);
-                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Alpaca;
-                }
-                else if(sheepToCreate > 0 && alpacaToCreate > 0)
-                {
-                    penPopUp.SetActive(true);
-                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
-                }
-            }
         }
     }
 
@@ -121,7 +85,7 @@ public class LevelManager : MonoBehaviour
 
     /*----------------Animal Creation------------------------------------------------------*/
 
-    public GameObject SpawnAnimalType(Animal.AnimalType animalType, GameObject location)
+    public GameObject SpawnAnimalType(Animal.AnimalType animalType)
     {
         /* Returns an animal prefab based on a enum parameter
          * instantiates animal with placeholder position and rotation */
@@ -130,15 +94,15 @@ public class LevelManager : MonoBehaviour
 
         if (animalType == Animal.AnimalType.Alpaca)
         {
-            newAnimal = Instantiate(alpacaPrefab, location.transform.position, Quaternion.identity);
+            newAnimal = Instantiate(alpacaPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
         else if (animalType == Animal.AnimalType.Sheep)
         {
-            newAnimal = Instantiate(sheepPrefab, location.transform.position, Quaternion.identity);
+            newAnimal = Instantiate(sheepPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
         else if (animalType == Animal.AnimalType.Rabbit)
         {
-            newAnimal = Instantiate(rabbitPrefab, location.transform.position, Quaternion.identity);
+            newAnimal = Instantiate(rabbitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
         else
         {
@@ -148,7 +112,7 @@ public class LevelManager : MonoBehaviour
         return newAnimal;
     }
 
-    public void SpawnNewAnimal(Animal.AnimalType animalType, GameObject pen)
+    public void SpawnNewAnimal(Animal.AnimalType animalType)
     {
         /* Spawns a new animal based on a enum parameter
          * initializes new animal with starting traits
@@ -157,15 +121,15 @@ public class LevelManager : MonoBehaviour
 
         if (animalType == Animal.AnimalType.Alpaca)
         {
-            newAnimal = SpawnAnimalType(Animal.AnimalType.Alpaca, pen);
+            newAnimal = SpawnAnimalType(Animal.AnimalType.Alpaca);
         }
         else if (animalType == Animal.AnimalType.Sheep)
         {
-            newAnimal = SpawnAnimalType(Animal.AnimalType.Sheep, pen);
+            newAnimal = SpawnAnimalType(Animal.AnimalType.Sheep);
         }
         else if (animalType == Animal.AnimalType.Rabbit)
         {
-            newAnimal = SpawnAnimalType(Animal.AnimalType.Rabbit, pen);
+            newAnimal = SpawnAnimalType(Animal.AnimalType.Rabbit);
         }
 
         Animal animalInfo = newAnimal.GetComponent<Animal>();
@@ -271,11 +235,10 @@ public class LevelManager : MonoBehaviour
         animals.Clear();
 
         /*---Spawns animals that were last saved */
-        GameObject placeholderPos = spawnPen01;
 
         for (int i = 0; i < saves.Count; i++)
         {
-            GameObject newAnimal = SpawnAnimalType(saves.ElementAt(i).Value.animalType, placeholderPos);
+            GameObject newAnimal = SpawnAnimalType(saves.ElementAt(i).Value.animalType);
             Animal animalInfo = newAnimal.GetComponent<Animal>();
 
             animalInfo.LoadAnimalSave(saves.ElementAt(i).Value);
@@ -321,10 +284,10 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Boutique");
     }
 
-    public void SpawnTestAnimal()
-    {
-        SpawnNewAnimal(Animal.AnimalType.Alpaca, spawnPen01);
-    }
+    //public void SpawnTestAnimal()
+    //{
+        //SpawnNewAnimal(Animal.AnimalType.Alpaca, spawnPen01);
+    //}
 
     /*----------------------------------------------------*/
 }

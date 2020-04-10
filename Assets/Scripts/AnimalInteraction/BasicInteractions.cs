@@ -26,6 +26,10 @@ public class BasicInteractions : MonoBehaviour
     private float xdist;
     private float zdist;
 
+    public GameObject penPopUp;
+    public GameObject spawnPen01;
+    public GameObject spawnPen02;
+
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
@@ -51,6 +55,25 @@ public class BasicInteractions : MonoBehaviour
             if (FarmUI.GetIsInteracting())
             {
                 MoveCamera();
+            }
+
+            if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
+            {
+                if (LevelManager.instance.sheepToCreate > 0 && LevelManager.instance.alpacaToCreate == 0)
+                {
+                    penPopUp.SetActive(true);
+                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
+                }
+                if (LevelManager.instance.alpacaToCreate > 0 && LevelManager.instance.sheepToCreate == 0)
+                {
+                    penPopUp.SetActive(true);
+                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Alpaca;
+                }
+                else if (LevelManager.instance.sheepToCreate > 0 && LevelManager.instance.alpacaToCreate > 0)
+                {
+                    penPopUp.SetActive(true);
+                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
+                }
             }
         }
     }
