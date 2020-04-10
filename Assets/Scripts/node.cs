@@ -224,7 +224,7 @@ void Start ()
         {
             rend.material.color = notEnoughMoneyColor;
         }
-        rend.material.color = hoverColor;
+        
     }
 
     void OnMouseExit()
