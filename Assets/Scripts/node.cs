@@ -24,8 +24,7 @@ public class Node : MonoBehaviour {
 
     BuildManager buildManager;
 
-
-    void Start()
+     void Start()
     {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
