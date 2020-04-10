@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class nodeUIscript : MonoBehaviour
+public class NodeUIscript : MonoBehaviour
 {
     public GameObject ui;
 
@@ -11,9 +11,9 @@ public class nodeUIscript : MonoBehaviour
     public Text sellAmount;
 
 
-    private node target;
+    private Node target;
 
-    public void SetTarget (node _target)
+    public void SetTarget (Node _target)
     {
         target = _target;
 

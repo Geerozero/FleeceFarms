@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
@@ -20,13 +18,13 @@ public class BuildManager : MonoBehaviour
 
 
     //public GameObject standardPenPrefab;
-    public AnimalPenBlueprint standardPen;
+    
     private AnimalPenBlueprint penToBuild;
     
-    private node selectedPen;
+    private Node selectedPen;
     
 
-    public nodeUIscript nodeUI;
+    public NodeUIscript nodeUI;
 
     public bool CanBuild { get { return penToBuild != null; } }
     public bool HasMoney { get { return InventoryManager.money >= penToBuild.cost; } }
@@ -37,7 +35,7 @@ public class BuildManager : MonoBehaviour
 
     
 
-    public void selectPen(node node)
+    public void selectPen(Node node)
     {
         if (selectedPen == node)
         {

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class AnimalPenBlueprint : MonoBehaviour
+public class AnimalPenBlueprint 
 {
     public GameObject prefab;
     public int cost;

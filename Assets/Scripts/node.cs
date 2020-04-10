@@ -1,29 +1,37 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class node : MonoBehaviour {
-    BuildManager buildManager;
+public class Node : MonoBehaviour {
+
+
     public Color hoverColor;
+    
     public Vector3 positionOffset;
+    
     public Color notEnoughMoneyColor;
 
-    private GameObject animalPen;
-    
-    public bool isUpgraded = false;
 
+    [HideInInspector]
+    private GameObject animalPen;
+    [HideInInspector]
+    public bool isUpgraded = false;
+    [HideInInspector]
     public AnimalPenBlueprint animalPenBlueprint;
 
     private Color startColor;
     
     private Renderer rend;
 
-void Start ()
-{
-    rend = GetComponent<Renderer>();
-    startColor = rend.material.color;
+    BuildManager buildManager;
 
-    buildManager = BuildManager.instance;
-}
+
+    public void Start()
+    {
+        rend = GetComponent<Renderer>();
+        startColor = rend.material.color;
+
+        buildManager = BuildManager.instance;
+    }
 
     public Vector3 GetBuildPosition ()
     {
