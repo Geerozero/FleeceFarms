@@ -16,6 +16,7 @@ TagManager:
   - Pen2
   - PopUp
   - BoutiqueSpawn
+  - node
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - 
   - UI2
   - 
-  - 
+  - environment
   - 
   - 
   - 

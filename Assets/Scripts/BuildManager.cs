@@ -55,9 +55,9 @@ public class BuildManager : MonoBehaviour
         selectedPen = null;
         nodeUI.Hide();
     }
-    public void SelectAnimalPenToBuild (AnimalPenBlueprint pen)
+    public void SelectAnimalPenToBuild (AnimalPenBlueprint animalPen)
     {
-        penToBuild = pen;
+        penToBuild = animalPen;
         selectedPen = null;
 
         nodeUI.Hide();

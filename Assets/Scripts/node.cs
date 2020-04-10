@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class node : MonoBehaviour {
@@ -80,6 +78,9 @@ void Start ()
     public int penLevel = 0;
     public double penCost = 0;
     public int penSpeed = 0;
+    public int temp = 100;
+
+    
 
     public void UpgradePen()
     {

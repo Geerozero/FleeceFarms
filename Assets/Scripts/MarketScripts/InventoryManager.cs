@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     //money should be a static variable
     [Header("Money!")]
-    public static int money = 0;
+    public static int money = 100;
     public TextMeshProUGUI moneyUIText;
 
     //the array of these should match the array of shop values
