@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.UI;
+using System.Xml;
 
 public class LevelManager : MonoBehaviour
 {
@@ -17,9 +19,11 @@ public class LevelManager : MonoBehaviour
     public GameObject sheepPrefab;
     public GameObject rabbitPrefab;
 
-
-    public Dictionary<int, FurItem> furs = new Dictionary<int, FurItem>();
-    //int is furID pointing to furitem
+    public GameObject penPopUp;
+    public GameObject spawnPen01;
+    public GameObject spawnPen02;
+    public int sheepToCreate;
+    public int alpacaToCreate;
 
     public Dictionary<int, AnimalSave> saves = new Dictionary<int, AnimalSave>();
     //int is animalID pointing to the animal save
@@ -27,18 +31,14 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         if (instance != null)
+        {
             Destroy(this.gameObject);
+            return;
+        }
         else
             instance = this;
 
         DontDestroyOnLoad(gameObject);
-
-        /*---building furs dictionary, all furs in the Resources folder are loaded here on Awake---*/
-        FurItem[] fursFound = Resources.LoadAll<FurItem>("Furs");
-        for(int i = 0; i < fursFound.Length; i++)
-        {
-            furs.Add(fursFound[i].furID, fursFound[i]);
-        }
 
         /*---listens for when the scene has changed---*/
         SceneManager.sceneLoaded += OnSceneLoaded; 
@@ -59,7 +59,41 @@ public class LevelManager : MonoBehaviour
         {
             /*---Restores animals when in the Farm scene---*/
             Debug.Log("Loading Scene...");
+            
+            //getting references when returning to the farm
+            //in case animals were bought in the market
+            penPopUp = GameObject.FindWithTag("PopUp");
+            penPopUp.SetActive(false);
+            spawnPen01 = GameObject.FindWithTag("Pen1");
+            spawnPen02 = GameObject.FindWithTag("Pen2");
+
             RestoreAnimals();
+        }
+    }
+
+    void Update()
+    {
+        //checking if there were animals bought from the market
+        if (SceneManager.GetActiveScene().name == "Farm_design")
+        {
+            if (sheepToCreate > 0 || alpacaToCreate > 0)
+            {
+                if (sheepToCreate > 0 && alpacaToCreate == 0)
+                {
+                    penPopUp.SetActive(true);
+                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
+                }
+                if (alpacaToCreate > 0 && sheepToCreate == 0)
+                {
+                    penPopUp.SetActive(true);
+                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Alpaca;
+                }
+                else if(sheepToCreate > 0 && alpacaToCreate > 0)
+                {
+                    penPopUp.SetActive(true);
+                    penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
+                }
+            }
         }
     }
 
@@ -87,7 +121,7 @@ public class LevelManager : MonoBehaviour
 
     /*----------------Animal Creation------------------------------------------------------*/
 
-    public GameObject SpawnAnimalType(Animal.AnimalType animalType)
+    public GameObject SpawnAnimalType(Animal.AnimalType animalType, GameObject location)
     {
         /* Returns an animal prefab based on a enum parameter
          * instantiates animal with placeholder position and rotation */
@@ -96,15 +130,15 @@ public class LevelManager : MonoBehaviour
 
         if (animalType == Animal.AnimalType.Alpaca)
         {
-            newAnimal = Instantiate(alpacaPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            newAnimal = Instantiate(alpacaPrefab, location.transform.position, Quaternion.identity);
         }
         else if (animalType == Animal.AnimalType.Sheep)
         {
-            newAnimal = Instantiate(sheepPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            newAnimal = Instantiate(sheepPrefab, location.transform.position, Quaternion.identity);
         }
         else if (animalType == Animal.AnimalType.Rabbit)
         {
-            newAnimal = Instantiate(rabbitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            newAnimal = Instantiate(rabbitPrefab, location.transform.position, Quaternion.identity);
         }
         else
         {
@@ -114,7 +148,7 @@ public class LevelManager : MonoBehaviour
         return newAnimal;
     }
 
-    public void SpawnNewAnimal(Animal.AnimalType animalType)
+    public void SpawnNewAnimal(Animal.AnimalType animalType, GameObject pen)
     {
         /* Spawns a new animal based on a enum parameter
          * initializes new animal with starting traits
@@ -123,22 +157,22 @@ public class LevelManager : MonoBehaviour
 
         if (animalType == Animal.AnimalType.Alpaca)
         {
-            newAnimal = SpawnAnimalType(Animal.AnimalType.Alpaca);
+            newAnimal = SpawnAnimalType(Animal.AnimalType.Alpaca, pen);
         }
         else if (animalType == Animal.AnimalType.Sheep)
         {
-            newAnimal = SpawnAnimalType(Animal.AnimalType.Sheep);
+            newAnimal = SpawnAnimalType(Animal.AnimalType.Sheep, pen);
         }
         else if (animalType == Animal.AnimalType.Rabbit)
         {
-            newAnimal = SpawnAnimalType(Animal.AnimalType.Rabbit);
+            newAnimal = SpawnAnimalType(Animal.AnimalType.Rabbit, pen);
         }
 
         Animal animalInfo = newAnimal.GetComponent<Animal>();
 
         InitializeNewAnimal(animalInfo, animalType);
         
-        newAnimal.GetComponent<MeshRenderer>().material = furs[animalInfo.fur.furID].furMaterial;
+        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
@@ -182,7 +216,7 @@ public class LevelManager : MonoBehaviour
             newOutfitItem.transform.localScale = ClothingManager.instance.clothes[clothingID].spawnScaleAlpaca;
             newOutfitItem.transform.parent = animal.transform;
             newOutfitItem.transform.localPosition = ClothingManager.instance.clothes[clothingID].spawnPositionAlpaca;
-            newOutfitItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            newOutfitItem.transform.localRotation = Quaternion.Euler(ClothingManager.instance.clothes[clothingID].spawnRotationAlpaca);
         }
         else if(animalType == Animal.AnimalType.Sheep)
         {
@@ -190,7 +224,7 @@ public class LevelManager : MonoBehaviour
             newOutfitItem.transform.localScale = ClothingManager.instance.clothes[clothingID].spawnScaleSheep;
             newOutfitItem.transform.parent = animal.transform;
             newOutfitItem.transform.localPosition = ClothingManager.instance.clothes[clothingID].spawnPositionSheep;
-            newOutfitItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            newOutfitItem.transform.localRotation = Quaternion.Euler(ClothingManager.instance.clothes[clothingID].spawnRotationSheep);
         }
         else if(animalType == Animal.AnimalType.Rabbit)
         {
@@ -237,13 +271,15 @@ public class LevelManager : MonoBehaviour
         animals.Clear();
 
         /*---Spawns animals that were last saved */
+        GameObject placeholderPos = spawnPen01;
+
         for (int i = 0; i < saves.Count; i++)
         {
-            GameObject newAnimal = SpawnAnimalType(saves[i].animalType);
+            GameObject newAnimal = SpawnAnimalType(saves.ElementAt(i).Value.animalType, placeholderPos);
             Animal animalInfo = newAnimal.GetComponent<Animal>();
 
             animalInfo.LoadAnimalSave(saves.ElementAt(i).Value);
-            newAnimal.GetComponent<MeshRenderer>().material = furs[animalInfo.fur.furID].furMaterial;
+            animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
             
             /*---filling in clothing slots with appropriate clothing ID---*/
             animalInfo.slot01 = ClothingManager.instance.clothes[saves.ElementAt(i).Value.slot01ClothID];
@@ -287,7 +323,7 @@ public class LevelManager : MonoBehaviour
 
     public void SpawnTestAnimal()
     {
-        SpawnNewAnimal(Animal.AnimalType.Alpaca);
+        SpawnNewAnimal(Animal.AnimalType.Alpaca, spawnPen01);
     }
 
     /*----------------------------------------------------*/

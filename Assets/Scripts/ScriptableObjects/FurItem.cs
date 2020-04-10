@@ -14,4 +14,19 @@ public class FurItem : ScriptableObject
     
     public Sprite buttonImage;
     public Material furMaterial;
+
+    public FurManager.FuritemSave GetFurItemSave()
+    {
+        FurManager.FuritemSave newSave = new FurManager.FuritemSave();
+
+        newSave.furID = furID;
+        newSave.isPurchased = isPurchased;
+
+        return newSave;
+    }
+
+    public void LoadFurSave(FurManager.FuritemSave save)
+    {
+        isPurchased = save.isPurchased;
+    }
 }

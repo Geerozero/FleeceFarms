@@ -11,6 +11,11 @@ TagManager:
   - Accessory
   - Torso
   - Shoe
+  - Wool
+  - Pen1
+  - Pen2
+  - PopUp
+  - BoutiqueSpawn
   layers:
   - Default
   - TransparentFX

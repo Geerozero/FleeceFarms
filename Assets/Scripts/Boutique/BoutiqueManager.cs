@@ -32,14 +32,15 @@ public class BoutiqueManager : MonoBehaviour
         }
 
         /*---Spawns animal based on selectedAnimals info---*/
-        animal = LevelManager.instance.SpawnAnimalType(selectedAnimal.animalType);
+        GameObject placeholder = GameObject.FindWithTag("BoutiqueSpawn");
+        animal = LevelManager.instance.SpawnAnimalType(selectedAnimal.animalType, placeholder);
         animalInfo = animal.GetComponent<Animal>();
 
         animalInfo.animalID = selectedAnimal.animalID;
         
-        animalInfo.fur = LevelManager.instance.furs[selectedAnimal.furID];
+        animalInfo.fur = FurManager.instance.furs[selectedAnimal.furID];
         animalInfo.fur.furID = selectedAnimal.furID;
-        animal.GetComponent<MeshRenderer>().material = LevelManager.instance.furs[selectedAnimal.furID].furMaterial;
+        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[selectedAnimal.furID].furMaterial;
 
         animalInfo.slot01 = ClothingManager.instance.clothes[selectedAnimal.slot01ClothID];
         animalInfo.slot02 = ClothingManager.instance.clothes[selectedAnimal.slot02ClothID];
@@ -51,5 +52,6 @@ public class BoutiqueManager : MonoBehaviour
 
         //puts animal in postion to be customized
         animal.transform.position = spawnPos;
+        animal.transform.rotation = Quaternion.Euler(new Vector3(0, 150, 0));
     }
 }

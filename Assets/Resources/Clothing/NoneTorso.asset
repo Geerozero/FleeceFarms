@@ -21,7 +21,9 @@ MonoBehaviour:
   item: {fileID: 526360077902024043, guid: 85c9297db7cecd145bfb076b23aa6a83, type: 3}
   spawnPositionAlpaca: {x: 0, y: 0, z: 0}
   spawnScaleAlpaca: {x: 0, y: 0, z: 0}
+  spawnRotationAlpaca: {x: 0, y: 0, z: 0}
   spawnPositionSheep: {x: 0, y: 0, z: 0}
   spawnScaleSheep: {x: 0, y: 0, z: 0}
+  spawnRotationSheep: {x: 0, y: 0, z: 0}
   spawnPositionRabbit: {x: 0, y: 0, z: 0}
   spawnScaleRabbit: {x: 0, y: 0, z: 0}

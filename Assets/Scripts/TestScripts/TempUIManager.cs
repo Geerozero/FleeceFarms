@@ -21,7 +21,7 @@ public class TempUIManager : MonoBehaviour
 
     public void SpawnTest()
     {
-        LevelManager.instance.SpawnNewAnimal(Animal.AnimalType.Alpaca);
+        LevelManager.instance.SpawnNewAnimal(Animal.AnimalType.Sheep, LevelManager.instance.spawnPen01);
     }
 
     public void LoadGame()

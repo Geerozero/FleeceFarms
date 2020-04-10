@@ -15,13 +15,15 @@ MonoBehaviour:
   name: Bow
   clothingID: 2004
   clothingType: 0
-  cost: 0
-  isPurchased: 1
+  cost: 100
+  isPurchased: 0
   buttonImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   item: {fileID: 7216145075377708381, guid: 681bc660b72996342865ea4a9fc94765, type: 3}
   spawnPositionAlpaca: {x: 0, y: 1, z: 0}
   spawnScaleAlpaca: {x: 1, y: 1, z: 1}
-  spawnPositionSheep: {x: 0, y: 0, z: 0}
-  spawnScaleSheep: {x: 0, y: 0, z: 0}
+  spawnRotationAlpaca: {x: 0, y: 0, z: 0}
+  spawnPositionSheep: {x: 0, y: 49.7, z: 48}
+  spawnScaleSheep: {x: 1, y: 1, z: 1}
+  spawnRotationSheep: {x: 0, y: -90, z: -10}
   spawnPositionRabbit: {x: 0, y: 0, z: 0}
   spawnScaleRabbit: {x: 0, y: 0, z: 0}

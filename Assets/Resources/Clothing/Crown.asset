@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5fac8605ff0a54d9f3f52a6e064006, type: 3}
+  m_Name: Crown
+  m_EditorClassIdentifier: 
+  name: Crown
+  clothingID: 2005
+  clothingType: 0
+  cost: 100
+  isPurchased: 0
+  buttonImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  item: {fileID: 5973448550119189928, guid: 05308824c3ecab948802446697d9c066, type: 3}
+  spawnPositionAlpaca: {x: 0, y: 0, z: 0}
+  spawnScaleAlpaca: {x: 0, y: 0, z: 0}
+  spawnRotationAlpaca: {x: 0, y: 0, z: 0}
+  spawnPositionSheep: {x: 7.270019, y: 56.36, z: 54.77002}
+  spawnScaleSheep: {x: 50, y: 50, z: 50}
+  spawnRotationSheep: {x: 29.857, y: -4.492, z: -21.972}
+  spawnPositionRabbit: {x: 0, y: 0, z: 0}
+  spawnScaleRabbit: {x: 0, y: 0, z: 0}

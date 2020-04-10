@@ -19,8 +19,10 @@ public class BoutiqueOutfitButton : MonoBehaviour
     /*---These are varibles for the position and scaling for the clothing item's for each animal type---*/
     private Vector3 spawnA;
     private Vector3 scaleA;
+    private Vector3 rotA;
     private Vector3 spawnS;
     private Vector3 scaleS;
+    private Vector3 rotS;
     private Vector3 spawnR;
     private Vector3 scaleR;
     
@@ -35,9 +37,11 @@ public class BoutiqueOutfitButton : MonoBehaviour
         
         spawnA = outfitItem.spawnPositionAlpaca;
         scaleA = outfitItem.spawnScaleAlpaca;
+        rotA = outfitItem.spawnRotationAlpaca;
         
         spawnS = outfitItem.spawnPositionSheep;
         scaleS = outfitItem.spawnScaleSheep;
+        rotS = outfitItem.spawnRotationSheep;
         
         spawnR = outfitItem.spawnPositionRabbit;
         scaleR = outfitItem.spawnScaleRabbit;
@@ -94,6 +98,7 @@ public class BoutiqueOutfitButton : MonoBehaviour
             newOutfitItem.transform.localScale = scaleA;
             newOutfitItem.transform.parent = BoutiqueManager.instance.animal.transform;
             newOutfitItem.transform.localPosition = spawnA;
+            newOutfitItem.transform.localRotation = Quaternion.Euler(rotA);
 
             DetermineClothingSlot();
         }
@@ -106,6 +111,7 @@ public class BoutiqueOutfitButton : MonoBehaviour
             newOutfitItem.transform.localScale = scaleS;
             newOutfitItem.transform.parent = BoutiqueManager.instance.animal.transform;
             newOutfitItem.transform.localPosition = spawnS;
+            newOutfitItem.transform.localRotation = Quaternion.Euler(rotS);
 
             DetermineClothingSlot();
         }

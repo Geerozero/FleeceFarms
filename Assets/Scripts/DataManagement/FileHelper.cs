@@ -49,6 +49,8 @@ public static class FileHelper
 
         /*---Gets data from file and DeSerializes it---*/
         byte[] data = File.ReadAllBytes(filePath);
+        if (data == null || data.Length <= 0)
+            return null;
         T returnVal = (T)SerializeHelper.DeSerialize(data);
         if (returnVal == null)
             return new T();

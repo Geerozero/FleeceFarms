@@ -14,6 +14,7 @@ public class FarmUIManager : MonoBehaviour
     [Header("UI References")]
     public GameObject FarmUIContainer;
     public GameObject marketButton;
+    public GameObject pauseMenu;
     public TextMeshProUGUI editNameButtonText;
 
     [Header("Animal Name text")]
@@ -48,6 +49,17 @@ public class FarmUIManager : MonoBehaviour
         isInteracting = false;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeSelf)
+        {
+            pauseMenu.SetActive(true);
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf)
+        {
+            pauseMenu.SetActive(false);
+        }
+    }
 
     //SCENE TRANSITIONS
 

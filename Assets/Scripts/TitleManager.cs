@@ -8,11 +8,17 @@ public class TitleManager : MonoBehaviour
     [Header("Current name of Farm Scene")]
     public string FarmSceneName;
 
-    public void StartGame()
+    public void NewGame()
     {
+        DataManager.instance.NewGame();
         SceneManager.LoadScene(FarmSceneName);
     }
 
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(FarmSceneName);
+        DataManager.instance.Load();
+    }
 
     public void Settings()
     {

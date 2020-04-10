@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.SceneManagement;
 
 public class Animal : MonoBehaviour
 {
@@ -20,6 +20,7 @@ public class Animal : MonoBehaviour
 
     [Header("Animal Appearance")]
     public FurItem fur;
+    public GameObject wool;
     public OutfitItem slot01;
     public OutfitItem slot02;
     public OutfitItem slot03;
@@ -55,6 +56,7 @@ public class Animal : MonoBehaviour
     [Header("Time to let animal wait in place")]
     public float timeWaiting;
     private float lastTimeMoved;
+    private Scene currentScene;
 
     private Vector3 nextPositionToMoveTo;
     private NavMeshAgent navAgent;
@@ -99,7 +101,7 @@ public class Animal : MonoBehaviour
         animalID = save.animalID;
         animalType = save.animalType;
         
-        fur = LevelManager.instance.furs[save.furID];
+        fur = FurManager.instance.furs[save.furID];
         slot01 = ClothingManager.instance.clothes[save.slot01ClothID];
         slot02 = ClothingManager.instance.clothes[save.slot02ClothID];
         slot03 = ClothingManager.instance.clothes[save.slot03ClothID];
@@ -117,15 +119,18 @@ public class Animal : MonoBehaviour
 
     void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
         statsTickDelay = statsTickDelayInput;
 
 
         /*-------Movement*------*/
         //get navmesh agent of this object
-        navAgent = gameObject.GetComponent<NavMeshAgent>();
-        isMoving = false;
-        lastTimeMoved = Time.time;
-
+        if(currentScene.name == "Farm_design")
+        {
+            navAgent = gameObject.GetComponent<NavMeshAgent>();
+            isMoving = false;
+            lastTimeMoved = Time.time;
+        }
     }
 
     void Update()
@@ -135,26 +140,25 @@ public class Animal : MonoBehaviour
         * Basically as time passes animal becomes hungry, gets dirty, and grows wool
         */
 
-        if (Time.time - tickPreviousCheckTime > statsTickDelay)
+        if(currentScene.name == "Farm_design")
         {
-            Debug.Log("Stats tick");
+            if (Time.time - tickPreviousCheckTime > statsTickDelay)
+            {
+                tickPreviousCheckTime = Time.time;
 
-            tickPreviousCheckTime = Time.time;
+                //tick all stats
+                TickAnimalStats();
 
-            //tick all stats
-            TickAnimalStats();
+                //check happiness always
+                CheckAnimalHappy();
+            }
 
-            //check happiness always
-            CheckAnimalHappy();
+            /*MOVEMENT
+             * Animal should randomly move around to a random point in a circle around the animal
+             * 
+             */
+            AnimalWander();
         }
-
-
-        /*MOVEMENT
-         * Animal should randomly move around to a random point in a circle around the animal
-         * 
-         */
-        AnimalWander();
-        
     }
 
    
@@ -187,21 +191,18 @@ public class Animal : MonoBehaviour
         if (animalClean > 0 && animalFood > 0)
         {
             isHappy = true;
-            Debug.Log("Happy animal!");
         }
 
         //check clean status
         else if (animalClean <= 0)
         {
             isHappy = false;
-            Debug.Log("Unhappy: dirty");
         }
 
         //check hunger status
         else if (animalFood <= 0)
         {
             isHappy = false;
-            Debug.Log("Unhappy: hungry");
         }
     }
 
@@ -210,7 +211,6 @@ public class Animal : MonoBehaviour
         //tick fur growth only if animal is happy
         if (isHappy)
         {
-            Debug.Log("Fur growing");
             ChangeAnimalFurGrowth(furGrowthModifier * GetAnimalBond());
         }
 
@@ -366,7 +366,9 @@ public class Animal : MonoBehaviour
                 isMoving = true;
 
                 //get random position inside a sphere
-                nextPositionToMoveTo = transform.position + (Random.insideUnitSphere * 5);
+                //We'll probably need to move this to an empty gameobject inside the pen so that they only get a random point in the pen
+                //rather than a random point from a sphere where the animal is  currently standing
+                nextPositionToMoveTo = transform.position + (Random.insideUnitSphere * 100);
                 //move to location
                 navAgent.SetDestination(nextPositionToMoveTo);
 

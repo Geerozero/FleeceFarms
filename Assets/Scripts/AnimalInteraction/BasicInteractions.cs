@@ -29,7 +29,6 @@ public class BasicInteractions : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
-        Debug.Log("Scene: " + currentScene.name);
 
         if (currentScene.name == "Farm_design")
         {
@@ -67,7 +66,7 @@ public class BasicInteractions : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             //general case of something being clicked
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 //print what was hit by raycast
                 Debug.Log("Click hit:" + hit.transform.name);
@@ -113,5 +112,4 @@ public class BasicInteractions : MonoBehaviour
         //gets parent of this object to pass up
         FarmUI.GetReferenceOfAnimalBeingInteractedWith(selectedAnimal);
     }
-
 }
