@@ -24,7 +24,7 @@ public class Node : MonoBehaviour {
 
     BuildManager buildManager;
 
-     void Start()
+    void Start ()
     {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
@@ -36,11 +36,11 @@ public class Node : MonoBehaviour {
     {
         return transform.position + positionOffset;
     }
-    void OnMouseDown()
+    void OnMouseDown ()
     {
-        //if (UnityEventQueueSystem.current.IsPointerOverGameObject())
-        //    return;
-
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+        
 
         if (animalPen != null)
         {
