@@ -1,5 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
+
 
 [System.Serializable]
 public class AnimalPenBlueprint 
@@ -14,4 +15,5 @@ public class AnimalPenBlueprint
     {
         return cost / 2;
     }
+
 }

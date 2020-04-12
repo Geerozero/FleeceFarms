@@ -45,7 +45,7 @@ public class Node : MonoBehaviour {
         if (animalPen != null)
         {
             
-            buildManager.selectPen(this);
+            buildManager.SelectPen(this);
             Debug.Log("cant build here - to do display on screen");
             
             return;
@@ -54,13 +54,13 @@ public class Node : MonoBehaviour {
         }
         if (!buildManager.CanBuild)
             return;
-
+        //current script below removed for test
         BuildAnimalPen(buildManager.GetPenToBuild());
 
 
         //build animalpen
         //GameObject penToBuild = BuildManager.instance.GetPenToBuild();
-        //animalPen = (GameObject)Instantiate(penToBuild, transform.position + positionOffset, transform.rotation);
+      //  animalPen = (GameObject)Instantiate(penToBuild, transform.position + positionOffset, transform.rotation);
 
     }
     void BuildAnimalPen (AnimalPenBlueprint blueprint)
@@ -76,7 +76,7 @@ public class Node : MonoBehaviour {
         animalPen = _pen;
 
         animalPenBlueprint = blueprint;
-
+        penLevel = 0;
         //add effect
 
         Debug.Log("pen has built");
@@ -157,7 +157,7 @@ public class Node : MonoBehaviour {
                 {
                     InventoryManager.money -= animalPenBlueprint.upgradeCost;
                     //goodbye old pen
-                    Destroy(animalPen);
+                    //Destroy(animalPen);
 
                     //build pen 2.0
                     GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
@@ -185,7 +185,7 @@ public class Node : MonoBehaviour {
                 {
                     InventoryManager.money -= animalPenBlueprint.upgradeCost;
                     //goodbye old pen
-                    Destroy(animalPen);
+                   // Destroy(animalPen);
 
                     //build pen 3.0
                     GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);

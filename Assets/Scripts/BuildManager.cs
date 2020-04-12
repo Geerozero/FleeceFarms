@@ -22,7 +22,9 @@ public class BuildManager : MonoBehaviour
     private AnimalPenBlueprint penToBuild;
     
     private Node selectedPen;
-    
+
+    //this will need to change with value of pen
+    //private int cost = 10;
 
     public NodeUIscript nodeUI;
 
@@ -30,12 +32,20 @@ public class BuildManager : MonoBehaviour
     public bool HasMoney { get { return InventoryManager.money >= penToBuild.cost; } }
 
 
-   
+   //test below override
     //private GameObject penToBuild;
 
-    
 
-    public void selectPen(Node node)
+//idea
+/*
+    void Start()
+    {
+        penToBuild = standardPenPrefab;
+    }
+
+    */
+
+    public void SelectPen(Node node)
     {
         if (selectedPen == node)
         {
@@ -53,18 +63,21 @@ public class BuildManager : MonoBehaviour
         selectedPen = null;
         nodeUI.Hide();
     }
+    
     public void SelectAnimalPenToBuild (AnimalPenBlueprint animalPen)
     {
         penToBuild = animalPen;
-        selectedPen = null;
+        DeselectNode();
 
-        nodeUI.Hide();
+       
     }
-
+    
+    
     public AnimalPenBlueprint GetPenToBuild()
     {
         return penToBuild;
     }
     //add type of pen to select "level of pen"
     //selectedpen = null;
+    
 }
