@@ -2125,9 +2125,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalPen:
-    prefab: {fileID: 0}
+    prefab: {fileID: 1054741029963854117, guid: a1a3957e1cb36b7438d0410bbddcae4e,
+      type: 3}
     cost: 0
-    upgradedPrefab: {fileID: 0}
+    upgradedPrefab: {fileID: 6229125164776288873, guid: a9010e4f1e0ae8d4da8a2e03ddfd206f,
+      type: 3}
     upgradeCost: 0
 --- !u!114 &2037594824
 MonoBehaviour:

@@ -104,9 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114e2496c6b972e449e464e2d1e79424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.8301887, g: 0.043075833, b: 0.043075833, a: 0.73333335}
+  hoverColor: {r: 0.735849, g: 0.05206478, b: 0.05206478, a: 0.85490197}
   positionOffset: {x: 0, y: 0, z: 0}
-  notEnoughMoneyColor: {r: 0, g: 0, b: 0, a: 0.9529412}
+  notEnoughMoneyColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  animalPen: {fileID: 0}
   isUpgraded: 0
   animalPenBlueprint:
     prefab: {fileID: 0}
