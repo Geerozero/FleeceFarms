@@ -20,7 +20,7 @@ public class PenPopUp : MonoBehaviour
 
     void Update()
     {
-        text.text = "Pick animal pen for: " + animalToCreate.ToString();
+        text.text = "Pick animal pen for:\n" + animalToCreate.ToString();
     }
 
     //picks correct spawn point(in pen of user's choice) for animals that were bought
@@ -28,19 +28,7 @@ public class PenPopUp : MonoBehaviour
     public void PickPen1()
     {
         penChoice = 1;
-        GameObject newAnimal = LevelManager.instance.SpawnAnimalType(animalToCreate);
-        Animal animalInfo = newAnimal.GetComponent<Animal>();
-        
-        LevelManager.instance.InitializeNewAnimal(animalInfo, animalToCreate);
-
-        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
-        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
-        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
-
-        newAnimal.transform.position = basicInteractions.spawnPen01.transform.position;
-
-        LevelManager.instance.animals.Add(animalInfo);
+        LevelManager.instance.SpawnAnimalTypeWithLocation(animalToCreate, basicInteractions.spawnPen01);
 
         if (animalToCreate == Animal.AnimalType.Sheep)
             LevelManager.instance.sheepToCreate--;
@@ -56,19 +44,39 @@ public class PenPopUp : MonoBehaviour
     public void PickPen2()
     {
         penChoice = 2;
-        GameObject newAnimal = LevelManager.instance.SpawnAnimalType(animalToCreate);
-        Animal animalInfo = newAnimal.GetComponent<Animal>();
-        
-        LevelManager.instance.InitializeNewAnimal(animalInfo, animalToCreate);
+        LevelManager.instance.SpawnAnimalTypeWithLocation(animalToCreate, basicInteractions.spawnPen02);
 
-        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
-        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
-        LevelManager.instance.SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
-        
-        newAnimal.transform.position = basicInteractions.spawnPen02.transform.position;
+        if (animalToCreate == Animal.AnimalType.Sheep)
+            LevelManager.instance.sheepToCreate--;
+        else if (animalToCreate == Animal.AnimalType.Alpaca)
+            LevelManager.instance.alpacaToCreate--;
 
-        LevelManager.instance.animals.Add(animalInfo);
+        if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
+            this.gameObject.SetActive(true);
+        else
+            this.gameObject.SetActive(false);
+    }
+
+    public void PickPen3()
+    {
+        penChoice = 3;
+        LevelManager.instance.SpawnAnimalTypeWithLocation(animalToCreate, basicInteractions.spawnPen03);
+
+        if (animalToCreate == Animal.AnimalType.Sheep)
+            LevelManager.instance.sheepToCreate--;
+        else if (animalToCreate == Animal.AnimalType.Alpaca)
+            LevelManager.instance.alpacaToCreate--;
+
+        if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
+            this.gameObject.SetActive(true);
+        else
+            this.gameObject.SetActive(false);
+    }
+
+    public void PickPen4()
+    {
+        penChoice = 4;
+        LevelManager.instance.SpawnAnimalTypeWithLocation(animalToCreate, basicInteractions.spawnPen04);
 
         if (animalToCreate == Animal.AnimalType.Sheep)
             LevelManager.instance.sheepToCreate--;
@@ -81,3 +89,4 @@ public class PenPopUp : MonoBehaviour
             this.gameObject.SetActive(false);
     }
 }
+
