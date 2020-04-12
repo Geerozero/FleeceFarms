@@ -12,7 +12,7 @@ public class Node : MonoBehaviour {
 
 
     [HideInInspector]
-    private GameObject animalPen;
+    public GameObject animalPen;
     [HideInInspector]
     public bool isUpgraded = false;
     [HideInInspector]

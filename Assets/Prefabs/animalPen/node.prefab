@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5210129156583384372}
   - component: {fileID: 5210129156583384373}
   - component: {fileID: 5210129156583384378}
-  - component: {fileID: 8995902723992711762}
+  - component: {fileID: 3247013259052006246}
   m_Layer: 0
   m_Name: node
   m_TagString: Untagged
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8995902723992711762
+--- !u!114 &3247013259052006246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +101,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5210129156583384376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1c7dc9ec5d83842b26ec042bbb3b96, type: 3}
+  m_Script: {fileID: 11500000, guid: 114e2496c6b972e449e464e2d1e79424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.8207547, g: 0.10453009, b: 0.10453009, a: 0.76862746}
+  hoverColor: {r: 0.8301887, g: 0.043075833, b: 0.043075833, a: 0.73333335}
+  positionOffset: {x: 0, y: 0, z: 0}
+  notEnoughMoneyColor: {r: 0, g: 0, b: 0, a: 0.9529412}
+  isUpgraded: 0
+  animalPenBlueprint:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+  penLevel: 0
+  penCost: 0
+  penSpeed: 0
+  temp: 100
