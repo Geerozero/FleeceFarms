@@ -388,7 +388,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 75
-  m_Speed: 35
+  m_Speed: 80
   m_Acceleration: 8
   avoidancePriority: 66
   m_AngularSpeed: 120
@@ -924,6 +924,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -993,11 +998,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_TagString
-      value: Animal
       objectReference: {fileID: 0}
     - target: {fileID: 1269532907765345264, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}

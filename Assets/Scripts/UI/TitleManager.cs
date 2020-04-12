@@ -17,7 +17,7 @@ public class TitleManager : MonoBehaviour
     public void LoadGame()
     {
         SceneManager.LoadScene(FarmSceneName);
-        DataManager.instance.Load();
+        DataManager.instance.LoadFromTitle();
     }
 
     public void Settings()

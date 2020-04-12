@@ -29,6 +29,8 @@ public class BasicInteractions : MonoBehaviour
     public GameObject penPopUp;
     public GameObject spawnPen01;
     public GameObject spawnPen02;
+    public GameObject spawnPen03;
+    public GameObject spawnPen04;
 
     private void Start()
     {

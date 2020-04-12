@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using UnityEngine.UI;
 using System.Xml;
+using UnityEngine.AI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -52,12 +53,16 @@ public class LevelManager : MonoBehaviour
         {
             //do something
         }
+        else if(scene.name == "Title")
+        {
+            //do something
+        }
         else if(scene.name == "Farm_design")
         {
             /*---Restores animals when in the Farm scene---*/
             Debug.Log("Loading Scene...");
 
-            RestoreAnimals();
+            LoadAnimalsFromFile();
         }
     }
 
@@ -110,6 +115,42 @@ public class LevelManager : MonoBehaviour
         }
 
         return newAnimal;
+    }
+
+    public void SpawnAnimalTypeWithLocation(Animal.AnimalType animalType, GameObject location)
+    {
+        /* Returns an animal prefab based on a enum parameter
+         * instantiates animal with placeholder position and rotation */
+
+        GameObject newAnimal;
+
+        if (animalType == Animal.AnimalType.Alpaca)
+        {
+            newAnimal = Instantiate(alpacaPrefab, location.transform.position, Quaternion.identity);
+        }
+        else if (animalType == Animal.AnimalType.Sheep)
+        {
+            newAnimal = Instantiate(sheepPrefab, location.transform.position, Quaternion.identity);
+        }
+        else if (animalType == Animal.AnimalType.Rabbit)
+        {
+            newAnimal = Instantiate(rabbitPrefab, location.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            newAnimal = null;
+        }
+
+        Animal animalInfo = newAnimal.GetComponent<Animal>();
+
+        InitializeNewAnimal(animalInfo, animalType);
+
+        animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
+        SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
+        SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
+        SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
+
+        animals.Add(animalInfo);
     }
 
     public void SpawnNewAnimal(Animal.AnimalType animalType)
@@ -253,6 +294,11 @@ public class LevelManager : MonoBehaviour
             SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
             SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
             SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
+
+            NavMeshAgent animalNavMesh = newAnimal.GetComponent<NavMeshAgent>();
+
+            animalNavMesh.Warp(saves.ElementAt(i).Value.position);
+            newAnimal.transform.rotation = Quaternion.Euler(saves.ElementAt(i).Value.rotation);
 
             animals.Add(animalInfo);
         }

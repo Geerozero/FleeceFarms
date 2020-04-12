@@ -1,5 +1,6 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -368,7 +369,7 @@ public class Animal : MonoBehaviour
                 //get random position inside a sphere
                 //We'll probably need to move this to an empty gameobject inside the pen so that they only get a random point in the pen
                 //rather than a random point from a sphere where the animal is  currently standing
-                nextPositionToMoveTo = transform.position + (Random.insideUnitSphere * 100);
+                nextPositionToMoveTo = transform.position + (Random.insideUnitSphere * 10);
                 //move to location
                 navAgent.SetDestination(nextPositionToMoveTo);
 
