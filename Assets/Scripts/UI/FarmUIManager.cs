@@ -16,6 +16,7 @@ public class FarmUIManager : MonoBehaviour
     public GameObject marketButton;
     public GameObject pauseMenu;
     public TextMeshProUGUI editNameButtonText;
+    public TextMeshProUGUI bondPointText;
 
     [Header("Animal Name text")]
     public TextMeshProUGUI animalNameText;
@@ -93,7 +94,8 @@ public class FarmUIManager : MonoBehaviour
         FarmUIContainer.SetActive(true);
         marketButton.SetActive(false);
         //set name of animal in UI
-        animalNameText.SetText(animalStats.name);
+        animalNameText.SetText(animalStats.name); //get current Animal's name
+        UpdateBondPointDisplay();
     }
 
     //  ////////////////////
@@ -110,6 +112,12 @@ public class FarmUIManager : MonoBehaviour
         //
     }
 
+    //call this after each Feed/Brush as those modify bond point values
+    public void UpdateBondPointDisplay()
+    {
+        bondPointText.SetText(animalStats.GetAnimalBond().ToString()); //get bond point of animal for UI
+    }
+
     //events to be called through UI Buttons
     public void FeedCall()
     {
@@ -117,6 +125,7 @@ public class FarmUIManager : MonoBehaviour
         animalStats.ChangeAnimalFood(20);
 
         SetAnnounceText(animalName + " is fed, hunger is at: " + animalStats.GetAnimalHunger());
+        UpdateBondPointDisplay();
     }
 
     public void BrushCall()
@@ -124,6 +133,7 @@ public class FarmUIManager : MonoBehaviour
         animalStats.ChangeAnimalClean(20);
 
         SetAnnounceText(animalName + " is brushed, clean is at: " + animalStats.GetAnimalClean());
+        UpdateBondPointDisplay();
     }
 
     public void ShearCall()

@@ -38,19 +38,19 @@ public class Animal : MonoBehaviour
     [SerializeField]
     private int animalFood = 0;
     [SerializeField]
-    private int animalBond = 0;
+    private int animalBond;
     [SerializeField]
     private int animalFurGrowth = 0;
 
     [Header("Bond to increase every feed/clean")]
-    public int animalBondIncreasePerInteraction;
+    private int animalBondIncreasePerInteraction;
 
     //stats tick delay should be shared with ALL objects
-    private float statsTickDelayInput = 2;
+    private static float statsTickDelayInput = 2;
 
     private static float statsTickDelay;
     private float tickPreviousCheckTime;
-    public static int furGrowthModifier = 20;
+    private static int furGrowthModifier = 20;
 
 
     /*--------------------Animal Movement-------------------*/
@@ -132,6 +132,11 @@ public class Animal : MonoBehaviour
             isMoving = false;
             lastTimeMoved = Time.time;
         }
+
+        /* --- Variable Declaration */
+        animalBond = 100; //start with 100 bond for 1 Bond Point
+        furGrowthModifier = 20; //modifier for how much fur grows per tick if Happy
+        animalBondIncreasePerInteraction = 10; //how many bond to increase, 100 bond = 1 Bond Point
     }
 
     void Update()
@@ -147,11 +152,13 @@ public class Animal : MonoBehaviour
             {
                 tickPreviousCheckTime = Time.time;
 
+                //check happiness always
+                CheckAnimalHappy();
+
                 //tick all stats
                 TickAnimalStats();
 
-                //check happiness always
-                CheckAnimalHappy();
+                
             }
 
             /*MOVEMENT
@@ -159,7 +166,7 @@ public class Animal : MonoBehaviour
              * 
              */
             AnimalWander();
-        }
+        } 
     }
 
    
@@ -227,8 +234,15 @@ public class Animal : MonoBehaviour
 
     public void ChangeAnimalClean(int cleanValueChange)
     {
-        CheckToIncreaseBond(cleanValueChange);
         animalClean += cleanValueChange;
+
+        bool cleanPositiveCheck;
+        cleanPositiveCheck = CheckToIncreaseBond(cleanValueChange);
+
+        if(cleanPositiveCheck)
+        {
+            //add partical effect/audio to play HERE
+        }
 
         //set lower and upper bounds
         if (animalClean > 100)
@@ -250,8 +264,17 @@ public class Animal : MonoBehaviour
     //animal hunger should always just be added
     public void ChangeAnimalFood(int hungerValueChange)
     {
-        CheckToIncreaseBond(hungerValueChange);
         animalFood += hungerValueChange;
+
+        bool foodPositiveCheck;
+        foodPositiveCheck = CheckToIncreaseBond(hungerValueChange);
+
+
+        if(foodPositiveCheck)
+        {
+            //add particle effect/audio to play HERE
+            //should be as simple as adding and subtracting it
+        }
 
         //set lower and upper bounds
         if (animalFood > 100)
@@ -328,12 +351,16 @@ public class Animal : MonoBehaviour
     }
 
     //call whenever feeding or cleaning to check if a positive value is being added, if so add bond points
-    private void CheckToIncreaseBond(int valueChangeToCheck)
+    private bool CheckToIncreaseBond(int valueChangeToCheck)
     {
+        //if positive value, return true
         if (valueChangeToCheck > 0)
         {
             ChangeAnimalBond(animalBondIncreasePerInteraction);
+            return true;
         }
+
+        return false;
     }
 
     //return Animal Bond divided by 100
