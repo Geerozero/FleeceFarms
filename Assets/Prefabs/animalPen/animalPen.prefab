@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1054741029963854112}
   - component: {fileID: 1054741029963854115}
   - component: {fileID: 1054741029963854114}
-  - component: {fileID: 2462827710966694158}
   m_Layer: 0
   m_Name: animalPen
   m_TagString: Untagged
@@ -92,21 +91,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2462827710966694158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054741029963854117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180f37be8b4085f4fae9e43f3263da0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1054741029963854117}
-  cost: 100
-  outPut: 0
-  upgradedPrefab: {fileID: 6229125164776288873, guid: a9010e4f1e0ae8d4da8a2e03ddfd206f,
-    type: 3}
-  upgradeCost: 0
