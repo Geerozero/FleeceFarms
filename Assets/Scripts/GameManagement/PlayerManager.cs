@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [System.Serializable]
+    public class PlayerData
+    {
+        public int money;
+        public bool pen01Purchased;
+        public bool pen02Purchased;
+        public bool pen03Purchased;
+        public bool pen04Purchased;
+    }
+
     public static PlayerManager instance;
 
-    public List<PenSave> pens = new List<PenSave>();
-
-    public List<PenSave> penSaves = new List<PenSave>();
-
+    public PlayerData playerSave = new PlayerData();
 
     void Awake()
     {
@@ -22,41 +29,38 @@ public class PlayerManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    [System.Serializable]
-    public class PenSave
-    {
-        public Vector3 position;
-        public bool wasPurchased;
-    }
-
-    [System.Serializable]
-    public class PlayerSave
-    {
-        public int playerMoney;
-    }
-
     void StorePlayerData()
     {
-        penSaves.Clear();
-
-        for(int i = 0; i < pens.Count; i++)
-        {
-            penSaves.Add(pens.ElementAt(i));
-        }
+        playerSave.money = InventoryManager.instance.money;
     }
 
     void RestorePlayerData()
     {
-
+        InventoryManager.instance.money = playerSave.money;
     }
 
     public void SavePlayerDataToFile()
     {
-
+        StorePlayerData();
+        FileHelper.SaveDataFile(playerSave, "PlayerData");
     }
+
 
     public void LoadPlayerDataFromFile()
     {
+        playerSave = FileHelper.LoadDataFile<PlayerData>("PlayerData");
+        if (playerSave == null)
+            playerSave = new PlayerData ();
+        RestorePlayerData();
+    }
 
+    public void ResetPlayer()
+    {
+        playerSave.pen01Purchased = false;
+        playerSave.pen02Purchased = false;
+        playerSave.pen03Purchased = false;
+        playerSave.pen04Purchased = false;
+        playerSave.money = 0;
+        InventoryManager.instance.money = playerSave.money;
     }
 }

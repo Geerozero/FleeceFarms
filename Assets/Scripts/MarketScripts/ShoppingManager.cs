@@ -7,11 +7,10 @@ using TMPro;
 public class ShoppingManager : MonoBehaviour
 {
     //Shopping Manager processes transactions within the Market, facilitates cost checks and transfer of items into player inventory
-    public GameObject InventoryManager;
-    private InventoryManager inventoryManagerScript;
 
     [Header("Feedback text for shop")]
     public TextMeshProUGUI buySellAnnounceText;
+    public TextMeshProUGUI moneyText;
 
     private bool announcingText = false;
 
@@ -20,22 +19,27 @@ public class ShoppingManager : MonoBehaviour
 
     private void Start()
     {
-        inventoryManagerScript = InventoryManager.GetComponent<InventoryManager>();
+
     }
-    
+
+    private void Update()
+    {
+        UpdateMoneyText();
+    }
+
     //for referencing by scripts
     public int GetInventoryOwnedFurAtIndex(int itemIndex)
     {
         Debug.Log(itemIndex);
 
-        return inventoryManagerScript.GetFurInventoryIndex(itemIndex);
+        return InventoryManager.instance.GetFurInventoryIndex(itemIndex);
     }
 
     //for testing, 100 is index 0, 500 is index 1, 1000 is index 2
     public void ProcessPurchase(int itemIndex, int itemBuyCost, int itemAmountBuying)
     {
         //checks if Player has enough money - stops if they don't
-        if (inventoryManagerScript.GetMoney() < itemBuyCost)
+        if (InventoryManager.instance.GetMoney() < itemBuyCost)
         {
             
                 //see text display below
@@ -50,15 +54,15 @@ public class ShoppingManager : MonoBehaviour
                 SetAnnounceText("Got index in Index: " + itemIndex);
 
             //subtract money, add ONE to inventory in given index
-            inventoryManagerScript.SubtractMoney(itemBuyCost);
-            inventoryManagerScript.AddToFurInventory(itemIndex, itemAmountBuying);
+            InventoryManager.instance.SubtractMoney(itemBuyCost);
+            InventoryManager.instance.AddToFurInventory(itemIndex, itemAmountBuying);
         }
     }
 
     public void ProcessSell(int itemIndex, int itemSellCost, int itemAmountSelling)
     {
         //checks if Player has enough of item to sell in inventory to attempt sale - stop if they don't
-        if(inventoryManagerScript.GetFurInventoryIndex(itemIndex) < itemAmountSelling)
+        if(InventoryManager.instance.GetFurInventoryIndex(itemIndex) < itemAmountSelling)
         {
             SetAnnounceText("Not enough items in inventory");
         }
@@ -70,8 +74,8 @@ public class ShoppingManager : MonoBehaviour
 
 
             //remove from inventory, add money
-            inventoryManagerScript.SubtractFromFurInventory(itemIndex, itemAmountSelling);
-            inventoryManagerScript.AddMoney(itemSellCost);
+            InventoryManager.instance.SubtractFromFurInventory(itemIndex, itemAmountSelling);
+            InventoryManager.instance.AddMoney(itemSellCost);
         }
     }
 
@@ -103,6 +107,25 @@ public class ShoppingManager : MonoBehaviour
         announcingText = false;
 
 
+    }
+
+    public void UpdateMoneyText()
+    {
+        moneyText.text = "Money: " + InventoryManager.instance.money.ToString();
+    }
+
+    //----------------------------Testing
+    public void AddMoney()
+    {
+        InventoryManager.instance.money += 1000;
+        //UpdateText();
+    }
+
+    //subtracts money from passed in amount
+    public void SubtractMoney()
+    {
+        InventoryManager.instance.money -= 1000;
+        //UpdateText();
     }
 
 }

@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour
         LevelManager.instance.SaveAnimalsToFile();
         ClothingManager.instance.SaveClothesToFile();
         FurManager.instance.SaveFursToFile();
-        //player data should be saved the same way
+        PlayerManager.instance.SavePlayerDataToFile();
 
         Debug.Log("Saved!");
     }
@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
         FurManager.instance.LoadFursFromFile();
         ClothingManager.instance.LoadClothesFromFile();
         LevelManager.instance.LoadAnimalsFromFile();
-        //player data should be loaded the same way
+        PlayerManager.instance.LoadPlayerDataFromFile();
 
         Debug.Log("Loaded!");
     }
@@ -52,7 +52,8 @@ public class DataManager : MonoBehaviour
     {
         FurManager.instance.LoadFursFromFile();
         ClothingManager.instance.LoadClothesFromFile();
-        //dont load animals until we are in the farm scene
+        LevelManager.instance.LoadAnimalsFromSaves();
+        PlayerManager.instance.LoadPlayerDataFromFile();
     }
 
     public void NewGame()
@@ -60,6 +61,8 @@ public class DataManager : MonoBehaviour
         FileClearing.Clean();
         ClothingManager.instance.ResetClothes();
         FurManager.instance.ResetFurs();
+        PlayerManager.instance.ResetPlayer();
+        
         Load();
     }
 }

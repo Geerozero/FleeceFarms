@@ -3768,9 +3768,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908681292}
+      - m_Target: {fileID: 1908681293}
         m_MethodName: AddMoney
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6004,9 +6004,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1908681292}
+      - m_Target: {fileID: 1908681293}
         m_MethodName: SubtractMoney
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6905,7 +6905,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 383532274}
   m_HandleRect: {fileID: 383532273}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7050,7 +7050,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1908681291}
-  - component: {fileID: 1908681292}
   - component: {fileID: 1908681293}
   m_Layer: 0
   m_Name: Managers
@@ -7073,19 +7072,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1908681292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1908681290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e8b56fe0dbaed48ba81298bf487bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyUIText: {fileID: 627936126}
 --- !u!114 &1908681293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7098,8 +7084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37fd75576b53dfe49ac57350b8e5fad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryManager: {fileID: 1908681290}
   buySellAnnounceText: {fileID: 1922356897}
+  moneyText: {fileID: 627936126}
 --- !u!1 &1922356895
 GameObject:
   m_ObjectHideFlags: 0
@@ -8075,7 +8061,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inventoryScript
       value: 
-      objectReference: {fileID: 1908681292}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7927b8463e40d14db93a94744b2d71b, type: 3}
 --- !u!224 &1658714793598438525 stripped
@@ -8363,7 +8349,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inventoryScript
       value: 
-      objectReference: {fileID: 1908681292}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0eb546015944f945974bd06f2317cdd, type: 3}
 --- !u!1 &8173645653571953547 stripped
@@ -8509,6 +8495,6 @@ PrefabInstance:
         type: 3}
       propertyPath: inventoryScript
       value: 
-      objectReference: {fileID: 1908681292}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27ba6dd3835c7cc41a3e35e1de52b667, type: 3}

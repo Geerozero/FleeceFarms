@@ -329,8 +329,51 @@ PrefabInstance:
       propertyPath: penPopUp
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2256742776962675648, guid: 51009edc252cabd489fcf8de9e3d48ae,
+        type: 3}
+      propertyPath: penPrefab
+      value: 
+      objectReference: {fileID: 7548591500991135716, guid: f1e25f58ad7569f4fa7f3d3a173b5a2d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51009edc252cabd489fcf8de9e3d48ae, type: 3}
+--- !u!1 &174477583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2256742776962675654, guid: 51009edc252cabd489fcf8de9e3d48ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 174477582}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &174477584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174477583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e8b56fe0dbaed48ba81298bf487bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 0
+--- !u!114 &174477585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174477583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8036168208329904ba160d6618800103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSave:
+    money: 0
+    pen01Purchased: 0
+    pen02Purchased: 0
+    pen03Purchased: 0
+    pen04Purchased: 0
 --- !u!1001 &208102089
 PrefabInstance:
   m_ObjectHideFlags: 0

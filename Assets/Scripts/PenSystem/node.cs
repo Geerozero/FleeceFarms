@@ -30,14 +30,15 @@ public class Node : MonoBehaviour {
 
     public GameObject player;
     private bool wasPurchased;
-    public GameObject inventory;
-    private InventoryManager inventoryManager;
 
     //pen traits
     public int penLevel = 0;
     public int penCost = 0;
     public int penSpeed = 0;
     public int temp = 100;
+    public GameObject penPrefab;
+
+    public int penNumber;
 
     void Start ()
     {
@@ -46,7 +47,7 @@ public class Node : MonoBehaviour {
 
         buildManager = BuildManager.instance;
         penPurchasing = penPurchase.GetComponent<PenPurchasing>();
-        inventoryManager = inventory.GetComponent<InventoryManager>();
+        this.gameObject.SetActive(false);
     }
 
     public Vector3 GetBuildPosition ()
@@ -65,6 +66,8 @@ public class Node : MonoBehaviour {
          * However, it is not ideal to have input being generated on every node
          * but with a week left... this what we're doing lol */
 
+        CheckIfPurchasedBefore();
+
         if(Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -79,11 +82,13 @@ public class Node : MonoBehaviour {
                      * however this is not working, i'm not sure why
                      * we don't necessarily need this feedback as the buttons become interactable when a pen can be purchased
                      * so feel free to fix this functionality if you'd like */
-
-                    BuildAnimalPen(buildManager.GetPenToBuild());
-                    inventoryManager.SubtractMoney(penCost);
-                    wasPurchased = true;
                     
+                    GameObject newPen = BuildAnimalPen(buildManager.GetPenToBuild());
+                    LevelManager.instance.pens.Add(newPen);
+                    InventoryManager.instance.SubtractMoney(penCost);
+                    wasPurchased = true;
+
+                    CheckPenForPlayerSave();
                 }
             }
         }
@@ -92,6 +97,59 @@ public class Node : MonoBehaviour {
     public bool GetWasPurchased()
     {
         return wasPurchased;
+    }
+
+    public void SetWasPurchased(bool purchaseStatus)
+    {
+        wasPurchased = purchaseStatus;
+    }
+
+    void CheckPenForPlayerSave()
+    {
+        if (penNumber == 1)
+        {
+            PlayerManager.instance.playerSave.pen01Purchased = true;
+        }
+        else if (penNumber == 2)
+        {
+            PlayerManager.instance.playerSave.pen02Purchased = true;
+        }
+        else if (penNumber == 3)
+        {
+            PlayerManager.instance.playerSave.pen03Purchased = true;
+        }
+        else if (penNumber == 4)
+        {
+            PlayerManager.instance.playerSave.pen04Purchased = true;
+        }
+        else
+        {
+            Debug.Log("Invalid pen number");
+        }
+    }
+
+    void CheckIfPurchasedBefore()
+    {
+        if (!PlayerManager.instance.playerSave.pen01Purchased && penNumber == 1)
+        {
+            PlayerManager.instance.playerSave.pen01Purchased = false;
+        }
+        else if (!PlayerManager.instance.playerSave.pen02Purchased && penNumber == 2)
+        {
+            PlayerManager.instance.playerSave.pen02Purchased = false;
+        }
+        else if (!PlayerManager.instance.playerSave.pen03Purchased && penNumber == 3)
+        {
+            PlayerManager.instance.playerSave.pen03Purchased = false;
+        }
+        else if (!PlayerManager.instance.playerSave.pen04Purchased && penNumber == 4)
+        {
+            PlayerManager.instance.playerSave.pen04Purchased = false;
+        }
+        else
+        {
+            Debug.Log("Invalid pen number");
+        }
     }
 
     /*void OnMouseDown ()
@@ -116,16 +174,16 @@ public class Node : MonoBehaviour {
       //  animalPen = (GameObject)Instantiate(penToBuild, transform.position + positionOffset, transform.rotation);
     }*/
     
-    public void BuildAnimalPen (AnimalPenBlueprint blueprint)
+    public GameObject BuildAnimalPen (AnimalPenBlueprint blueprint)
     {
-        if (InventoryManager.money < blueprint.cost)
+        if (InventoryManager.instance.money < blueprint.cost)
         {
             Debug.Log("you poor");
-            return;
+            return null;
         }
 
-        InventoryManager.money -= blueprint.cost;
-        GameObject _pen = (GameObject)Instantiate(blueprint.prefab, GetBuildPosition(), Quaternion.identity);
+        InventoryManager.instance.money -= blueprint.cost;
+        GameObject _pen = (GameObject)Instantiate(penPrefab, GetBuildPosition(), Quaternion.identity);
         animalPen = _pen;
 
         animalPenBlueprint = blueprint;
@@ -135,6 +193,8 @@ public class Node : MonoBehaviour {
         penPurchasing.HidePossiblePens();
 
         Debug.Log("pen has built");
+        
+        return _pen;
     }
 
 
@@ -143,13 +203,13 @@ public class Node : MonoBehaviour {
         switch (penLevel)
         {
             case 0:
-                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                if (InventoryManager.instance.money < animalPenBlueprint.upgradeCost)
                 {
                     Debug.Log("no upgrade for you");
                     return;
                 }else
                 {
-                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    InventoryManager.instance.money -= animalPenBlueprint.upgradeCost;
                     //goodbye old pen
                     Destroy(animalPen);
 
@@ -170,14 +230,14 @@ public class Node : MonoBehaviour {
                 break;
 
             case 1:
-                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                if (InventoryManager.instance.money < animalPenBlueprint.upgradeCost)
                 {
                     Debug.Log("no upgrade for you");
                     return;
                 }
                 else
                 {
-                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    InventoryManager.instance.money -= animalPenBlueprint.upgradeCost;
                     //goodbye old pen
                     Destroy(animalPen);
 
@@ -198,14 +258,14 @@ public class Node : MonoBehaviour {
                 break;
 
             case 2:
-                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                if (InventoryManager.instance.money < animalPenBlueprint.upgradeCost)
                 {
                     Debug.Log("no upgrade for you");
                     return;
                 }
                 else
                 {
-                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    InventoryManager.instance.money -= animalPenBlueprint.upgradeCost;
                     //goodbye old pen
                     //Destroy(animalPen);
 
@@ -226,14 +286,14 @@ public class Node : MonoBehaviour {
                 break;
 
             case 3:
-                if (InventoryManager.money < animalPenBlueprint.upgradeCost)
+                if (InventoryManager.instance.money < animalPenBlueprint.upgradeCost)
                 {
                     Debug.Log("no upgrade for you");
                     return;
                 }
                 else
                 {
-                    InventoryManager.money -= animalPenBlueprint.upgradeCost;
+                    InventoryManager.instance.money -= animalPenBlueprint.upgradeCost;
                     //goodbye old pen
                    // Destroy(animalPen);
 
@@ -259,7 +319,7 @@ public class Node : MonoBehaviour {
 
     public void SellPen()
     {
-        InventoryManager.money += animalPenBlueprint.GetSellAmount();
+        InventoryManager.instance.money += animalPenBlueprint.GetSellAmount();
 
         //add effect
 

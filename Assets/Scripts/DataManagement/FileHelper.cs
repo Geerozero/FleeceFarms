@@ -32,7 +32,7 @@ public static class FileHelper
         File.WriteAllBytes(filePath, SerializeHelper.Serialize(data));
     }
 
-    public static T LoadDataFile<T>(string file) where T : class, new()
+    public static T LoadDataFile<T>(string file) where T : class, new() 
     {
         string path = GetPath();
         string filePath = path + file + ".dat";

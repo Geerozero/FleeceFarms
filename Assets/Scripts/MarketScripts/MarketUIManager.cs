@@ -131,6 +131,7 @@ public class MarketUIManager : MonoBehaviour
 
     public void GoToFarm()
     {
+        PlayerManager.instance.SavePlayerDataToFile();
         SceneManager.LoadScene("Farm_design");
     }
     

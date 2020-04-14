@@ -12,11 +12,9 @@ public class MarketOutfitButton : MonoBehaviour
     public Text itemCostText;
     public Text itemNameText;
     public Image itemImage;
-    public GameObject inventoryManager;
 
     /*---Private Variables---*/
     private Button button;
-    private InventoryManager inventoryManagerScript;
 
     void Start()
     {
@@ -25,12 +23,10 @@ public class MarketOutfitButton : MonoBehaviour
         itemNameText.text = outfitItem.name;
         itemCostText.text = "Cost: " + outfitItem.cost.ToString();
         itemImage.sprite = outfitItem.buttonImage;
-
-        inventoryManagerScript = inventoryManager.GetComponent<InventoryManager>();
     }
     void Update()
     {
-        if (outfitItem.isPurchased || InventoryManager.money < outfitItem.cost)
+        if (outfitItem.isPurchased || InventoryManager.instance.money < outfitItem.cost)
         {
             button.interactable = false;
         }
@@ -46,6 +42,6 @@ public class MarketOutfitButton : MonoBehaviour
 
         outfitItem.isPurchased = true;
         button.interactable = false;
-        inventoryManagerScript.SubtractMoney(outfitItem.cost);
+        InventoryManager.instance.SubtractMoney(outfitItem.cost);
     }
 }

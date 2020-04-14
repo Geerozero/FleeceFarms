@@ -12,11 +12,9 @@ public class MarketFurButton : MonoBehaviour
     public Text itemCostText;
     public Text itemNameText;
     public Image itemImage;
-    public GameObject inventoryManager;
 
     /*---Private Variables---*/
     private Button button;
-    private InventoryManager inventoryManagerScript;
 
     void Start()
     {
@@ -26,8 +24,6 @@ public class MarketFurButton : MonoBehaviour
         itemCostText.text = "Cost: " + furItem.cost.ToString();
         itemImage.sprite = furItem.buttonImage;
 
-        inventoryManagerScript = inventoryManager.GetComponent<InventoryManager>();
-
         if(furItem.isPurchased)
         {
             button.interactable = false;
@@ -36,7 +32,7 @@ public class MarketFurButton : MonoBehaviour
 
     void Update()
     {
-        if (furItem.isPurchased || InventoryManager.money < furItem.cost)
+        if (furItem.isPurchased || InventoryManager.instance.money < furItem.cost)
         {
             button.interactable = false;
         }
@@ -52,6 +48,6 @@ public class MarketFurButton : MonoBehaviour
 
         furItem.isPurchased = true;
         button.interactable = false;
-        inventoryManagerScript.SubtractMoney(furItem.cost);
+        InventoryManager.instance.SubtractMoney(furItem.cost);
     }
 }

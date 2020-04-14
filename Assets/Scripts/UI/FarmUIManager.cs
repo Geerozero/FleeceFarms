@@ -9,6 +9,7 @@ public class FarmUIManager : MonoBehaviour
 {
     [Header("Feedback text")]
     public TextMeshProUGUI farmAnnounceText;
+    public TextMeshProUGUI moneyText;
     bool announcingText;
 
     [Header("UI References")]
@@ -60,6 +61,8 @@ public class FarmUIManager : MonoBehaviour
         {
             pauseMenu.SetActive(false);
         }
+
+        UpdateMoneyText();
     }
 
     //SCENE TRANSITIONS
@@ -67,6 +70,7 @@ public class FarmUIManager : MonoBehaviour
     public void LoadMarket()
     {
         LevelManager.instance.SaveAnimalsToFile();
+        PlayerManager.instance.SavePlayerDataToFile();
         SceneManager.LoadScene("Market");
     }
 
@@ -74,6 +78,7 @@ public class FarmUIManager : MonoBehaviour
     {
         BoutiqueManager.instance.selectedAnimal = animalSave;
         LevelManager.instance.SaveAnimalsToFile();
+        PlayerManager.instance.SavePlayerDataToFile();
         SceneManager.LoadScene("Boutique");
     }
 
@@ -229,5 +234,10 @@ public class FarmUIManager : MonoBehaviour
     {
         Debug.Log("Resetting animal reference");
         animalReference = null;
+    }
+
+    public void UpdateMoneyText()
+    {
+        moneyText.text = "Money: " + InventoryManager.instance.money.ToString();
     }
 }

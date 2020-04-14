@@ -29,7 +29,7 @@ public class BuildManager : MonoBehaviour
     public NodeUIscript nodeUI;
 
     public bool CanBuild { get { return penToBuild != null; } }
-    public bool HasMoney { get { return InventoryManager.money >= penToBuild.cost; } }
+    public bool HasMoney { get { return InventoryManager.instance.money >= penToBuild.cost; } }
 
 
    //test below override

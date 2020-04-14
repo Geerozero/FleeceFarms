@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     public List<Animal> animals = new List<Animal>();
+    public List<GameObject> pens = new List<GameObject>();
     public FurItem startingFurItem;
     public OutfitItem startingAccessory;
     public OutfitItem startingTorso;
@@ -22,6 +23,8 @@ public class LevelManager : MonoBehaviour
 
     public int sheepToCreate;
     public int alpacaToCreate;
+
+    public GameObject penPrefab;
 
     public Dictionary<int, AnimalSave> saves = new Dictionary<int, AnimalSave>();
     //int is animalID pointing to the animal save
@@ -63,6 +66,7 @@ public class LevelManager : MonoBehaviour
             Debug.Log("Loading Scene...");
 
             RestoreAnimals();
+            RestorePens();
         }
     }
 
@@ -304,6 +308,47 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void RestorePens()
+    {
+        for(int i = 0; i < pens.Count; i++)
+        {
+            if(pens[i] != null )
+            {
+                Destroy(pens[i].gameObject);
+                Debug.Log("Deleting: " + pens[i].gameObject.name);
+            }
+        }
+
+        pens.Clear();
+        
+        PlayerManager.instance.LoadPlayerDataFromFile();
+
+        if(PlayerManager.instance.playerSave.pen01Purchased)
+        {
+            GameObject newPen = Instantiate(penPrefab);
+            newPen.transform.position = new Vector3(-60.8f, 0f, 20.1f);
+            pens.Add(newPen);
+        }
+        if (PlayerManager.instance.playerSave.pen02Purchased)
+        {
+            GameObject newPen = Instantiate(penPrefab);
+            newPen.transform.position = new Vector3(-246.2f, 0f, 20.1f);
+            pens.Add(newPen);
+        }
+        if (PlayerManager.instance.playerSave.pen03Purchased)
+        {
+            GameObject newPen = Instantiate(penPrefab);
+            newPen.transform.position = new Vector3(-60.8f, 0f, 188.4f);
+            pens.Add(newPen);
+        }
+        if (PlayerManager.instance.playerSave.pen04Purchased)
+        {
+            GameObject newPen = Instantiate(penPrefab);
+            newPen.transform.position = new Vector3(-243.5f, 0f, 188.4f);
+            pens.Add(newPen);
+        }
+    }
+
     /*----------------Animal File Management-----------------------------------------------*/
 
     public void SaveAnimalsToFile()
@@ -320,6 +365,14 @@ public class LevelManager : MonoBehaviour
         if (saves == null)
             saves = new Dictionary<int, AnimalSave>();
         RestoreAnimals();
+        RestorePens();
+    }
+
+    public void LoadAnimalsFromSaves()
+    {
+        saves = FileHelper.LoadDataFile<Dictionary<int, AnimalSave>>("AnimalData");
+        if (saves == null)
+            saves = new Dictionary<int, AnimalSave>();
     }
 
     /*-------------------Test Functions-------------------*/

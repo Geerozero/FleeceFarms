@@ -26,7 +26,6 @@ public class PenPurchasing : MonoBehaviour
     private Node pen04Info;
     private bool allPurchased;
 
-    private InventoryManager inventoryManager;
     private BasicInteractions basicInteractions;
 
     void Start()
@@ -36,7 +35,6 @@ public class PenPurchasing : MonoBehaviour
         pen03Info = pen03Selection.GetComponent<Node>();
         pen04Info = pen04Selection.GetComponent<Node>();
 
-        inventoryManager = localManagers.GetComponent<InventoryManager>();
         basicInteractions = player.GetComponent<BasicInteractions>();
     }
 
@@ -44,7 +42,7 @@ public class PenPurchasing : MonoBehaviour
     {
         CheckAllPensPurchased();
 
-        if(inventoryManager.GetMoney() >= costOfNewPen && !allPurchased)
+        if(InventoryManager.instance.GetMoney() >= costOfNewPen && !allPurchased)
         {
             purchaseButton.interactable = true;
         }
@@ -56,6 +54,7 @@ public class PenPurchasing : MonoBehaviour
 
     public void DisplayPossiblePens()
     {
+        CheckPossibilities();
         cancelButton.gameObject.SetActive(true);
 
         if(!pen01Info.GetWasPurchased())
@@ -76,6 +75,47 @@ public class PenPurchasing : MonoBehaviour
         }
 
         basicInteractions.isPurchasing = true;
+    }
+
+    void CheckPossibilities()
+    {
+        //i know this is awful, dont yell at me
+
+        if(PlayerManager.instance.playerSave.pen01Purchased)
+        {
+            pen01Info.SetWasPurchased(true);
+        }
+        if(!PlayerManager.instance.playerSave.pen01Purchased)
+        {
+            pen01Info.SetWasPurchased(false);
+        }
+        
+        if (PlayerManager.instance.playerSave.pen02Purchased)
+        {
+            pen02Info.SetWasPurchased(true);
+        }
+        if (!PlayerManager.instance.playerSave.pen02Purchased)
+        {
+            pen02Info.SetWasPurchased(false);
+        }
+        
+        if (PlayerManager.instance.playerSave.pen03Purchased)
+        {
+            pen03Info.SetWasPurchased(true);
+        }
+        if (!PlayerManager.instance.playerSave.pen03Purchased)
+        {
+            pen03Info.SetWasPurchased(false);
+        }
+        
+        if (PlayerManager.instance.playerSave.pen04Purchased)
+        {
+            pen04Info.SetWasPurchased(true);
+        }
+        if (!PlayerManager.instance.playerSave.pen04Purchased)
+        {
+            pen04Info.SetWasPurchased(false);
+        }
     }
 
     public void HidePossiblePens()

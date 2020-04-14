@@ -14,17 +14,14 @@ public class MarketAnimalButton : MonoBehaviour
     public Text itemCostText;
     public Text itemNameText;
     public Image itemImage;
-    public GameObject inventoryManager;
 
     /*---Private Variables---*/
     private Button button;
-    private InventoryManager inventoryManagerScript;
 
     void Start()
     {
         /*---Connecting fur item attributes to this button---*/
         button = GetComponent<Button>();
-        inventoryManagerScript = inventoryManager.GetComponent<InventoryManager>();
         itemNameText.text = animalType.ToString();
         itemCostText.text = "Cost: " + cost.ToString();
         itemImage.sprite = image;
@@ -32,7 +29,7 @@ public class MarketAnimalButton : MonoBehaviour
 
     void Update()
     {
-        if (InventoryManager.money < cost)
+        if (InventoryManager.instance.money < cost)
         {
             button.interactable = false;
         }
@@ -53,6 +50,6 @@ public class MarketAnimalButton : MonoBehaviour
             LevelManager.instance.alpacaToCreate += 1;
         }
 
-        inventoryManagerScript.SubtractMoney(cost);
+        InventoryManager.instance.SubtractMoney(cost);
     }
 }

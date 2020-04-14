@@ -24,11 +24,6 @@ public class MarketItemIndexProcessing : MonoBehaviour
 
     private ShoppingManager shoppingManagerScript;
 
-
-    [Header("Inventory manager heere")]
-    public InventoryManager inventoryScript;
-
-
     private void Start()
     {
         shoppingManagerScript = gameManager.GetComponent<ShoppingManager>();        
@@ -55,7 +50,7 @@ public class MarketItemIndexProcessing : MonoBehaviour
     {
         if (isSellButton)
         {
-            ownedUIText.SetText(inventoryScript.GetFurInventoryIndex(itemIndex).ToString());
+            ownedUIText.SetText(InventoryManager.instance.GetFurInventoryIndex(itemIndex).ToString());
         }
     }
 }
