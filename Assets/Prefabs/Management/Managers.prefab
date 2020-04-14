@@ -64,12 +64,14 @@ MonoBehaviour:
   startingAccessory: {fileID: 11400000, guid: 47d2b825c7e5d894eb34a1b54c4dffc4, type: 2}
   startingTorso: {fileID: 11400000, guid: 67e9e655afcc0a54e95c655646aed56d, type: 2}
   startingShoe: {fileID: 11400000, guid: 48a1a8d3e7e4f4f4482a3442171ccfc2, type: 2}
-  alpacaPrefab: {fileID: 8826045600701475730, guid: 3bc99b56f4333264cb218b1d43e8ad80,
+  alpacaPrefab: {fileID: 8820385763283896346, guid: 3bc99b56f4333264cb218b1d43e8ad80,
     type: 3}
   sheepPrefab: {fileID: 3474891033442944095, guid: d5af77fcee725094baebe988ee12e862,
     type: 3}
   rabbitPrefab: {fileID: 4816435889982966805, guid: 0c44542040a3a7f4b849e519ee48df2c,
     type: 3}
+  sheepToCreate: 0
+  alpacaToCreate: 0
 --- !u!114 &2256742776962675650
 MonoBehaviour:
   m_ObjectHideFlags: 0

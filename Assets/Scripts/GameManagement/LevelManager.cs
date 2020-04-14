@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
             /*---Restores animals when in the Farm scene---*/
             Debug.Log("Loading Scene...");
 
-            LoadAnimalsFromFile();
+            RestoreAnimals();
         }
     }
 

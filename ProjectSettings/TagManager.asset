@@ -12,11 +12,10 @@ TagManager:
   - Torso
   - Shoe
   - Wool
-  - Pen1
-  - Pen2
   - PopUp
   - BoutiqueSpawn
   - node
+  - Pen
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour {
@@ -9,7 +10,8 @@ public class Node : MonoBehaviour {
     public Vector3 positionOffset;
     
     public Color notEnoughMoneyColor;
-
+    
+    public GameObject penPurchase;
 
     [HideInInspector]
     public GameObject animalPen;
@@ -22,7 +24,20 @@ public class Node : MonoBehaviour {
     
     private Renderer rend;
 
+    private PenPurchasing penPurchasing;
+
     BuildManager buildManager;
+
+    public GameObject player;
+    private bool wasPurchased;
+    public GameObject inventory;
+    private InventoryManager inventoryManager;
+
+    //pen traits
+    public int penLevel = 0;
+    public int penCost = 0;
+    public int penSpeed = 0;
+    public int temp = 100;
 
     void Start ()
     {
@@ -30,40 +45,78 @@ public class Node : MonoBehaviour {
         startColor = rend.material.color;
 
         buildManager = BuildManager.instance;
+        penPurchasing = penPurchase.GetComponent<PenPurchasing>();
+        inventoryManager = inventory.GetComponent<InventoryManager>();
     }
 
     public Vector3 GetBuildPosition ()
     {
         return transform.position + positionOffset;
     }
-    void OnMouseDown ()
+
+    
+    void Update()
+    {
+        /* OnMouseDown created problems with how we recieve input from the player
+         * you had to click certain spots on the nodes that were far away for a pen to spawn
+         * so it better to create a ray from the camera to where the mouse is pointing
+         * and checking if the selected object is this object
+         * 
+         * However, it is not ideal to have input being generated on every node
+         * but with a week left... this what we're doing lol */
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                if(hit.transform.gameObject == this.gameObject)
+                {
+                    /* NOTE: it looks like there is supposed to be a material change when the mouse hovers over a node
+                     * in the OnMouseDown method
+                     * however this is not working, i'm not sure why
+                     * we don't necessarily need this feedback as the buttons become interactable when a pen can be purchased
+                     * so feel free to fix this functionality if you'd like */
+
+                    BuildAnimalPen(buildManager.GetPenToBuild());
+                    inventoryManager.SubtractMoney(penCost);
+                    wasPurchased = true;
+                    
+                }
+            }
+        }
+    }
+
+    public bool GetWasPurchased()
+    {
+        return wasPurchased;
+    }
+
+    /*void OnMouseDown ()
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
-        
 
         if (animalPen != null)
         {
-            
             buildManager.SelectPen(this);
             Debug.Log("cant build here - to do display on screen");
             
             return;
-
-
         }
         if (!buildManager.CanBuild)
             return;
         //current script below removed for test
         BuildAnimalPen(buildManager.GetPenToBuild());
 
-
         //build animalpen
         //GameObject penToBuild = BuildManager.instance.GetPenToBuild();
       //  animalPen = (GameObject)Instantiate(penToBuild, transform.position + positionOffset, transform.rotation);
-
-    }
-    void BuildAnimalPen (AnimalPenBlueprint blueprint)
+    }*/
+    
+    public void BuildAnimalPen (AnimalPenBlueprint blueprint)
     {
         if (InventoryManager.money < blueprint.cost)
         {
@@ -79,15 +132,11 @@ public class Node : MonoBehaviour {
         penLevel = 0;
         //add effect
 
+        penPurchasing.HidePossiblePens();
+
         Debug.Log("pen has built");
     }
 
-    public int penLevel = 0;
-    public double penCost = 0;
-    public int penSpeed = 0;
-    public int temp = 100;
-
-    
 
     public void UpgradePen()
     {
@@ -112,7 +161,8 @@ public class Node : MonoBehaviour {
 
                     isUpgraded = true;
                     penLevel += 1;
-                    penCost = penCost + (penCost * 1.5);
+                    penCost = penCost + (penCost * 2); //changed penCost to int as every other cost item is an int,
+                                                       //our player money is in whole numbers
                     penSpeed = penSpeed * 2;
 
                     Debug.Log("level:" + penLevel);
@@ -139,7 +189,7 @@ public class Node : MonoBehaviour {
 
                     isUpgraded = true;
                     penLevel += 1;
-                    penCost = penCost + (penCost * 1.5);
+                    penCost = penCost + (penCost * 2);
                     penSpeed = penSpeed * 2;
 
                     Debug.Log("level:" + penLevel);
@@ -195,7 +245,7 @@ public class Node : MonoBehaviour {
 
                     isUpgraded = true;
                     penLevel += 1;
-                    penCost = penCost + (penCost * 2.5);
+                    penCost = penCost + (penCost * 3);
                     penSpeed = penSpeed * 2;
 
                     Debug.Log("level:" + penLevel);

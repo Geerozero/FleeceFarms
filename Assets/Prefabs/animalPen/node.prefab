@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5210129156583384376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.8, y: 1.6, z: -27.2}
-  m_LocalScale: {x: 20, y: 2, z: 20}
+  m_LocalScale: {x: 146.172, y: 2, z: 146.21648}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,14 +104,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114e2496c6b972e449e464e2d1e79424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.735849, g: 0.05206478, b: 0.05206478, a: 0.85490197}
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
   positionOffset: {x: 0, y: 0, z: 0}
-  notEnoughMoneyColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  notEnoughMoneyColor: {r: 0, g: 0, b: 0, a: 0}
   animalPen: {fileID: 0}
   isUpgraded: 0
   animalPenBlueprint:
     prefab: {fileID: 0}
     cost: 0
+    outPut: 0
     upgradedPrefab: {fileID: 0}
     upgradeCost: 0
   penLevel: 0

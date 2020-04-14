@@ -32,6 +32,8 @@ public class BasicInteractions : MonoBehaviour
     public GameObject spawnPen03;
     public GameObject spawnPen04;
 
+    public bool isPurchasing;
+
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
@@ -97,7 +99,7 @@ public class BasicInteractions : MonoBehaviour
                 Debug.Log("Click hit:" + hit.transform.name);
 
                 //clicked on an animal
-                if (hit.transform.tag == "Animal")
+                if (hit.transform.tag == "Animal" && !isPurchasing)
                 {
                     Debug.Log("Clicked Animal");
                     selectedAnimal = hit.transform.gameObject;

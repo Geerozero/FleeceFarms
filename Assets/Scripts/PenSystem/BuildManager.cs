@@ -51,7 +51,6 @@ public class BuildManager : MonoBehaviour
         {
             DeselectNode();
             return;
-
         }
         selectedPen = node;
         penToBuild = null;
@@ -61,15 +60,13 @@ public class BuildManager : MonoBehaviour
     public void DeselectNode()
     {
         selectedPen = null;
-        nodeUI.Hide();
+        //nodeUI.Hide();
     }
     
     public void SelectAnimalPenToBuild (AnimalPenBlueprint animalPen)
     {
         penToBuild = animalPen;
         DeselectNode();
-
-       
     }
     
     

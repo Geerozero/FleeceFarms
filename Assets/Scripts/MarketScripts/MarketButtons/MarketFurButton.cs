@@ -52,7 +52,6 @@ public class MarketFurButton : MonoBehaviour
 
         furItem.isPurchased = true;
         button.interactable = false;
-        InventoryManager.money -= furItem.cost;
         inventoryManagerScript.SubtractMoney(furItem.cost);
     }
 }

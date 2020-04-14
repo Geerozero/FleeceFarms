@@ -46,7 +46,6 @@ public class MarketOutfitButton : MonoBehaviour
 
         outfitItem.isPurchased = true;
         button.interactable = false;
-        InventoryManager.money -= outfitItem.cost;
         inventoryManagerScript.SubtractMoney(outfitItem.cost);
     }
 }
