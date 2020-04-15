@@ -333,7 +333,7 @@ PrefabInstance:
         type: 3}
       propertyPath: penPrefab
       value: 
-      objectReference: {fileID: 7548591500991135716, guid: f1e25f58ad7569f4fa7f3d3a173b5a2d,
+      objectReference: {fileID: 6824536888072450760, guid: f1e25f58ad7569f4fa7f3d3a173b5a2d,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51009edc252cabd489fcf8de9e3d48ae, type: 3}
@@ -370,10 +370,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSave:
     money: 0
+    animalsBought: 0
+    pensBought: 0
     pen01Purchased: 0
     pen02Purchased: 0
     pen03Purchased: 0
     pen04Purchased: 0
+    pen01Animals: 0
+    pen02Animals: 0
+    pen03Animals: 0
+    pen04Animals: 0
+    pen01IsFull: 0
+    pen02IsFull: 0
+    pen03IsFull: 0
+    pen04IsFull: 0
 --- !u!1001 &208102089
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class FarmUIManager : MonoBehaviour
     [Header("UI References")]
     public GameObject FarmUIContainer;
     public GameObject marketButton;
+    public Button customizeButton; 
     public GameObject pauseMenu;
     public TextMeshProUGUI editNameButtonText;
     public TextMeshProUGUI bondPointText;

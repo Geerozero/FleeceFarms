@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PenPurchasing : MonoBehaviour
@@ -18,6 +19,7 @@ public class PenPurchasing : MonoBehaviour
     public GameObject player;
     public GameObject localManagers;
     public Button purchaseButton;
+    public Text buttonText;
     public Button cancelButton;
 
     private Node pen01Info;
@@ -41,24 +43,27 @@ public class PenPurchasing : MonoBehaviour
 
     void Update()
     {
-        CheckAllPensPurchased();
+        if(SceneManager.GetActiveScene().name == "Farm_design")
+        {
+            CheckAllPensPurchased();
 
-        if(InventoryManager.instance.GetMoney() >= costOfNewPen && !allPurchased)
-        {
-            purchaseButton.interactable = true;
-        }
-        else
-        {
-            purchaseButton.interactable = false;
-        }
+            if (InventoryManager.instance.GetMoney() < costOfNewPen || allPurchased)
+            {
+                purchaseButton.interactable = false;
+            }
+            else if(InventoryManager.instance.GetMoney() >= costOfNewPen && !allPurchased)
+            {
+                purchaseButton.interactable = true;
+            }
 
-        if(isBuilding)
-        {
-            DisplayPossiblePens();
-        }
-        else
-        {
-            HidePossiblePens();
+            if (isBuilding)
+            {
+                DisplayPossiblePens();
+            }
+            if (!isBuilding)
+            {
+                HidePossiblePens();
+            }
         }
     }
 
@@ -144,12 +149,12 @@ public class PenPurchasing : MonoBehaviour
         basicInteractions.isPurchasing = false;
     }
 
-    void CheckAllPensPurchased()
+    public void CheckAllPensPurchased()
     {
-        if(pen01Info.GetWasPurchased() && pen02Info.GetWasPurchased() && pen03Info.GetWasPurchased() && pen04Info.GetWasPurchased())
+        if(PlayerManager.instance.playerSave.pen01Purchased && PlayerManager.instance.playerSave.pen02Purchased && PlayerManager.instance.playerSave.pen03Purchased && PlayerManager.instance.playerSave.pen04Purchased)
         {
             allPurchased = true;
-            purchaseButton.GetComponentInChildren<Text>().text = "All Pens Unlocked";
+            buttonText.text = "All Pens Unlocked";
         }
         else
         {

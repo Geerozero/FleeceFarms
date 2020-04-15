@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MarketAnimalButton : MonoBehaviour
@@ -29,13 +30,16 @@ public class MarketAnimalButton : MonoBehaviour
 
     void Update()
     {
-        if (InventoryManager.instance.money < cost)
+        if(SceneManager.GetActiveScene().name == "Market")
         {
-            button.interactable = false;
-        }
-        else
-        {
-            button.interactable = true;
+            if (InventoryManager.instance.money < cost || CheckTotalAnimalsAllowedWithCurrentPens() == false)
+            {
+                button.interactable = false;
+            }
+            else if (InventoryManager.instance.money >= cost && CheckTotalAnimalsAllowedWithCurrentPens() == true)
+            {
+                button.interactable = true;
+            }
         }
     }
 
@@ -50,6 +54,35 @@ public class MarketAnimalButton : MonoBehaviour
             LevelManager.instance.alpacaToCreate += 1;
         }
 
+        PlayerManager.instance.playerSave.animalsBought++;
         InventoryManager.instance.SubtractMoney(cost);
+    }
+
+    private bool CheckTotalAnimalsAllowedWithCurrentPens()
+    {
+        if(PlayerManager.instance.playerSave.pensBought == 0)
+        {
+            return false;
+        }
+        if (PlayerManager.instance.playerSave.pensBought == 1 && PlayerManager.instance.playerSave.animalsBought + 1 > 20)
+        {
+            return false;
+        }
+        if(PlayerManager.instance.playerSave.pensBought == 2 && PlayerManager.instance.playerSave.animalsBought + 1 > 40)
+        {
+            return false;
+        }
+        if(PlayerManager.instance.playerSave.pensBought == 3 && PlayerManager.instance.playerSave.animalsBought + 1 > 60)
+        {
+            return false;
+        }
+        if(PlayerManager.instance.playerSave.pensBought == 4 && PlayerManager.instance.playerSave.animalsBought + 1 > 80)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

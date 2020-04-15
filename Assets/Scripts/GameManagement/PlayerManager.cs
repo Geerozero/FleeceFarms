@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
     public class PlayerData
     {
         public int money;
+        public int animalsBought;
+        public int pensBought;
         
         public bool pen01Purchased;
         public bool pen02Purchased;
@@ -19,6 +21,11 @@ public class PlayerManager : MonoBehaviour
         public int pen02Animals;
         public int pen03Animals;
         public int pen04Animals;
+
+        public bool pen01IsFull;
+        public bool pen02IsFull;
+        public bool pen03IsFull;
+        public bool pen04IsFull;
     }
 
     public static PlayerManager instance;
@@ -71,8 +78,15 @@ public class PlayerManager : MonoBehaviour
         playerSave.pen02Animals = 0;
         playerSave.pen03Animals = 0;
         playerSave.pen04Animals = 0;
-        
+
+        playerSave.pen01IsFull = false;
+        playerSave.pen02IsFull = false;
+        playerSave.pen03IsFull = false;
+        playerSave.pen04IsFull = false;
+
         playerSave.money = 0;
+        playerSave.animalsBought = 0;
+        playerSave.pensBought = 0;
         
         InventoryManager.instance.money = playerSave.money;
     }

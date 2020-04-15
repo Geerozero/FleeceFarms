@@ -39,6 +39,7 @@ public class BoutiqueManager : MonoBehaviour
         
         animalInfo.fur = FurManager.instance.furs[selectedAnimal.furID];
         animalInfo.fur.furID = selectedAnimal.furID;
+        animalInfo.wool.gameObject.SetActive(true);
         animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[selectedAnimal.furID].furMaterial;
 
         animalInfo.slot01 = ClothingManager.instance.clothes[selectedAnimal.slot01ClothID];

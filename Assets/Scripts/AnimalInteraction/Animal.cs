@@ -93,6 +93,7 @@ public class Animal : MonoBehaviour
         newSave.slot02ClothID = slot02.clothingID;
         newSave.slot03ClothID = slot03.clothingID;
 
+        newSave.isFurGrown = isFleeceGrown;
         newSave.animalIsHappy = isHappy;
         newSave.animalBond = animalBond;
         newSave.animalHunger = animalFood;
@@ -120,6 +121,7 @@ public class Animal : MonoBehaviour
         slot02 = ClothingManager.instance.clothes[save.slot02ClothID];
         slot03 = ClothingManager.instance.clothes[save.slot03ClothID];
 
+        isFleeceGrown = save.isFurGrown;
         isHappy = save.animalIsHappy;
         animalBond = save.animalBond;
         animalFood = save.animalHunger;
@@ -151,9 +153,8 @@ public class Animal : MonoBehaviour
         animalBond = 100; //start with 100 bond for 1 Bond Point
         furGrowthModifier = 20; //modifier for how much fur grows per tick if Happy
         animalBondIncreasePerInteraction = 10; //how many bond to increase, 100 bond = 1 Bond Point
-        isFleeceGrown = false; //has no wool at the start!
-        CheckToDisplayFleece(); //call function to hide fleece
-
+        //isFleeceGrown = false; //has no wool at the start! - moved to update bcuz it keeps resetting fleece on scene transitions
+        
 
         /* --- Particle Effect Declarations/Starts---*/
         isParticlePlaying = false;
@@ -180,6 +181,17 @@ public class Animal : MonoBehaviour
 
                 //tick all stats
                 TickAnimalStats();
+            }
+
+            CheckToDisplayClothing(); //call function to hide fleece[changed to clothing]
+
+            if(isFleeceGrown)
+            {
+                wool.gameObject.SetActive(true);
+            }
+            else if(!isFleeceGrown)
+            {
+                wool.gameObject.SetActive(false);
             }
 
             /*MOVEMENT
@@ -248,7 +260,7 @@ public class Animal : MonoBehaviour
         ChangeAnimalFood(-1);
 
         //tick check to display fleece
-        CheckToDisplayFleece();
+        CheckToDisplayClothing();
     }
 
     //adjusting animal statistics
@@ -329,6 +341,10 @@ public class Animal : MonoBehaviour
             isFleeceGrown = true;
             animalFurGrowth = 100;
         }
+        else
+        {
+            isFleeceGrown = false;
+        }
 
         if (animalFurGrowth <= 0)
         {
@@ -343,18 +359,43 @@ public class Animal : MonoBehaviour
     }
 
     //function to change visbility of fleece
-    private void CheckToDisplayFleece()
+    private void CheckToDisplayClothing() //- changed function name to dealing with activating and deactiviating only the animals clothing
     {
         //if fleece is not grown, set mesh renderer of fleece/wool OFF
         if(!isFleeceGrown)
         {
-            wool.GetComponentInChildren<MeshRenderer>().enabled = false;
+            /* was having problems with enabling and diabling the mesh renderer
+             * when customizing in the boutique
+             * so changed moved this to Update and setting the wool gameobject to active and inactive */
+
+            //wool.GetComponentInChildren<MeshRenderer>().enabled = false;
+            
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                if(transform.GetChild(i).tag == "Accessory")
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
         }
         //else, turn it on
         else
         {
-            wool.GetComponentInChildren<MeshRenderer>().enabled = true;
+           // wool.GetComponentInChildren<MeshRenderer>().enabled = true;
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).tag == "Accessory")
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
+            }
         }
+    }
+
+    public bool GetIsFleeceGrown()
+    {
+        return isFleeceGrown;
     }
 
     //checks if FurGrowht is at 100, returns true if it is, false if it is NOT
@@ -435,7 +476,7 @@ public class Animal : MonoBehaviour
                 isMoving = true;
 
                 //get random position inside a sphere in assigned pen
-                nextPositionToMoveTo = penObject.transform.position + (Random.insideUnitSphere * 50);
+                nextPositionToMoveTo = penObject.transform.position + (Random.insideUnitSphere * 30);
                 //move to location
                 navAgent.SetDestination(nextPositionToMoveTo);
             }

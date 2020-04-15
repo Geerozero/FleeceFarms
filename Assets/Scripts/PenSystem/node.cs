@@ -85,6 +85,7 @@ public class Node : MonoBehaviour {
                     
                     GameObject newPen = BuildAnimalPen(buildManager.GetPenToBuild());
                     LevelManager.instance.pens.Add(newPen);
+                    PlayerManager.instance.playerSave.pensBought++;
                     InventoryManager.instance.SubtractMoney(penCost);
                     penPurchasing.isBuilding = false;
                     wasPurchased = true;

@@ -84,6 +84,7 @@ public class LevelManager : MonoBehaviour
         public int slot02ClothID;
         public int slot03ClothID;
 
+        public bool isFurGrown;
         public bool animalIsHappy;
         public int animalBond;
         public int animalHunger;

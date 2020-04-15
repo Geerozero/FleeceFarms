@@ -245,7 +245,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6730930509840428517, guid: 83683b5cf28afe649904e637cd9dc00d, type: 3}
+  - {fileID: 2100000, guid: 462f5bfc568679846beba4b2bc53f42d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1052,11 +1052,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dust Cloud_PE
       objectReference: {fileID: 0}
-    - target: {fileID: 1760629534733824641, guid: 55ad009149fb4fd4d8614c8e2833707a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8722891737892935181, guid: 55ad009149fb4fd4d8614c8e2833707a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1153,11 +1148,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eat Hay
       objectReference: {fileID: 0}
-    - target: {fileID: 7906781168821502091, guid: c5991bd4f61c3b4468e64670b1c7852b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6142758786519685291, guid: c5991bd4f61c3b4468e64670b1c7852b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1249,6 +1239,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 459951153494914636}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_Name
+      value: Wool
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1320,26 +1325,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1269532907765345264, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_TagString
-      value: Animal
-      objectReference: {fileID: 0}
-    - target: {fileID: 4803864815171128481, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_Name
-      value: Wool
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_TagString
-      value: Animal
-      objectReference: {fileID: 0}
-    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
       propertyPath: m_TagString
       value: Animal

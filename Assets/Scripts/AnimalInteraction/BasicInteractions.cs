@@ -59,6 +59,14 @@ public class BasicInteractions : MonoBehaviour
             if (FarmUI.GetIsInteracting())
             {
                 MoveCamera();
+                if (selectedAnimal.GetComponent<Animal>().GetIsFleeceGrown() == false)
+                {
+                    FarmUI.customizeButton.interactable = false;
+                }
+                else
+                {
+                    FarmUI.customizeButton.interactable = true;
+                }
             }
 
             if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
@@ -99,10 +107,12 @@ public class BasicInteractions : MonoBehaviour
                 Debug.Log("Click hit:" + hit.transform.name);
 
                 //clicked on an animal
-                if (hit.transform.tag == "Animal" && !isPurchasing)
+                if (hit.transform.tag == "Animal" && !FarmUI.GetIsInteracting() && !isPurchasing)
                 {
                     Debug.Log("Clicked Animal");
+                    
                     selectedAnimal = hit.transform.gameObject;
+
                     xdist = selectedAnimal.transform.position.x - selectedAnimal.transform.GetChild(0).transform.position.x;
                     zdist = selectedAnimal.transform.position.z - selectedAnimal.transform.GetChild(0).transform.position.z;
                     

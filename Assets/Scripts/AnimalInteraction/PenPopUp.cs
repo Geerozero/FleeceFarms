@@ -28,7 +28,7 @@ public class PenPopUp : MonoBehaviour
     private Pen pen03Info;
     private Pen pen04Info;
 
-    private void Start()
+    void Start()
     {
         basicInteractions = player.GetComponent<BasicInteractions>();
         pen01Info = pen01.GetComponent<Pen>();
@@ -42,8 +42,7 @@ public class PenPopUp : MonoBehaviour
         if(this.gameObject.activeSelf)
         {
             text.text = "Pick animal pen for:\n" + animalToCreate.ToString();
-            CheckPurchasedPens();
-            CheckIfPensAreFull();
+            CheckPens();
         }
     }
 
@@ -125,58 +124,56 @@ public class PenPopUp : MonoBehaviour
             this.gameObject.SetActive(false);
     }
 
-    void CheckPurchasedPens()
+    void CheckPens()
     {
-        if (PlayerManager.instance.playerSave.pen01Purchased)
+        if (PlayerManager.instance.playerSave.pen01Purchased && PlayerManager.instance.playerSave.pen01IsFull == false)
         {
             pen01Button.interactable = true;
         }
-        if (!PlayerManager.instance.playerSave.pen01Purchased)
+        if (!PlayerManager.instance.playerSave.pen01Purchased || PlayerManager.instance.playerSave.pen01IsFull == true)
         {
+            if(PlayerManager.instance.playerSave.pen01IsFull == true)
+            {
+                pen01Button.GetComponentInChildren<Text>().text = "Pen Full";
+            }
             pen01Button.interactable = false;
         }
-        if (PlayerManager.instance.playerSave.pen02Purchased)
+        
+        if (PlayerManager.instance.playerSave.pen02Purchased && PlayerManager.instance.playerSave.pen02IsFull == false)
         {
             pen02Button.interactable = true;
         }
-        if (!PlayerManager.instance.playerSave.pen02Purchased)
+        if (!PlayerManager.instance.playerSave.pen02Purchased || PlayerManager.instance.playerSave.pen02IsFull == true)
         {
+            if (PlayerManager.instance.playerSave.pen02IsFull == true)
+            {
+                pen02Button.GetComponentInChildren<Text>().text = "Pen Full";
+            }
             pen02Button.interactable = false;
         }
-        if (PlayerManager.instance.playerSave.pen03Purchased)
+        
+        if (PlayerManager.instance.playerSave.pen03Purchased && PlayerManager.instance.playerSave.pen03IsFull == false)
         {
             pen03Button.interactable = true;
         }
-        if (!PlayerManager.instance.playerSave.pen03Purchased)
+        if (!PlayerManager.instance.playerSave.pen03Purchased || PlayerManager.instance.playerSave.pen03IsFull == true)
         {
+            if (PlayerManager.instance.playerSave.pen03IsFull == true)
+            {
+                pen03Button.GetComponentInChildren<Text>().text = "Pen Full";
+            }
             pen03Button.interactable = false;
         }
-        if (PlayerManager.instance.playerSave.pen04Purchased)
+        if (PlayerManager.instance.playerSave.pen04Purchased && PlayerManager.instance.playerSave.pen04IsFull == false)
         {
             pen04Button.interactable = true;
         }
-        if (!PlayerManager.instance.playerSave.pen04Purchased)
+        if (!PlayerManager.instance.playerSave.pen04Purchased || PlayerManager.instance.playerSave.pen04IsFull == true)
         {
-            pen04Button.interactable = false;
-        }
-    }
-
-    void CheckIfPensAreFull()
-    {
-        if (pen01Info.CheckIfPenIsFull())
-        {
-            pen01Button.interactable = false;
-        }
-        if (pen02Info.CheckIfPenIsFull())
-        {
-            pen02Button.interactable = false;
-        }
-        if (pen03Info.CheckIfPenIsFull())
-        {
-            pen03Button.interactable = false;
-        }
-        if (pen04Info.CheckIfPenIsFull())
-        {
+            if (PlayerManager.instance.playerSave.pen04IsFull == true)
+            {
+                pen04Button.GetComponentInChildren<Text>().text = "Pen Full";
+            }
             pen04Button.interactable = false;
         }
     }
