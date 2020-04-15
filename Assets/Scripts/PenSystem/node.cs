@@ -3,7 +3,7 @@ using UnityEngine.Analytics;
 using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour {
-
+    //just as a note for whatever reason the node file case keeps reverting to lower case 
 
     public Color hoverColor;
     
