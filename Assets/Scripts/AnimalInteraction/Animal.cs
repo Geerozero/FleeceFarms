@@ -33,7 +33,10 @@ public class Animal : MonoBehaviour
     private int animalFurInventoryIndex = 0; //index within inventory array
 
     [Header("Watching stats")]
-    public bool isHappy;
+    [SerializeField]
+    private bool isHappy;
+    [SerializeField]
+    private bool isFleeceGrown;
     [SerializeField]
     private int animalClean = 0;
     [SerializeField]
@@ -65,6 +68,12 @@ public class Animal : MonoBehaviour
     private NavMeshAgent navAgent;
     private bool isMoving;
 
+    /*---------------------Animal Particle Effects----------------*/
+    [Header("Drag in the respective particle effects in prefab")]
+    public GameObject eatHayParticleForFEED;
+    public GameObject dustParticleForBRUSH;
+    private bool isParticlePlaying;
+    private Coroutine particleCoroutine;
 
     /*------------------------------Animal Data Management----------------------------*/
 
@@ -142,6 +151,15 @@ public class Animal : MonoBehaviour
         animalBond = 100; //start with 100 bond for 1 Bond Point
         furGrowthModifier = 20; //modifier for how much fur grows per tick if Happy
         animalBondIncreasePerInteraction = 10; //how many bond to increase, 100 bond = 1 Bond Point
+        isFleeceGrown = false; //has no wool at the start!
+        CheckToDisplayFleece(); //call function to hide fleece
+
+
+        /* --- Particle Effect Declarations/Starts---*/
+        isParticlePlaying = false;
+        StopParticleEffect(eatHayParticleForFEED);
+        StopParticleEffect(dustParticleForBRUSH);
+
     }
 
     void Update()
@@ -215,6 +233,7 @@ public class Animal : MonoBehaviour
         }
     }
 
+    //tick animal stats at regular intervals
     private void TickAnimalStats()
     {
         //tick fur growth only if animal is happy
@@ -228,11 +247,13 @@ public class Animal : MonoBehaviour
         ChangeAnimalClean(-1);
         ChangeAnimalFood(-1);
 
+        //tick check to display fleece
+        CheckToDisplayFleece();
     }
+
     //adjusting animal statistics
     //only want to ADJUST statistics of animal, not set fully
     //can pass in negative or positive integer
-
     public void ChangeAnimalClean(int cleanValueChange)
     {
         animalClean += cleanValueChange;
@@ -242,6 +263,7 @@ public class Animal : MonoBehaviour
 
         if(cleanPositiveCheck)
         {
+            PlayParticleEffect(dustParticleForBRUSH, 2.0f);
             //add partical effect/audio to play HERE
         }
 
@@ -273,6 +295,7 @@ public class Animal : MonoBehaviour
 
         if(foodPositiveCheck)
         {
+            PlayParticleEffect(eatHayParticleForFEED, 2.0f);
             //add particle effect/audio to play HERE
             //should be as simple as adding and subtracting it
         }
@@ -300,12 +323,14 @@ public class Animal : MonoBehaviour
         animalFurGrowth += furGrowthValueChange;
 
         //set lower and upper bounds
-        if (animalFurGrowth > 100)
+        if (animalFurGrowth >= 100)
         {
+            //anytime fur growth is at >100, set fleece grown bool true
+            isFleeceGrown = true;
             animalFurGrowth = 100;
         }
 
-        if (animalFurGrowth < 0)
+        if (animalFurGrowth <= 0)
         {
             animalFurGrowth = 0;
         }
@@ -315,6 +340,21 @@ public class Animal : MonoBehaviour
     public int GetAnimalFurGrowth()
     {
         return animalFurGrowth;
+    }
+
+    //function to change visbility of fleece
+    private void CheckToDisplayFleece()
+    {
+        //if fleece is not grown, set mesh renderer of fleece/wool OFF
+        if(!isFleeceGrown)
+        {
+            wool.GetComponentInChildren<MeshRenderer>().enabled = false;
+        }
+        //else, turn it on
+        else
+        {
+            wool.GetComponentInChildren<MeshRenderer>().enabled = true;
+        }
     }
 
     //checks if FurGrowht is at 100, returns true if it is, false if it is NOT
@@ -401,4 +441,44 @@ public class Animal : MonoBehaviour
             }
         }
     }
+
+
+    /*--------------------Animal Particle Effect System-------------------*/
+    private void PlayParticleEffect(GameObject particleEffectGameobject, float timeBeforeStoppingParticle)
+    {
+        //if particle effect was alreayd playing, stop coroutine, stop particle
+        if(particleEffectGameobject)
+        {
+            StopParticleEffect(particleEffectGameobject);
+            StopCoroutine(particleCoroutine);
+        }
+
+
+        particleCoroutine = StartCoroutine(TimedParticleEffect(particleEffectGameobject, timeBeforeStoppingParticle));
+    }
+
+    //stop particle effect!
+    private void StopParticleEffect(GameObject particleEffectToStop)
+    {
+        particleEffectToStop.GetComponent<ParticleSystem>().Stop();
+    }
+
+    //put a timer on the particle effect to stop it so that it plays properly next time it's called
+    IEnumerator TimedParticleEffect(GameObject particleEffectGameobject,float timeBeforeStoppingParticle)
+    {
+        //reset particle if already playing
+        if(isParticlePlaying)
+        {
+            StopParticleEffect(particleEffectGameobject);
+        }
+
+        particleEffectGameobject.GetComponent<ParticleSystem>().Play();
+        isParticlePlaying = true;
+
+        yield return new WaitForSeconds(timeBeforeStoppingParticle);
+
+        particleEffectGameobject.GetComponent<ParticleSystem>().Stop();
+        isParticlePlaying = false;
+    }
+
 }
