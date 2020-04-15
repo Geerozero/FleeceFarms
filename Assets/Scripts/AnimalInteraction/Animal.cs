@@ -18,7 +18,7 @@ public class Animal : MonoBehaviour
     public new string name;
     public int animalID;
     public AnimalType animalType;
-    public GameObject pen;
+    public string pen;
 
     [Header("Animal Appearance")]
     public FurItem fur;
@@ -61,6 +61,7 @@ public class Animal : MonoBehaviour
     private Scene currentScene;
 
     private Vector3 nextPositionToMoveTo;
+    private GameObject penObject;
     private NavMeshAgent navAgent;
     private bool isMoving;
 
@@ -132,6 +133,7 @@ public class Animal : MonoBehaviour
         if(currentScene.name == "Farm_design")
         {
             navAgent = gameObject.GetComponent<NavMeshAgent>();
+            penObject = GameObject.Find(pen);
             isMoving = false;
             lastTimeMoved = Time.time;
         }
@@ -393,7 +395,7 @@ public class Animal : MonoBehaviour
                 isMoving = true;
 
                 //get random position inside a sphere in assigned pen
-                nextPositionToMoveTo = pen.transform.position + (Random.insideUnitSphere * 50);
+                nextPositionToMoveTo = penObject.transform.position + (Random.insideUnitSphere * 50);
                 //move to location
                 navAgent.SetDestination(nextPositionToMoveTo);
             }

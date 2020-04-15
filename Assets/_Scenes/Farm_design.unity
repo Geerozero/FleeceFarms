@@ -1281,6 +1281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113466187}
+  - component: {fileID: 113466188}
   m_Layer: 0
   m_Name: Pen03
   m_TagString: Untagged
@@ -1302,6 +1303,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &113466188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113466186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8eb8a0732b870449ff6b6e3150b46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnimals: 20
+  currentAnimals: 0
 --- !u!1001 &117849722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6754,6 +6769,10 @@ MonoBehaviour:
   pen02Button: {fileID: 3771932015995695780}
   pen03Button: {fileID: 1570459256}
   pen04Button: {fileID: 243181640}
+  pen01: {fileID: 775592521}
+  pen02: {fileID: 1910013779}
+  pen03: {fileID: 113466186}
+  pen04: {fileID: 1633631649}
 --- !u!1 &599160062
 GameObject:
   m_ObjectHideFlags: 0
@@ -8712,6 +8731,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 775592522}
+  - component: {fileID: 775592523}
   m_Layer: 0
   m_Name: Pen01
   m_TagString: Untagged
@@ -8733,6 +8753,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &775592523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775592521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8eb8a0732b870449ff6b6e3150b46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnimals: 20
+  currentAnimals: 0
 --- !u!1001 &795976131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17587,6 +17621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1633631650}
+  - component: {fileID: 1633631651}
   m_Layer: 0
   m_Name: Pen04
   m_TagString: Untagged
@@ -17608,6 +17643,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633631651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633631649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8eb8a0732b870449ff6b6e3150b46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnimals: 20
+  currentAnimals: 0
 --- !u!1 &1648299692
 GameObject:
   m_ObjectHideFlags: 0
@@ -20459,6 +20508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1910013780}
+  - component: {fileID: 1910013781}
   m_Layer: 0
   m_Name: Pen02
   m_TagString: Untagged
@@ -20480,6 +20530,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1910013781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910013779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8eb8a0732b870449ff6b6e3150b46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAnimals: 20
+  currentAnimals: 0
 --- !u!1 &1912214993
 GameObject:
   m_ObjectHideFlags: 0

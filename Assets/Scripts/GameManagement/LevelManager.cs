@@ -77,7 +77,7 @@ public class LevelManager : MonoBehaviour
         public string animalName;
         public int animalID;
         public Animal.AnimalType animalType;
-        public GameObject assignedPen;
+        public string assignedPen;
 
         public int furID;
         public int slot01ClothID;
@@ -155,7 +155,7 @@ public class LevelManager : MonoBehaviour
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
 
-        animalInfo.pen = location;
+        animalInfo.pen = location.gameObject.name;
 
         animals.Add(animalInfo);
     }
@@ -326,28 +326,37 @@ public class LevelManager : MonoBehaviour
         
         PlayerManager.instance.LoadPlayerDataFromFile();
 
-        if(PlayerManager.instance.playerSave.pen01Purchased)
+        GameObject pen01 = GameObject.Find("Pen01");
+        GameObject pen02 = GameObject.Find("Pen02");
+        GameObject pen03 = GameObject.Find("Pen03");
+        GameObject pen04 = GameObject.Find("Pen04");
+
+        if (PlayerManager.instance.playerSave.pen01Purchased)
         {
             GameObject newPen = Instantiate(penPrefab);
             newPen.transform.position = new Vector3(-60.8f, 0f, 20.1f);
+            pen01.GetComponent<Pen>().SetCurrentAniamls(PlayerManager.instance.playerSave.pen01Animals);
             pens.Add(newPen);
         }
         if (PlayerManager.instance.playerSave.pen02Purchased)
         {
             GameObject newPen = Instantiate(penPrefab);
             newPen.transform.position = new Vector3(-246.2f, 0f, 20.1f);
+            pen02.GetComponent<Pen>().SetCurrentAniamls(PlayerManager.instance.playerSave.pen02Animals);
             pens.Add(newPen);
         }
         if (PlayerManager.instance.playerSave.pen03Purchased)
         {
             GameObject newPen = Instantiate(penPrefab);
             newPen.transform.position = new Vector3(-60.8f, 0f, 188.4f);
+            pen03.GetComponent<Pen>().SetCurrentAniamls(PlayerManager.instance.playerSave.pen03Animals);
             pens.Add(newPen);
         }
         if (PlayerManager.instance.playerSave.pen04Purchased)
         {
             GameObject newPen = Instantiate(penPrefab);
             newPen.transform.position = new Vector3(-243.5f, 0f, 188.4f);
+            pen04.GetComponent<Pen>().SetCurrentAniamls(PlayerManager.instance.playerSave.pen04Animals);
             pens.Add(newPen);
         }
     }

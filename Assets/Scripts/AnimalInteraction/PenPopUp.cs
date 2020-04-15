@@ -18,9 +18,23 @@ public class PenPopUp : MonoBehaviour
     public Button pen03Button;
     public Button pen04Button;
 
+    public GameObject pen01;
+    public GameObject pen02;
+    public GameObject pen03;
+    public GameObject pen04;
+
+    private Pen pen01Info;
+    private Pen pen02Info;
+    private Pen pen03Info;
+    private Pen pen04Info;
+
     private void Start()
     {
         basicInteractions = player.GetComponent<BasicInteractions>();
+        pen01Info = pen01.GetComponent<Pen>();
+        pen02Info = pen02.GetComponent<Pen>();
+        pen03Info = pen03.GetComponent<Pen>();
+        pen04Info = pen04.GetComponent<Pen>();
     }
 
     void Update()
@@ -29,6 +43,7 @@ public class PenPopUp : MonoBehaviour
         {
             text.text = "Pick animal pen for:\n" + animalToCreate.ToString();
             CheckPurchasedPens();
+            CheckIfPensAreFull();
         }
     }
 
@@ -43,6 +58,9 @@ public class PenPopUp : MonoBehaviour
             LevelManager.instance.sheepToCreate--;
         else if (animalToCreate == Animal.AnimalType.Alpaca)
             LevelManager.instance.alpacaToCreate--;
+
+        pen01Info.AddAnimalToPen();
+        PlayerManager.instance.playerSave.pen01Animals = pen01Info.GetCurrentAnimals();
 
         if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
             this.gameObject.SetActive(true);
@@ -60,6 +78,9 @@ public class PenPopUp : MonoBehaviour
         else if (animalToCreate == Animal.AnimalType.Alpaca)
             LevelManager.instance.alpacaToCreate--;
 
+        pen02Info.AddAnimalToPen();
+        PlayerManager.instance.playerSave.pen02Animals = pen02Info.GetCurrentAnimals();
+
         if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
             this.gameObject.SetActive(true);
         else
@@ -76,6 +97,9 @@ public class PenPopUp : MonoBehaviour
         else if (animalToCreate == Animal.AnimalType.Alpaca)
             LevelManager.instance.alpacaToCreate--;
 
+        pen03Info.AddAnimalToPen();
+        PlayerManager.instance.playerSave.pen03Animals = pen03Info.GetCurrentAnimals();
+
         if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
             this.gameObject.SetActive(true);
         else
@@ -91,6 +115,9 @@ public class PenPopUp : MonoBehaviour
             LevelManager.instance.sheepToCreate--;
         else if (animalToCreate == Animal.AnimalType.Alpaca)
             LevelManager.instance.alpacaToCreate--;
+
+        pen04Info.AddAnimalToPen();
+        PlayerManager.instance.playerSave.pen04Animals = pen04Info.GetCurrentAnimals();
 
         if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
             this.gameObject.SetActive(true);
@@ -129,6 +156,26 @@ public class PenPopUp : MonoBehaviour
             pen04Button.interactable = true;
         }
         if (!PlayerManager.instance.playerSave.pen04Purchased)
+        {
+            pen04Button.interactable = false;
+        }
+    }
+
+    void CheckIfPensAreFull()
+    {
+        if (pen01Info.CheckIfPenIsFull())
+        {
+            pen01Button.interactable = false;
+        }
+        if (pen02Info.CheckIfPenIsFull())
+        {
+            pen02Button.interactable = false;
+        }
+        if (pen03Info.CheckIfPenIsFull())
+        {
+            pen03Button.interactable = false;
+        }
+        if (pen04Info.CheckIfPenIsFull())
         {
             pen04Button.interactable = false;
         }
