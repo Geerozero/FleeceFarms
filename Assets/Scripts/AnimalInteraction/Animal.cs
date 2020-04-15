@@ -18,6 +18,7 @@ public class Animal : MonoBehaviour
     public new string name;
     public int animalID;
     public AnimalType animalType;
+    public GameObject pen;
 
     [Header("Animal Appearance")]
     public FurItem fur;
@@ -75,6 +76,7 @@ public class Animal : MonoBehaviour
         newSave.animalName = name;
         newSave.animalID = animalID;
         newSave.animalType = animalType;
+        newSave.assignedPen = pen;
         
         newSave.furID = fur.furID;
         newSave.slot01ClothID = slot01.clothingID;
@@ -101,6 +103,7 @@ public class Animal : MonoBehaviour
         name = save.animalName;
         animalID = save.animalID;
         animalType = save.animalType;
+        pen = save.assignedPen;
         
         fur = FurManager.instance.furs[save.furID];
         slot01 = ClothingManager.instance.clothes[save.slot01ClothID];
@@ -145,7 +148,7 @@ public class Animal : MonoBehaviour
         * Tick system to constantly update the status of animals
         * Basically as time passes animal becomes hungry, gets dirty, and grows wool
         */
-
+        
         if(currentScene.name == "Farm_design")
         {
             if (Time.time - tickPreviousCheckTime > statsTickDelay)
@@ -157,8 +160,6 @@ public class Animal : MonoBehaviour
 
                 //tick all stats
                 TickAnimalStats();
-
-                
             }
 
             /*MOVEMENT
@@ -168,8 +169,6 @@ public class Animal : MonoBehaviour
             AnimalWander();
         } 
     }
-
-   
 
     public string GetAnimalName()
     {
@@ -393,13 +392,10 @@ public class Animal : MonoBehaviour
                 //set moving boolean true
                 isMoving = true;
 
-                //get random position inside a sphere
-                //We'll probably need to move this to an empty gameobject inside the pen so that they only get a random point in the pen
-                //rather than a random point from a sphere where the animal is  currently standing
-                nextPositionToMoveTo = transform.position + (Random.insideUnitSphere * 10);
+                //get random position inside a sphere in assigned pen
+                nextPositionToMoveTo = pen.transform.position + (Random.insideUnitSphere * 50);
                 //move to location
                 navAgent.SetDestination(nextPositionToMoveTo);
-
             }
         }
     }

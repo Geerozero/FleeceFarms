@@ -13,6 +13,11 @@ public class PenPopUp : MonoBehaviour
     public GameObject player;
     private BasicInteractions basicInteractions;
 
+    public Button pen01Button;
+    public Button pen02Button;
+    public Button pen03Button;
+    public Button pen04Button;
+
     private void Start()
     {
         basicInteractions = player.GetComponent<BasicInteractions>();
@@ -20,7 +25,11 @@ public class PenPopUp : MonoBehaviour
 
     void Update()
     {
-        text.text = "Pick animal pen for:\n" + animalToCreate.ToString();
+        if(this.gameObject.activeSelf)
+        {
+            text.text = "Pick animal pen for:\n" + animalToCreate.ToString();
+            CheckPurchasedPens();
+        }
     }
 
     //picks correct spawn point(in pen of user's choice) for animals that were bought
@@ -87,6 +96,42 @@ public class PenPopUp : MonoBehaviour
             this.gameObject.SetActive(true);
         else
             this.gameObject.SetActive(false);
+    }
+
+    void CheckPurchasedPens()
+    {
+        if (PlayerManager.instance.playerSave.pen01Purchased)
+        {
+            pen01Button.interactable = true;
+        }
+        if (!PlayerManager.instance.playerSave.pen01Purchased)
+        {
+            pen01Button.interactable = false;
+        }
+        if (PlayerManager.instance.playerSave.pen02Purchased)
+        {
+            pen02Button.interactable = true;
+        }
+        if (!PlayerManager.instance.playerSave.pen02Purchased)
+        {
+            pen02Button.interactable = false;
+        }
+        if (PlayerManager.instance.playerSave.pen03Purchased)
+        {
+            pen03Button.interactable = true;
+        }
+        if (!PlayerManager.instance.playerSave.pen03Purchased)
+        {
+            pen03Button.interactable = false;
+        }
+        if (PlayerManager.instance.playerSave.pen04Purchased)
+        {
+            pen04Button.interactable = true;
+        }
+        if (!PlayerManager.instance.playerSave.pen04Purchased)
+        {
+            pen04Button.interactable = false;
+        }
     }
 }
 

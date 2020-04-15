@@ -25,6 +25,7 @@ public class PenPurchasing : MonoBehaviour
     private Node pen03Info;
     private Node pen04Info;
     private bool allPurchased;
+    public bool isBuilding;
 
     private BasicInteractions basicInteractions;
 
@@ -49,6 +50,15 @@ public class PenPurchasing : MonoBehaviour
         else
         {
             purchaseButton.interactable = false;
+        }
+
+        if(isBuilding)
+        {
+            DisplayPossiblePens();
+        }
+        else
+        {
+            HidePossiblePens();
         }
     }
 
@@ -75,6 +85,11 @@ public class PenPurchasing : MonoBehaviour
         }
 
         basicInteractions.isPurchasing = true;
+    }
+
+    public void EnableBuilding()
+    {
+        isBuilding = true;
     }
 
     void CheckPossibilities()
@@ -120,6 +135,7 @@ public class PenPurchasing : MonoBehaviour
 
     public void HidePossiblePens()
     {
+        isBuilding = false;
         pen01Selection.SetActive(false);
         pen02Selection.SetActive(false);
         pen03Selection.SetActive(false);

@@ -217,6 +217,7 @@ MonoBehaviour:
   localManagers: {fileID: 483454854}
   purchaseButton: {fileID: 1912214995}
   cancelButton: {fileID: 833375777}
+  isBuilding: 0
 --- !u!1001 &22518605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
@@ -330,6 +331,11 @@ PrefabInstance:
       propertyPath: penNumber
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3247013259052006246, guid: 314f14c8d34d05843adc787ca96027f5,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1289172836}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 314f14c8d34d05843adc787ca96027f5, type: 3}
 --- !u!1001 &26276218
@@ -1290,7 +1296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113466186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.4, y: 0, z: 197.7}
+  m_LocalPosition: {x: -60.8, y: 0, z: 179.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6744,6 +6750,10 @@ MonoBehaviour:
   animalToCreate: 0
   text: {fileID: 6819449626427094521}
   player: {fileID: 1289172836}
+  pen01Button: {fileID: 6961988108357564515}
+  pen02Button: {fileID: 3771932015995695780}
+  pen03Button: {fileID: 1570459256}
+  pen04Button: {fileID: 243181640}
 --- !u!1 &599160062
 GameObject:
   m_ObjectHideFlags: 0
@@ -8717,7 +8727,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775592521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36, y: 0, z: 27.9}
+  m_LocalPosition: {x: -57.2, y: 0, z: 7.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13332,7 +13342,7 @@ PrefabInstance:
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
@@ -13430,6 +13440,11 @@ PrefabInstance:
       propertyPath: penNumber
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3247013259052006246, guid: 314f14c8d34d05843adc787ca96027f5,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1289172836}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 314f14c8d34d05843adc787ca96027f5, type: 3}
 --- !u!1 &1148812409 stripped
@@ -17587,7 +17602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633631649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -254.9, y: 0, z: 180.3}
+  m_LocalPosition: {x: -243, y: 0, z: 177.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20459,7 +20474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1910013779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -260, y: 0, z: -32.9}
+  m_LocalPosition: {x: -247.1, y: 0, z: 12.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20559,7 +20574,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 15597895}
-        m_MethodName: DisplayPossiblePens
+        m_MethodName: EnableBuilding
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21873,7 +21888,7 @@ PrefabInstance:
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
@@ -21971,6 +21986,11 @@ PrefabInstance:
       propertyPath: penNumber
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3247013259052006246, guid: 314f14c8d34d05843adc787ca96027f5,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1289172836}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 314f14c8d34d05843adc787ca96027f5, type: 3}
 --- !u!1 &2066241023 stripped
@@ -22134,7 +22154,7 @@ PrefabInstance:
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5210129156583384376, guid: 314f14c8d34d05843adc787ca96027f5,
         type: 3}
@@ -22237,6 +22257,11 @@ PrefabInstance:
       propertyPath: penNumber
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3247013259052006246, guid: 314f14c8d34d05843adc787ca96027f5,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1289172836}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 314f14c8d34d05843adc787ca96027f5, type: 3}
 --- !u!1 &2111336880 stripped

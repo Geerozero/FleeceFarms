@@ -77,6 +77,7 @@ public class LevelManager : MonoBehaviour
         public string animalName;
         public int animalID;
         public Animal.AnimalType animalType;
+        public GameObject assignedPen;
 
         public int furID;
         public int slot01ClothID;
@@ -153,6 +154,8 @@ public class LevelManager : MonoBehaviour
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
+
+        animalInfo.pen = location;
 
         animals.Add(animalInfo);
     }
