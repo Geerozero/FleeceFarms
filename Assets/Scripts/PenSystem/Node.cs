@@ -183,7 +183,7 @@ public class Node : MonoBehaviour {
             Debug.Log("you poor");
             return null;
         }
-
+        FindObjectOfType<AudioManager>().Play("Pen");
         InventoryManager.instance.money -= blueprint.cost;
         GameObject _pen = (GameObject)Instantiate(penPrefab, GetBuildPosition(), Quaternion.identity);
         animalPen = _pen;
@@ -218,7 +218,7 @@ public class Node : MonoBehaviour {
                     //build pen 2.0
                     GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
                     animalPen = _pen;
-
+                    FindObjectOfType<AudioManager>().Play("Pen");
                     //add effect
 
                     isUpgraded = true;
@@ -246,7 +246,7 @@ public class Node : MonoBehaviour {
                     //build pen 2.0
                     GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
                     animalPen = _pen;
-
+                    FindObjectOfType<AudioManager>().Play("Pen");
                     //add effect
 
                     isUpgraded = true;
@@ -274,7 +274,7 @@ public class Node : MonoBehaviour {
                     //build pen 2.0
                     GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
                     animalPen = _pen;
-
+                    FindObjectOfType<AudioManager>().Play("Pen");
                     //add effect
 
                     isUpgraded = true;
@@ -302,7 +302,7 @@ public class Node : MonoBehaviour {
                     //build pen 3.0
                     GameObject _pen = (GameObject)Instantiate(animalPenBlueprint.upgradedPrefab, GetBuildPosition(), Quaternion.identity);
                     animalPen = _pen;
-
+                    FindObjectOfType<AudioManager>().Play("Pen");
                     //add effect
 
                     isUpgraded = true;

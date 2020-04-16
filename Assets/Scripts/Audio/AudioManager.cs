@@ -15,12 +15,14 @@ public class AudioManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            
+
         }
     }
 
     void Start()
     {
-        Play("Theme");    
+       // Play("Theme");    
     }
 
     // Update is called once per frame
