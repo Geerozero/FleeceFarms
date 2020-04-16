@@ -129,7 +129,7 @@ public class FarmUIManager : MonoBehaviour
     {
         //0 is hungry, 100 is full
         animalStats.ChangeAnimalFood(20);
-
+        FindObjectOfType<AudioManager>().Play("Feed");
         SetAnnounceText(animalName + " is fed, hunger is at: " + animalStats.GetAnimalHunger());
         UpdateBondPointDisplay();
     }
@@ -137,7 +137,7 @@ public class FarmUIManager : MonoBehaviour
     public void BrushCall()
     {
         animalStats.ChangeAnimalClean(20);
-
+        FindObjectOfType<AudioManager>().Play("Brush");
         SetAnnounceText(animalName + " is brushed, clean is at: " + animalStats.GetAnimalClean());
         UpdateBondPointDisplay();
     }
@@ -149,6 +149,7 @@ public class FarmUIManager : MonoBehaviour
         {
             SetAnnounceText(animalName + " is sheared. Got 1 fur");
             animalStats.ChangeAnimalFurGrowth(-100);
+            FindObjectOfType<AudioManager>().Play("Shear");
 
             inventory.AddToFurInventory(animalStats.GetAnimalFurInventoryIndex(), 1);
         }

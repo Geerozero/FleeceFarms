@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public soundMasterController[] sounds;
+    public SoundMasterController[] sounds;
 
     void Awake()
     {
-        foreach (soundMasterController s in sounds)
+        foreach (SoundMasterController s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -18,10 +18,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        Play("Theme");    
+    }
+
     // Update is called once per frame
     public void Play(string name)
     {
-        soundMasterController s = Array.Find(sounds, sound => sound.name == name);
+        SoundMasterController s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+            return;
         s.source.Play();
     }
 }

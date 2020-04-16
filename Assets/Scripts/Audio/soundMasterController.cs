@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class soundMasterController 
+public class SoundMasterController 
 {
     public AudioClip clip;
 

@@ -96,6 +96,8 @@ public class BasicInteractions : MonoBehaviour
         //looks for left click from mouse -- change for tap for mobile for extension
         if (Input.GetMouseButtonDown(0))
         {
+            //sound play on mouse click
+            FindObjectOfType<AudioManager>().Play("UIClick");
             //raycast to where mouse was clicked on screen
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -112,6 +114,7 @@ public class BasicInteractions : MonoBehaviour
                     Debug.Log("Clicked Animal");
                     
                     selectedAnimal = hit.transform.gameObject;
+                    
 
                     xdist = selectedAnimal.transform.position.x - selectedAnimal.transform.GetChild(0).transform.position.x;
                     zdist = selectedAnimal.transform.position.z - selectedAnimal.transform.GetChild(0).transform.position.z;

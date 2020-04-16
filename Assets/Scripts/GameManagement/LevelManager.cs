@@ -106,6 +106,7 @@ public class LevelManager : MonoBehaviour
         if (animalType == Animal.AnimalType.Alpaca)
         {
             newAnimal = Instantiate(alpacaPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            
         }
         else if (animalType == Animal.AnimalType.Sheep)
         {
@@ -171,14 +172,17 @@ public class LevelManager : MonoBehaviour
         if (animalType == Animal.AnimalType.Alpaca)
         {
             newAnimal = SpawnAnimalType(Animal.AnimalType.Alpaca);
+            FindObjectOfType<AudioManager>().Play("Alpaca");
         }
         else if (animalType == Animal.AnimalType.Sheep)
         {
             newAnimal = SpawnAnimalType(Animal.AnimalType.Sheep);
+            FindObjectOfType<AudioManager>().Play("Sheep");
         }
         else if (animalType == Animal.AnimalType.Rabbit)
         {
             newAnimal = SpawnAnimalType(Animal.AnimalType.Rabbit);
+            FindObjectOfType<AudioManager>().Play("Rabbit");
         }
 
         Animal animalInfo = newAnimal.GetComponent<Animal>();
