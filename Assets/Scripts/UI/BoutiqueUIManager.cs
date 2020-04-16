@@ -10,13 +10,9 @@ public class BoutiqueUIManager : MonoBehaviour
 
     /*---Fur containers---*/
     public GameObject basicContainer;
-    public GameObject specialContainer;
-    public GameObject royalContainer;
 
     /*---Outfit containers---*/
     public GameObject accessoryContainer;
-    public GameObject clothesContainer;
-    public GameObject shoesContainer;
 
 
     void Start()
@@ -31,31 +27,22 @@ public class BoutiqueUIManager : MonoBehaviour
         furSelection.SetActive(true);
         basicContainer.SetActive(true);
 
-        specialContainer.SetActive(false);
-        royalContainer.SetActive(false);
-
         outfitSelection.SetActive(false);
     }
 
     public void DisplayBasicFur()
     {
         basicContainer.SetActive(true);
-        specialContainer.SetActive(false);
-        royalContainer.SetActive(false);
     }
 
     public void DisplaySpecialFur()
     {
         basicContainer.SetActive(false);
-        specialContainer.SetActive(true);
-        royalContainer.SetActive(false);
     }
 
     public void DisplayRoyalFur()
     {
         basicContainer.SetActive(false);
-        specialContainer.SetActive(false);
-        royalContainer.SetActive(true);
     }
 
     /*----------Outfit UI Displays----------*/
@@ -65,31 +52,22 @@ public class BoutiqueUIManager : MonoBehaviour
         outfitSelection.SetActive(true);
         accessoryContainer.SetActive(true);
         
-        clothesContainer.SetActive(false);
-        shoesContainer.SetActive(false);
-        
         furSelection.SetActive(false);
     }
 
     public void DisplayAcessories()
     {
         accessoryContainer.SetActive(true);
-        clothesContainer.SetActive(false);
-        shoesContainer.SetActive(false);
     }
 
     public void DisplayClothes()
     {
         accessoryContainer.SetActive(false);
-        clothesContainer.SetActive(true);
-        shoesContainer.SetActive(false);
     }
 
     public void DisplayShoes()
     {
         accessoryContainer.SetActive(false);
-        clothesContainer.SetActive(false);
-        shoesContainer.SetActive(true);
     }
 
     public void GoToFarm()

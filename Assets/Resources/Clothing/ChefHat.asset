@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce5fac8605ff0a54d9f3f52a6e064006, type: 3}
-  m_Name: Crown
+  m_Name: ChefHat
   m_EditorClassIdentifier: 
-  name: Crown
-  clothingID: 2005
+  name: Chef Hat
+  clothingID: 2008
   clothingType: 0
   cost: 100
-  isPurchased: 1
+  isPurchased: 0
   buttonImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  item: {fileID: 5973448550119189928, guid: 05308824c3ecab948802446697d9c066, type: 3}
-  spawnPositionAlpaca: {x: 0.8352814, y: 12.289, z: 2.439381}
-  spawnScaleAlpaca: {x: 45.10143, y: 45.10143, z: 45.10143}
-  spawnRotationAlpaca: {x: 20.096, y: 0, z: 0}
-  spawnPositionSheep: {x: -0.04573822, y: 56.97065, z: 55.9412}
-  spawnScaleSheep: {x: 54, y: 54, z: 54}
-  spawnRotationSheep: {x: 34.528, y: 0, z: 0}
+  item: {fileID: 463043074972179662, guid: 07a2406548010cf49a15b636d525ac2c, type: 3}
+  spawnPositionAlpaca: {x: 0.8479996, y: 12.671, z: 1.819271}
+  spawnScaleAlpaca: {x: 3.152355, y: 3.152355, z: 3.152355}
+  spawnRotationAlpaca: {x: 6.6, y: 0, z: 0}
+  spawnPositionSheep: {x: 0.6599426, y: 58.84066, z: 58.16879}
+  spawnScaleSheep: {x: 3.817057, y: 3.817057, z: 3.817057}
+  spawnRotationSheep: {x: 33.573, y: 0, z: 0}
   spawnPositionRabbit: {x: 0, y: 0, z: 0}
   spawnScaleRabbit: {x: 0, y: 0, z: 0}
