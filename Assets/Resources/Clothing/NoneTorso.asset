@@ -17,7 +17,7 @@ MonoBehaviour:
   clothingType: 1
   cost: 0
   isPurchased: 1
-  buttonImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  buttonImage: {fileID: 21300000, guid: 5c31fca2d76cb0242828bcfafc200f6e, type: 3}
   item: {fileID: 526360077902024043, guid: 85c9297db7cecd145bfb076b23aa6a83, type: 3}
   spawnPositionAlpaca: {x: 0, y: 0, z: 0}
   spawnScaleAlpaca: {x: 0, y: 0, z: 0}

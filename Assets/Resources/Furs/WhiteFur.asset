@@ -17,4 +17,4 @@ MonoBehaviour:
   cost: 0
   isPurchased: 1
   buttonImage: {fileID: 21300000, guid: 9faf71bf40d4b6b448e61657fb3cbbca, type: 3}
-  furMaterial: {fileID: 2100000, guid: e2f82e3e23a7d4d419d89c70d65587a2, type: 2}
+  furMaterial: {fileID: 2100000, guid: 6ae5d63501a833d419b339468d953541, type: 2}
