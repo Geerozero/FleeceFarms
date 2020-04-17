@@ -86,7 +86,7 @@ public class LevelManager : MonoBehaviour
 
         public bool isFurGrown;
         public bool animalIsHappy;
-        public int animalBond;
+        public int animalClean;
         public int animalHunger;
         public int animalFurGrowth;
 

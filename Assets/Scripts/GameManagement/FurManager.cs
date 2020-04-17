@@ -6,6 +6,7 @@ using UnityEngine;
 public class FurManager : MonoBehaviour
 {
     public static FurManager instance;
+    public int startingSellPrice;
 
     public Dictionary<int, FurItem> furs = new Dictionary<int, FurItem>();
 
@@ -32,6 +33,7 @@ public class FurManager : MonoBehaviour
     public class FuritemSave
     {
         public int furID;
+        public int sellPrice;
         public bool isPurchased;
     }
 
@@ -73,6 +75,8 @@ public class FurManager : MonoBehaviour
         {
             if (furs.ElementAt(i).Value.name != "White Fur")
                 furs.ElementAt(i).Value.isPurchased = false;
+
+            furs.ElementAt(i).Value.sellPrice = startingSellPrice;
         }
     }
 }

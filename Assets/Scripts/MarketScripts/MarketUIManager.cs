@@ -22,9 +22,6 @@ public class MarketUIManager : MonoBehaviour
     public GameObject furscontainer;
     public GameObject clothesContainer;
 
-    public GameObject sellContainer;
-    public GameObject fleeceContainer;
-
     /* The buttons need to be added manually bcuz each one is associated with a specifc item
      * so there's no need to go through an array of of them to display them
      * I'm not sure about the sell buttons, you may be able to add them in this way
@@ -46,7 +43,7 @@ public class MarketUIManager : MonoBehaviour
     private void Update()
     {
         //FIXME: make this not call constantly. Maybe just call a few times on displaying sell
-        UpdateSellButtonsOwnedNumber();
+        //UpdateSellButtonsOwnedNumber();
     }
 
     //set UI objects true/false for SELL
@@ -97,7 +94,6 @@ public class MarketUIManager : MonoBehaviour
 
         furscontainer.SetActive(false);
         clothesContainer.SetActive(false);
-        sellContainer.SetActive(false);
     }
 
     public void DisplayAnimalsToBuy()
@@ -123,9 +119,6 @@ public class MarketUIManager : MonoBehaviour
 
     public void DisplaySellOptions()
     {
-        sellContainer.SetActive(true);
-        fleeceContainer.SetActive(true);
-
         buyContainer.SetActive(false);
     }
 

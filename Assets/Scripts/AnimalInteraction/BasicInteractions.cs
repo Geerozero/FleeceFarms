@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BasicInteractions : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class BasicInteractions : MonoBehaviour
     public GameObject spawnPen03;
     public GameObject spawnPen04;
 
+    public Image happyHeart;
+    public Image cleanHeart;
+    public Image hungryHeart;
+
     public bool isPurchasing;
 
     private void Start()
@@ -59,13 +64,18 @@ public class BasicInteractions : MonoBehaviour
             if (FarmUI.GetIsInteracting())
             {
                 MoveCamera();
+
+                DisplayAnimalStatus();
+
                 if (selectedAnimal.GetComponent<Animal>().GetIsFleeceGrown() == false)
                 {
                     FarmUI.customizeButton.interactable = false;
+                    FarmUI.shearButton.interactable = false;
                 }
                 else
                 {
                     FarmUI.customizeButton.interactable = true;
+                    FarmUI.shearButton.interactable = true;
                 }
             }
 
@@ -115,7 +125,6 @@ public class BasicInteractions : MonoBehaviour
                     
                     selectedAnimal = hit.transform.gameObject;
                     
-
                     xdist = selectedAnimal.transform.position.x - selectedAnimal.transform.GetChild(0).transform.position.x;
                     zdist = selectedAnimal.transform.position.z - selectedAnimal.transform.GetChild(0).transform.position.z;
                     
@@ -151,5 +160,26 @@ public class BasicInteractions : MonoBehaviour
     {
         //gets parent of this object to pass up
         FarmUI.GetReferenceOfAnimalBeingInteractedWith(selectedAnimal);
+    }
+
+    void DisplayAnimalStatus()
+    {
+        hungryHeart.fillAmount = ((float)selectedAnimal.GetComponent<Animal>().GetAnimalHunger() / 100);
+        cleanHeart.fillAmount = ((float)selectedAnimal.GetComponent<Animal>().GetAnimalClean() / 100);
+        if (selectedAnimal.GetComponent<Animal>().GetAnimalHunger() >= 50 && selectedAnimal.GetComponent<Animal>().GetAnimalClean() >= 50)
+        {
+            if (selectedAnimal.GetComponent<Animal>().GetAnimalHunger() < 80 || selectedAnimal.GetComponent<Animal>().GetAnimalClean() < 80)
+            {
+                happyHeart.fillAmount = 0.5f;
+            }
+            else if (selectedAnimal.GetComponent<Animal>().GetAnimalHunger() >= 80 && selectedAnimal.GetComponent<Animal>().GetAnimalClean() >= 80)
+            {
+                happyHeart.fillAmount = 1f;
+            }
+        }
+        else if (selectedAnimal.GetComponent<Animal>().GetAnimalHunger() < 50 || selectedAnimal.GetComponent<Animal>().GetAnimalClean() < 50)
+        {
+            happyHeart.fillAmount = 0;
+        }
     }
 }

@@ -95,7 +95,7 @@ public class Animal : MonoBehaviour
 
         newSave.isFurGrown = isFleeceGrown;
         newSave.animalIsHappy = isHappy;
-        newSave.animalBond = animalBond;
+        newSave.animalClean = animalClean;
         newSave.animalHunger = animalFood;
         newSave.animalFurGrowth = animalFurGrowth;
 
@@ -123,7 +123,7 @@ public class Animal : MonoBehaviour
 
         isFleeceGrown = save.isFurGrown;
         isHappy = save.animalIsHappy;
-        animalBond = save.animalBond;
+        animalClean = save.animalClean;
         animalFood = save.animalHunger;
         animalFurGrowth = save.animalFurGrowth;
 
@@ -225,7 +225,7 @@ public class Animal : MonoBehaviour
 
     /*--------------------Animal Interaction System-------------------*/
 
-    private void CheckAnimalHappy()
+    public void CheckAnimalHappy()
     {
         if (animalClean > 0 && animalFood > 0)
         {

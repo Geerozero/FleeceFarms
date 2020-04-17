@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7365a9dbd0c674483d6230c3470398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingSellPrice: 100
 --- !u!82 &174477587
 AudioSource:
   m_ObjectHideFlags: 0
@@ -265,6 +266,7 @@ MonoBehaviour:
     money: 0
     animalsBought: 0
     pensBought: 0
+    shearLevel: 0
     pen01Purchased: 0
     pen02Purchased: 0
     pen03Purchased: 0

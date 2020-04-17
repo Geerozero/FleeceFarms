@@ -16,16 +16,6 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public void Save()
     {
         /*---Saves game data---*/
@@ -62,7 +52,8 @@ public class DataManager : MonoBehaviour
         ClothingManager.instance.ResetClothes();
         FurManager.instance.ResetFurs();
         PlayerManager.instance.ResetPlayer();
-        
+        Save();
+
         Load();
     }
 }

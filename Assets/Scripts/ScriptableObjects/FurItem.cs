@@ -10,6 +10,7 @@ public class FurItem : ScriptableObject
     public new string name;
     public int furID;
     public int cost;
+    public int sellPrice;
     public bool isPurchased;
     
     public Sprite buttonImage;
@@ -21,6 +22,7 @@ public class FurItem : ScriptableObject
 
         newSave.furID = furID;
         newSave.isPurchased = isPurchased;
+        newSave.sellPrice = sellPrice;
 
         return newSave;
     }
@@ -28,5 +30,6 @@ public class FurItem : ScriptableObject
     public void LoadFurSave(FurManager.FuritemSave save)
     {
         isPurchased = save.isPurchased;
+        sellPrice = save.sellPrice;
     }
 }

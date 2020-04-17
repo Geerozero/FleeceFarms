@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
         public int money;
         public int animalsBought;
         public int pensBought;
+        public int shearLevel;
         
         public bool pen01Purchased;
         public bool pen02Purchased;
@@ -26,6 +27,8 @@ public class PlayerManager : MonoBehaviour
         public bool pen02IsFull;
         public bool pen03IsFull;
         public bool pen04IsFull;
+
+        public bool tutorialGift;
     }
 
     public static PlayerManager instance;
@@ -84,9 +87,12 @@ public class PlayerManager : MonoBehaviour
         playerSave.pen03IsFull = false;
         playerSave.pen04IsFull = false;
 
+        playerSave.tutorialGift = false;
+
         playerSave.money = 0;
         playerSave.animalsBought = 0;
         playerSave.pensBought = 0;
+        playerSave.shearLevel = 0;
         
         InventoryManager.instance.money = playerSave.money;
     }

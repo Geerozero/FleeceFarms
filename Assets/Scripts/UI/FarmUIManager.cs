@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class FarmUIManager : MonoBehaviour
 {
@@ -15,10 +16,22 @@ public class FarmUIManager : MonoBehaviour
     [Header("UI References")]
     public GameObject FarmUIContainer;
     public GameObject marketButton;
-    public Button customizeButton; 
+    public Button customizeButton;
+    public Button shearButton;
     public GameObject pauseMenu;
+    public GameObject buyPenButton;
+    public GameObject gift;
     public TextMeshProUGUI editNameButtonText;
     public TextMeshProUGUI bondPointText;
+
+    [Header("Pen UI Things")]
+    public GameObject viewPens;
+    public Button viewPensButton;
+    public Text viewPensButtonText;
+    public Button pen01Ready;
+    public Button pen02Ready;
+    public Button pen03Ready;
+    public Button pen04Ready;
 
     [Header("Animal Name text")]
     public TextMeshProUGUI animalNameText;
@@ -28,7 +41,7 @@ public class FarmUIManager : MonoBehaviour
     public CameraFarmMovement cameraScript;
 
     [Header("Inventory Manager")]
-    public InventoryManager inventory;
+    //public InventoryManager inventory;
 
     //boolean for other functions to check
     [SerializeField]
@@ -46,10 +59,16 @@ public class FarmUIManager : MonoBehaviour
     private Coroutine lastCoroutine;
 
     private LevelManager.AnimalSave animalSave;
+    private bool checkPens;
 
     private void Start()
     {
         isInteracting = false;
+
+        if(PlayerManager.instance.playerSave.tutorialGift == false)
+        {
+            gift.SetActive(true);
+        }
     }
 
     void Update()
@@ -61,6 +80,44 @@ public class FarmUIManager : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf)
         {
             pauseMenu.SetActive(false);
+        }
+
+        if(isInteracting)
+        {
+            buyPenButton.SetActive(false);
+            viewPensButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            viewPensButton.gameObject.SetActive(true);
+            buyPenButton.SetActive(true);
+        }
+
+        if(PlayerManager.instance.playerSave.shearLevel >= 3)
+        {
+            viewPensButton.interactable = true;
+            viewPensButton.image.rectTransform.sizeDelta = new Vector2(80, 30);
+            viewPensButtonText.text = "View Pens";
+        }
+        else if(PlayerManager.instance.playerSave.shearLevel < 3)
+        {
+            viewPensButton.interactable = false;
+            viewPensButton.image.rectTransform.sizeDelta = new Vector2(160, 30);
+            viewPensButtonText.text = "Shear Level 3 Required";
+        }
+
+        if(PlayerManager.instance.playerSave.pensBought <= 0)
+        {
+            marketButton.GetComponent<Button>().interactable = false;
+        }
+        else if(PlayerManager.instance.playerSave.pensBought > 0)
+        {
+            marketButton.GetComponent<Button>().interactable = true;
+        }
+
+        if(checkPens)
+        {
+            UpdateShearAllButtons();
         }
 
         UpdateMoneyText();
@@ -101,7 +158,7 @@ public class FarmUIManager : MonoBehaviour
         marketButton.SetActive(false);
         //set name of animal in UI
         animalNameText.SetText(animalStats.name); //get current Animal's name
-        UpdateBondPointDisplay();
+        //UpdateBondPointDisplay();
     }
 
     //  ////////////////////
@@ -131,7 +188,7 @@ public class FarmUIManager : MonoBehaviour
         animalStats.ChangeAnimalFood(20);
         FindObjectOfType<AudioManager>().Play("Feed");
         SetAnnounceText(animalName + " is fed, hunger is at: " + animalStats.GetAnimalHunger());
-        UpdateBondPointDisplay();
+        //UpdateBondPointDisplay();
     }
 
     public void BrushCall()
@@ -139,7 +196,7 @@ public class FarmUIManager : MonoBehaviour
         animalStats.ChangeAnimalClean(20);
         FindObjectOfType<AudioManager>().Play("Brush");
         SetAnnounceText(animalName + " is brushed, clean is at: " + animalStats.GetAnimalClean());
-        UpdateBondPointDisplay();
+        //UpdateBondPointDisplay();
     }
 
     public void ShearCall()
@@ -147,16 +204,20 @@ public class FarmUIManager : MonoBehaviour
         //check if animal is sheerable
         if(animalStats.CheckIfAnimalSheerable())
         {
-            SetAnnounceText(animalName + " is sheared. Got 1 fur");
+            //SetAnnounceText(animalName + " is sheared. Got 1 fur");
             animalStats.ChangeAnimalFurGrowth(-100);
+            //Adds money to player inventory based on a current sell price of a fur (just gets it from
+            //first fur in fur dictionary since they all have the same sell price)
+            InventoryManager.instance.money += FurManager.instance.furs.ElementAt(0).Value.sellPrice;
+            
             FindObjectOfType<AudioManager>().Play("Shear");
 
-            inventory.AddToFurInventory(animalStats.GetAnimalFurInventoryIndex(), 1);
+            //inventory.AddToFurInventory(animalStats.GetAnimalFurInventoryIndex(), 1);
         }
 
         else
         {
-            SetAnnounceText(animalName + " is not ready to be sheared, currently at " + animalStats.GetAnimalFurGrowth() + "% fur growth");
+            //SetAnnounceText(animalName + " is not ready to be sheared, currently at " + animalStats.GetAnimalFurGrowth() + "% fur growth");
         }
     }
 
@@ -241,5 +302,101 @@ public class FarmUIManager : MonoBehaviour
     public void UpdateMoneyText()
     {
         moneyText.text = "Money: " + InventoryManager.instance.money.ToString();
+    }
+
+    public bool CheckIfAnimalsAreReady(string penName, int count, int animalsReady)
+    {
+        for(int i = 0; i < LevelManager.instance.animals.Count; i++)
+        {
+            if(LevelManager.instance.animals.ElementAt(i).pen == penName)
+            {
+                if(LevelManager.instance.animals.ElementAt(i).GetIsFleeceGrown())
+                {
+                    animalsReady++;
+                }
+
+                count++;
+            }
+        }
+
+        if (count == animalsReady && count != 0)
+            return true;
+        else
+            return false;
+    }
+
+    public void UpdateShearAllButtons()
+    {
+        if(CheckIfAnimalsAreReady("Pen01", 0, 0))
+        {
+            pen01Ready.interactable = true;
+        }
+        if(!CheckIfAnimalsAreReady("Pen01", 0, 0))
+        {
+            pen01Ready.interactable = false;
+        }
+
+        if (CheckIfAnimalsAreReady("Pen02", 0, 0))
+        {
+            pen02Ready.interactable = true;
+        }
+        if (!CheckIfAnimalsAreReady("Pen02", 0, 0))
+        {
+            pen02Ready.interactable = false;
+        }
+
+        if (CheckIfAnimalsAreReady("Pen03", 0, 0))
+        {
+            pen03Ready.interactable = true;
+        }
+        if (!CheckIfAnimalsAreReady("Pen03", 0, 0))
+        {
+            pen03Ready.interactable = false;
+        }
+
+        if (CheckIfAnimalsAreReady("Pen04", 0, 0))
+        {
+            pen04Ready.interactable = true;
+        }
+        if (!CheckIfAnimalsAreReady("Pen04", 0, 0))
+        {
+            pen04Ready.interactable = false;
+        }
+    }
+
+    public void DisplayPens()
+    {
+        if(!checkPens)
+        {
+            viewPens.SetActive(true);
+            checkPens = true;
+            viewPensButtonText.text = "Hide Pens";
+        }
+        else if(checkPens)
+        {
+            checkPens = false;
+            viewPens.SetActive(false);
+            viewPensButtonText.text = "View Pens";
+        }
+    }
+
+    public void ShearAnimalsInPen(string penName)
+    {
+        for (int i = 0; i < LevelManager.instance.animals.Count; i++)
+        {
+            if (LevelManager.instance.animals.ElementAt(i).pen == penName)
+            {
+                LevelManager.instance.animals.ElementAt(i).ChangeAnimalFurGrowth(-100);
+                InventoryManager.instance.money += FurManager.instance.furs.ElementAt(0).Value.sellPrice;
+            }
+        }
+    }
+
+    public void TutorialGiftMoney()
+    {
+        InventoryManager.instance.money += 1500;
+        PlayerManager.instance.playerSave.money = InventoryManager.instance.money;
+        PlayerManager.instance.playerSave.tutorialGift = true;
+        gift.SetActive(false);
     }
 }
