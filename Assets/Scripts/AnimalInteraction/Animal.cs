@@ -488,7 +488,7 @@ public class Animal : MonoBehaviour
     private void PlayParticleEffect(GameObject particleEffectGameobject, float timeBeforeStoppingParticle)
     {
         //if particle effect was alreayd playing, stop coroutine, stop particle
-        if(particleEffectGameobject)
+        if(isParticlePlaying)
         {
             StopParticleEffect(particleEffectGameobject);
             StopCoroutine(particleCoroutine);
