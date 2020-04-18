@@ -96,14 +96,14 @@ public class FarmUIManager : MonoBehaviour
         if(PlayerManager.instance.playerSave.shearLevel >= 3)
         {
             viewPensButton.interactable = true;
-            viewPensButton.image.rectTransform.sizeDelta = new Vector2(80, 30);
+            viewPensButton.image.rectTransform.sizeDelta = new Vector2(100, 35);
             viewPensButtonText.text = "View Pens";
         }
         else if(PlayerManager.instance.playerSave.shearLevel < 3)
         {
             viewPensButton.interactable = false;
-            viewPensButton.image.rectTransform.sizeDelta = new Vector2(160, 30);
-            viewPensButtonText.text = "Shear Level 3 Required";
+            viewPensButton.image.rectTransform.sizeDelta = new Vector2(145, 35);
+            viewPensButtonText.text = "Level 3 Required";
         }
 
         if(PlayerManager.instance.playerSave.pensBought <= 0)

@@ -24,10 +24,13 @@ public class MarketUpgradeButton : MonoBehaviour
     public int levelFour;
     public int levelFive;
 
+    private int currCost;
+
     void Start()
     {
         titleText.text = "Upgrade Shears";
-        costText.text = "Cost: " + cost.ToString();
+        CheckCost();
+        costText.text = "Upgrade Cost: " + cost.ToString();
         levelText.text = "Shear Level: " + (PlayerManager.instance.playerSave.shearLevel + 1).ToString();
     }
 
@@ -109,7 +112,7 @@ public class MarketUpgradeButton : MonoBehaviour
 
     void UpdateCostText(int newCost, int newLevel)
     {
-        costText.text = "Cost: " + newCost.ToString();
+        costText.text = "Upgrade Cost: " + newCost.ToString();
         levelText.text = "Shear Level: " + newLevel.ToString();
     }
 
@@ -118,5 +121,25 @@ public class MarketUpgradeButton : MonoBehaviour
         titleText.text = "Fully Upgraded";
         costText.gameObject.SetActive(false);
         levelText.text = "Shear Level: 5";
+    }
+
+    void CheckCost()
+    {
+        if (PlayerManager.instance.playerSave.shearLevel == 0)
+        {
+            cost = 1000;
+        }
+        else if (PlayerManager.instance.playerSave.shearLevel == 1)
+        {
+            cost = 1500;
+        }
+        else if (PlayerManager.instance.playerSave.shearLevel == 2)
+        {
+            cost = 3000;
+        }
+        else if (PlayerManager.instance.playerSave.shearLevel == 3)
+        {
+            cost = 5000;
+        }
     }
 }

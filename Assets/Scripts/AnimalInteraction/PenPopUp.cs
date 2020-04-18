@@ -9,7 +9,7 @@ public class PenPopUp : MonoBehaviour
 {
     public int penChoice = 0;
     public Animal.AnimalType animalToCreate;
-    public TextMeshProUGUI text;
+    public Text text;
     public GameObject player;
     private BasicInteractions basicInteractions;
 
