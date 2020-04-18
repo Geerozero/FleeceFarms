@@ -125,6 +125,7 @@ public class BasicInteractions : MonoBehaviour
                     
                     selectedAnimal = hit.transform.gameObject;
                     
+                    //MAKE SURE INTERACTION CAMERA SNAP IS THE FIRST OBJECT CHILD TO SHEEP
                     xdist = selectedAnimal.transform.position.x - selectedAnimal.transform.GetChild(0).transform.position.x;
                     zdist = selectedAnimal.transform.position.z - selectedAnimal.transform.GetChild(0).transform.position.z;
                     
