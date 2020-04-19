@@ -102,7 +102,7 @@ MonoBehaviour:
     slot03ClothID: 0
     isFurGrown: 0
     animalIsHappy: 0
-    animalBond: 0
+    animalClean: 0
     animalHunger: 0
     animalFurGrowth: 0
     position:
@@ -279,6 +279,7 @@ MonoBehaviour:
     pen02IsFull: 0
     pen03IsFull: 0
     pen04IsFull: 0
+    tutorialGift: 0
 --- !u!114 &174477586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: b016aa96f8d0bf946911253b92ce864b, type: 3}
+  - clip: {fileID: 8300000, guid: 4056956a616ac5f40b7b652f4904e371, type: 3}
     name: Feed
     volume: 0.676
     pitch: 0.69
@@ -307,7 +308,7 @@ MonoBehaviour:
     volume: 0.911
     pitch: 0.72
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: b016aa96f8d0bf946911253b92ce864b, type: 3}
+  - clip: {fileID: 8300000, guid: b4e9fef79577dad49bf9f2da97d5d85c, type: 3}
     name: Brush
     volume: 0.935
     pitch: 0.62

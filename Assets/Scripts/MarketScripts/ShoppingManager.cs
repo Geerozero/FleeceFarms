@@ -10,7 +10,7 @@ public class ShoppingManager : MonoBehaviour
 
     [Header("Feedback text for shop")]
     public TextMeshProUGUI buySellAnnounceText;
-    public TextMeshProUGUI moneyText;
+    public Text moneyText;
 
     private bool announcingText = false;
 
@@ -111,7 +111,7 @@ public class ShoppingManager : MonoBehaviour
 
     public void UpdateMoneyText()
     {
-        moneyText.text = "Money: " + InventoryManager.instance.money.ToString();
+        moneyText.text = InventoryManager.instance.money.ToString();
     }
 
     //----------------------------Testing

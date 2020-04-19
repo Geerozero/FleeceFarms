@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MarketUIManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class MarketUIManager : MonoBehaviour
     public GameObject furscontainer;
     public GameObject clothesContainer;
 
+    public Button fursButton;
+    public Button outfitButton;
+
     /* The buttons need to be added manually bcuz each one is associated with a specifc item
      * so there's no need to go through an array of of them to display them
      * I'm not sure about the sell buttons, you may be able to add them in this way
@@ -38,6 +42,17 @@ public class MarketUIManager : MonoBehaviour
     void Start()
     {
         DisplayBuyOptions();
+
+        if(LevelManager.instance.animals.Count <= 0)
+        {
+            fursButton.interactable = false;
+            outfitButton.interactable = false;
+        }
+        else
+        {
+            fursButton.interactable = true;
+            outfitButton.interactable = true;
+        }
     }
 
     private void Update()

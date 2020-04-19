@@ -10,8 +10,11 @@ public class FarmUIManager : MonoBehaviour
 {
     [Header("Feedback text")]
     public TextMeshProUGUI farmAnnounceText;
-    public TextMeshProUGUI moneyText;
+    public Text moneyText;
     bool announcingText;
+
+    [Header("Gift")]
+    public int giftMoney;
 
     [Header("UI References")]
     public GameObject FarmUIContainer;
@@ -21,7 +24,7 @@ public class FarmUIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject buyPenButton;
     public GameObject gift;
-    public TextMeshProUGUI editNameButtonText;
+    public Text editNameButtonText;
     public TextMeshProUGUI bondPointText;
 
     [Header("Pen UI Things")]
@@ -301,7 +304,7 @@ public class FarmUIManager : MonoBehaviour
 
     public void UpdateMoneyText()
     {
-        moneyText.text = "Money: " + InventoryManager.instance.money.ToString();
+        moneyText.text = InventoryManager.instance.money.ToString();
     }
 
     public bool CheckIfAnimalsAreReady(string penName, int count, int animalsReady)
@@ -394,7 +397,7 @@ public class FarmUIManager : MonoBehaviour
 
     public void TutorialGiftMoney()
     {
-        InventoryManager.instance.money += 1500;
+        InventoryManager.instance.money += giftMoney;
         PlayerManager.instance.playerSave.money = InventoryManager.instance.money;
         PlayerManager.instance.playerSave.tutorialGift = true;
         gift.SetActive(false);

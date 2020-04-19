@@ -8,6 +8,7 @@ public class MarketUpgradeButton : MonoBehaviour
 {
     public Button button;
     public Image greyedImage;
+    public GameObject titleContainer;
     public Text titleText;
     public Text costText;
     public Text levelText;
@@ -23,8 +24,6 @@ public class MarketUpgradeButton : MonoBehaviour
     public int levelThree;
     public int levelFour;
     public int levelFive;
-
-    private int currCost;
 
     void Start()
     {
@@ -44,10 +43,12 @@ public class MarketUpgradeButton : MonoBehaviour
             }
             
             greyedImage.gameObject.SetActive(true);
+            titleContainer.SetActive(false);
             button.interactable = false;
         }
         else
         {
+            titleContainer.SetActive(true);
             greyedImage.gameObject.SetActive(false);
             button.interactable = true;
         }
