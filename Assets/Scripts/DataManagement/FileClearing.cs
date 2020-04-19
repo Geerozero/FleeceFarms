@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class FileClearing : Editor
+/*public class FileClearing : Editor
 {
     [MenuItem("Tools/Clear Saves")]
     public static void Clean()
@@ -22,4 +22,4 @@ public class FileClearing : Editor
         }
         Debug.Log("Cleared saves");
     }
-}
+}*/

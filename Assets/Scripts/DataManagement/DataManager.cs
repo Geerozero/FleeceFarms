@@ -48,10 +48,11 @@ public class DataManager : MonoBehaviour
 
     public void NewGame()
     {
-        FileClearing.Clean();
+        //FileClearing.Clean();
         ClothingManager.instance.ResetClothes();
         FurManager.instance.ResetFurs();
         PlayerManager.instance.ResetPlayer();
+        LevelManager.instance.saves.Clear();
         Save();
 
         Load();
