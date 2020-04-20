@@ -38,6 +38,7 @@ public class BasicInteractions : MonoBehaviour
     public Image hungryHeart;
 
     public bool isPurchasing;
+    private bool assigningPens;
 
     private void Start()
     {
@@ -81,6 +82,8 @@ public class BasicInteractions : MonoBehaviour
 
             if (LevelManager.instance.sheepToCreate > 0 || LevelManager.instance.alpacaToCreate > 0)
             {
+                assigningPens = true;
+
                 if (LevelManager.instance.sheepToCreate > 0 && LevelManager.instance.alpacaToCreate == 0)
                 {
                     penPopUp.SetActive(true);
@@ -96,6 +99,10 @@ public class BasicInteractions : MonoBehaviour
                     penPopUp.SetActive(true);
                     penPopUp.GetComponent<PenPopUp>().animalToCreate = Animal.AnimalType.Sheep;
                 }
+            }
+            if(LevelManager.instance.sheepToCreate <= 0 && LevelManager.instance.alpacaToCreate <= 0)
+            {
+                assigningPens = false;
             }
         }
     }
@@ -119,7 +126,7 @@ public class BasicInteractions : MonoBehaviour
                 Debug.Log("Click hit:" + hit.transform.name);
 
                 //clicked on an animal
-                if (hit.transform.tag == "Animal" && !FarmUI.GetIsInteracting() && !isPurchasing)
+                if (hit.transform.tag == "Animal" && !FarmUI.GetIsInteracting() && !isPurchasing && !assigningPens)
                 {
                     Debug.Log("Clicked Animal");
                     
