@@ -19,7 +19,7 @@ MonoBehaviour:
   isPurchased: 1
   buttonImage: {fileID: 21300000, guid: 904abeb44baa4734db8a61ed7595006e, type: 3}
   item: {fileID: 3192570569487811154, guid: d9dbfb5f9ad26e746af4a35371f6edb2, type: 3}
-  spawnPositionAlpaca: {x: 0.8200569, y: 12.431, z: 1.905239}
+  spawnPositionAlpaca: {x: 0.8200569, y: 12.415, z: 1.834}
   spawnScaleAlpaca: {x: 0.01, y: 0.01, z: 0.01}
   spawnRotationAlpaca: {x: 8.832001, y: 0, z: 0}
   spawnPositionSheep: {x: 0.3825378, y: 57.14, z: 54.25081}

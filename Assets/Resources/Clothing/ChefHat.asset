@@ -16,10 +16,10 @@ MonoBehaviour:
   clothingID: 2008
   clothingType: 0
   cost: 100
-  isPurchased: 0
+  isPurchased: 1
   buttonImage: {fileID: 21300000, guid: a31df0749d851b546ac44702305f85a8, type: 3}
   item: {fileID: 463043074972179662, guid: 07a2406548010cf49a15b636d525ac2c, type: 3}
-  spawnPositionAlpaca: {x: 0.8479996, y: 12.671, z: 1.819271}
+  spawnPositionAlpaca: {x: 0.8479996, y: 12.534, z: 1.803}
   spawnScaleAlpaca: {x: 3.152355, y: 3.152355, z: 3.152355}
   spawnRotationAlpaca: {x: 6.6, y: 0, z: 0}
   spawnPositionSheep: {x: 0.6599426, y: 58.84066, z: 58.16879}
