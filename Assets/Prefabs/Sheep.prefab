@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &3996216711401946580
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474891032901523348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e621e227c9ebe484ca9086c955194fbc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3474891033442944095
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +85,8 @@ MonoBehaviour:
   animalBond: 0
   animalFurGrowth: 0
   timeWaiting: 0
+  bodyAnimator: {fileID: 4772823821519531099}
+  woolAnimator: {fileID: 3996216711401946580}
   eatHayParticleForFEED: {fileID: 5702967245128022476}
   dustParticleForBRUSH: {fileID: 1756463991909980851}
 --- !u!195 &4834798839007403337
@@ -261,6 +282,55 @@ Transform:
   m_Father: {fileID: 459951153494914636}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &5307438282024409228
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946702701860742509}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 8246267464373605260, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -7712351635748839534, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.025773, y: 1.7619169, z: 2.33554}
+  m_DirtyAABB: 0
 --- !u!1001 &4280991544895538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,6 +530,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 459951153494914636}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_Name
+      value: Wool
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -535,23 +620,20 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Animal
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
+    - target: {fileID: 4803864815171128481, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
-      propertyPath: m_Name
-      value: Wool
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_TagString
-      value: Animal
-      objectReference: {fileID: 0}
-    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_TagString
-      value: Animal
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4803864815171128481, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
+--- !u!1 &3474891032901523348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f443c513104b9404cbd9287b1f68afb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4834798839540371101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &459951154044855687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f443c513104b9404cbd9287b1f68afb3,
@@ -574,7 +656,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 22d5e219cdb1ee64e90db78f2354348d,
         type: 3}
       propertyPath: m_Name
-      value: group6
+      value: sheepBody
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 22d5e219cdb1ee64e90db78f2354348d,
         type: 3}
@@ -661,6 +743,12 @@ PrefabInstance:
 --- !u!4 &3221896980592918817 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 22d5e219cdb1ee64e90db78f2354348d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7623695822080485947}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4772823821519531099 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 22d5e219cdb1ee64e90db78f2354348d,
     type: 3}
   m_PrefabInstance: {fileID: 7623695822080485947}
   m_PrefabAsset: {fileID: 0}

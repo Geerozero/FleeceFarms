@@ -68,6 +68,11 @@ public class Animal : MonoBehaviour
     private NavMeshAgent navAgent;
     private bool isMoving;
 
+    /*--------------------Animal Animation-------------------*/
+    [Header("Animators")]
+    public Animator bodyAnimator;
+    public Animator woolAnimator;
+
     /*---------------------Animal Particle Effects----------------*/
     [Header("Drag in the respective particle effects in prefab")]
     public GameObject eatHayParticleForFEED;
@@ -135,6 +140,7 @@ public class Animal : MonoBehaviour
 
     void Start()
     {
+      
         currentScene = SceneManager.GetActiveScene();
         statsTickDelay = statsTickDelayInput;
 
@@ -154,7 +160,8 @@ public class Animal : MonoBehaviour
         furGrowthModifier = 20; //modifier for how much fur grows per tick if Happy
         animalBondIncreasePerInteraction = 10; //how many bond to increase, 100 bond = 1 Bond Point
         //isFleeceGrown = false; //has no wool at the start! - moved to update bcuz it keeps resetting fleece on scene transitions
-        
+
+        StopMovingAnimations();
 
         /* --- Particle Effect Declarations/Starts---*/
         isParticlePlaying = false;
@@ -460,11 +467,14 @@ public class Animal : MonoBehaviour
             //checks if within navAgent stopping distance
             if (navAgent.remainingDistance <= navAgent.stoppingDistance)
             {
+                //stop moving and stop animation
                 isMoving = false;
+                StopMovingAnimations();
 
                 //sets time that animal stopped moving
                 lastTimeMoved = Time.time;
 
+                
             }
         }
         else    //if done moving, check if enough time passed to move to next random position
@@ -479,8 +489,25 @@ public class Animal : MonoBehaviour
                 nextPositionToMoveTo = penObject.transform.position + (Random.insideUnitSphere * 30);
                 //move to location
                 navAgent.SetDestination(nextPositionToMoveTo);
+
+                //begin moving animation
+                PlayMovingAnimations();
             }
         }
+    }
+    /*--------------------Animal Animation-------------------*/
+    //animators have boolean for animation -> change them here
+    private void PlayMovingAnimations()
+    {
+        bodyAnimator.SetBool("isWalking", true);
+        woolAnimator.SetBool("isWalking", true);
+    }
+
+
+    private void StopMovingAnimations()
+    {
+        bodyAnimator.SetBool("isWalking", false);
+        woolAnimator.SetBool("isWalking", false);
     }
 
 
