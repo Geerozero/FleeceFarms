@@ -50,10 +50,10 @@ public class SpecialFurButton : MonoBehaviour
             BoutiqueManager.instance.animalInfo.fur = furItemAlpaca;
             BoutiqueManager.instance.animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[furItemAlpaca.furID].furMaterial;
         }
-        else if(BoutiqueManager.instance.selectedAnimal.animalType == Animal.AnimalType.Sheep)
+        else
         {
             BoutiqueManager.instance.animalInfo.fur = furItemSheep;
-            BoutiqueManager.instance.animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[furItemSheep.furID].furMaterial;
+            BoutiqueManager.instance.animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[furItemSheep.furID].furMaterial;
         }
     }
 }

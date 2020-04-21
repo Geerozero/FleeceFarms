@@ -40,7 +40,15 @@ public class BoutiqueManager : MonoBehaviour
         animalInfo.fur = FurManager.instance.furs[selectedAnimal.furID];
         animalInfo.fur.furID = selectedAnimal.furID;
         animalInfo.wool.gameObject.SetActive(true);
-        animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[selectedAnimal.furID].furMaterial;
+
+        if(selectedAnimal.animalType == Animal.AnimalType.Alpaca)
+        {
+            animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[selectedAnimal.furID].furMaterial;
+        }
+        else
+        {
+            animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[selectedAnimal.furID].furMaterial;
+        }
 
         animalInfo.slot01 = ClothingManager.instance.clothes[selectedAnimal.slot01ClothID];
         animalInfo.slot02 = ClothingManager.instance.clothes[selectedAnimal.slot02ClothID];
