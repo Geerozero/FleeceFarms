@@ -152,14 +152,19 @@ public class LevelManager : MonoBehaviour
 
         InitializeNewAnimal(animalInfo, animalType);
 
-        if(animalInfo.animalType == Animal.AnimalType.Alpaca)
-        {
-            animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-        }
-        else
+        //have to adjust MeshRenderer to SKinnedMeshRenderer for Alpaca
+        /*
+         if(animalType == Animal.AnimalType.Sheep)
         {
             animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
         }
+        else if(animalType == Animal.AnimalType.Alpaca)
+        {
+            animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
+        }
+        */
+
+        animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
@@ -196,14 +201,7 @@ public class LevelManager : MonoBehaviour
 
         InitializeNewAnimal(animalInfo, animalType);
         
-        if(animalInfo.animalType == Animal.AnimalType.Alpaca)
-        {
-            animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-        }
-        else
-        {
-            animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-        }
+        animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot01.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot02.clothingID);
         SpawnClothesOnAnimal(newAnimal, animalInfo.animalType, animalInfo.slot03.clothingID);
@@ -309,16 +307,8 @@ public class LevelManager : MonoBehaviour
             Animal animalInfo = newAnimal.GetComponent<Animal>();
 
             animalInfo.LoadAnimalSave(saves.ElementAt(i).Value);
-
-            if(animalInfo.animalType == Animal.AnimalType.Alpaca)
-            {
-                animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-            }
-            else
-            {
-                animalInfo.wool.GetComponent<MeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
-            }
-
+            animalInfo.wool.GetComponent<SkinnedMeshRenderer>().material = FurManager.instance.furs[animalInfo.fur.furID].furMaterial;
+            
             /*---filling in clothing slots with appropriate clothing ID---*/
             animalInfo.slot01 = ClothingManager.instance.clothes[saves.ElementAt(i).Value.slot01ClothID];
             animalInfo.slot02 = ClothingManager.instance.clothes[saves.ElementAt(i).Value.slot02ClothID];

@@ -282,8 +282,8 @@ Transform:
   m_Father: {fileID: 459951153494914636}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1595261875087958554
-MeshRenderer:
+--- !u!137 &5307438282024409228
+SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -299,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8246267464373605260, guid: 7cb3afef04fd47d4dad0d7aae9b599ca, type: 3}
+  - {fileID: 8246267464373605260, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -319,6 +319,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -7712351635748839534, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.025773, y: 1.7619169, z: 2.33554}
+  m_DirtyAABB: 0
 --- !u!1001 &4280991544895538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -608,7 +620,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Animal
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4803864815171128481, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4803864815171128481, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f443c513104b9404cbd9287b1f68afb3, type: 3}
 --- !u!1 &3474891032901523348 stripped
 GameObject:

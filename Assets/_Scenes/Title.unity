@@ -330,14 +330,6 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: c686aa64605c59443811f66694a35ee9, type: 3}
-    - target: {fileID: 174477587, guid: 51009edc252cabd489fcf8de9e3d48ae, type: 3}
-      propertyPath: Priority
-      value: 154
-      objectReference: {fileID: 0}
-    - target: {fileID: 174477587, guid: 51009edc252cabd489fcf8de9e3d48ae, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 174477586, guid: 51009edc252cabd489fcf8de9e3d48ae, type: 3}
       propertyPath: sounds.Array.size
       value: 9
