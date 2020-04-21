@@ -44,6 +44,73 @@ MonoBehaviour:
   cascadeShadowBorder3:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &-3781700313272486897
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81bcacc415a1f743bfdf703afc52027, type: 3}
+  m_Name: GradientSky
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 0
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  top:
+    m_OverrideState: 1
+    m_Value: {r: 0.4056604, g: 0.06300809, b: 0, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  middle:
+    m_OverrideState: 0
+    m_Value: {r: 0.3, g: 0.7, b: 1, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  bottom:
+    m_OverrideState: 1
+    m_Value: {r: 0.509434, g: 0.23479886, b: 0.1754183, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  gradientDiffusion:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &-1617278952933264852
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -137,6 +204,7 @@ MonoBehaviour:
   - {fileID: 7493278481589679874}
   - {fileID: -1617278952933264852}
   - {fileID: 5794361294274185066}
+  - {fileID: -3781700313272486897}
 --- !u!114 &5794361294274185066
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -183,12 +251,12 @@ MonoBehaviour:
     m_Value: 1000
     min: 0
   fogDistance:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
     min: 0
   fogBaseHeight:
     m_OverrideState: 1
-    m_Value: -37.28
+    m_Value: -56.66
   fogHeightAttenuation:
     m_OverrideState: 1
     m_Value: 0.096
@@ -212,8 +280,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 3
   skyAmbientMode:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   fogType:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
