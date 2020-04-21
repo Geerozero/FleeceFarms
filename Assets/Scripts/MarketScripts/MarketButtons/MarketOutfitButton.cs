@@ -39,7 +39,7 @@ public class MarketOutfitButton : MonoBehaviour
     public void BuyClothing()
     {
         /*---Unlocks clothing item in boutique---*/
-
+        Debug.Log("Buying: " + outfitItem.name);
         outfitItem.isPurchased = true;
         button.interactable = false;
         InventoryManager.instance.SubtractMoney(outfitItem.cost);

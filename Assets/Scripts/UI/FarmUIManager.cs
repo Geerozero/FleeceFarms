@@ -13,19 +13,23 @@ public class FarmUIManager : MonoBehaviour
     public Text moneyText;
     bool announcingText;
 
-    [Header("Gift")]
+    [Header("Gifts")]
     public int giftMoney;
+    public int winGiftMoney;
 
-    [Header("UI References")]
+    [Header("InGameUI References")]
     public GameObject FarmUIContainer;
     public GameObject marketButton;
     public Button customizeButton;
     public Button shearButton;
+    public Text editNameButtonText;
+    public TextMeshProUGUI bondPointText;
+
+    [Header("UI Pop Ups")]
     public GameObject pauseMenu;
     public GameObject buyPenButton;
     public GameObject gift;
-    public Text editNameButtonText;
-    public TextMeshProUGUI bondPointText;
+    public GameObject winGift;
 
     [Header("Pen UI Things")]
     public GameObject viewPens;
@@ -76,6 +80,7 @@ public class FarmUIManager : MonoBehaviour
 
     void Update()
     {
+        //Pause Game
         if(Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeSelf)
         {
             pauseMenu.SetActive(true);
@@ -85,6 +90,7 @@ public class FarmUIManager : MonoBehaviour
             pauseMenu.SetActive(false);
         }
 
+        //Disable non animal interaction UI
         if(isInteracting)
         {
             buyPenButton.SetActive(false);
@@ -96,6 +102,7 @@ public class FarmUIManager : MonoBehaviour
             buyPenButton.SetActive(true);
         }
 
+        //check if player can use Shear All mechanic, unlocks at Shear Level 3
         if(PlayerManager.instance.playerSave.shearLevel >= 3)
         {
             viewPensButton.interactable = true;
@@ -109,6 +116,7 @@ public class FarmUIManager : MonoBehaviour
             viewPensButtonText.text = "Level 3 Required";
         }
 
+        //Tutorial Stage, player must buy a pen before they can go to the market
         if(PlayerManager.instance.playerSave.pensBought <= 0)
         {
             marketButton.GetComponent<Button>().interactable = false;
@@ -118,10 +126,21 @@ public class FarmUIManager : MonoBehaviour
             marketButton.GetComponent<Button>().interactable = true;
         }
 
+        //Checking if a pen is ready to be sheared
         if(checkPens)
         {
             UpdateShearAllButtons();
         }
+
+        //Checking if player has won th game (filled up all the pens)
+        if(LevelManager.instance.animals.Count >= 80 && PlayerManager.instance.playerSave.recievedWinGift == false)
+        {
+            winGift.SetActive(true);
+        }
+        else if(PlayerManager.instance.playerSave.recievedWinGift)
+        {
+            winGift.SetActive(false);
+        }    
 
         UpdateMoneyText();
     }
@@ -401,5 +420,13 @@ public class FarmUIManager : MonoBehaviour
         PlayerManager.instance.playerSave.money = InventoryManager.instance.money;
         PlayerManager.instance.playerSave.tutorialGift = true;
         gift.SetActive(false);
+    }
+
+    public void EndGiftMoney()
+    {
+        InventoryManager.instance.money += winGiftMoney;
+        PlayerManager.instance.playerSave.money = InventoryManager.instance.money;
+        PlayerManager.instance.playerSave.recievedWinGift = true;
+        winGift.SetActive(false);
     }
 }

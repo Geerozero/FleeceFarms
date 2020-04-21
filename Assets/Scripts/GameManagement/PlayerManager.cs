@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
         public bool pen04IsFull;
 
         public bool tutorialGift;
+        public bool recievedWinGift;
     }
 
     public static PlayerManager instance;
@@ -88,6 +89,7 @@ public class PlayerManager : MonoBehaviour
         playerSave.pen04IsFull = false;
 
         playerSave.tutorialGift = false;
+        playerSave.recievedWinGift = false;
 
         playerSave.money = 0;
         playerSave.animalsBought = 0;
