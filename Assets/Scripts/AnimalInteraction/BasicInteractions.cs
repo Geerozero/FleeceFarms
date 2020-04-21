@@ -104,6 +104,8 @@ public class BasicInteractions : MonoBehaviour
             {
                 assigningPens = false;
             }
+
+            MoneyCheat();
         }
     }
 
@@ -188,6 +190,14 @@ public class BasicInteractions : MonoBehaviour
         else if (selectedAnimal.GetComponent<Animal>().GetAnimalHunger() < 50 || selectedAnimal.GetComponent<Animal>().GetAnimalClean() < 50)
         {
             happyHeart.fillAmount = 0;
+        }
+    }
+
+    void MoneyCheat()
+    {
+        if(Input.GetKey(KeyCode.Q))
+        {
+            InventoryManager.instance.AddMoney(1000);
         }
     }
 }

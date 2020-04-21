@@ -10789,6 +10789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483454855}
   - component: {fileID: 483454856}
+  - component: {fileID: 483454857}
   - component: {fileID: 483454858}
   - component: {fileID: 483454859}
   m_Layer: 0
@@ -10849,6 +10850,18 @@ MonoBehaviour:
   cameraScript: {fileID: 769769707}
   isInteracting: 0
   nameInputTextField: {fileID: 845835533}
+--- !u!114 &483454857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483454854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9694311026de2e942919e710b587bf07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &483454858
 MonoBehaviour:
   m_ObjectHideFlags: 0
