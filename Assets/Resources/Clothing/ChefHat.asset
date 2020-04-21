@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Chef Hat
   clothingID: 2008
   clothingType: 0
-  cost: 100
-  isPurchased: 1
+  cost: 12000
+  isPurchased: 0
   buttonImage: {fileID: 21300000, guid: a31df0749d851b546ac44702305f85a8, type: 3}
   item: {fileID: 463043074972179662, guid: 07a2406548010cf49a15b636d525ac2c, type: 3}
   spawnPositionAlpaca: {x: 0.8479996, y: 12.534, z: 1.803}

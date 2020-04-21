@@ -15,6 +15,7 @@ public class MarketUpgradeButton : MonoBehaviour
     
     [Header("Shear Upgrade Cost Increases")]
     public int cost;
+    private int startCost;
     public int costIncreaseOne;
     public int costIncreaseTwo;
     public int costIncreaseThree;
@@ -27,6 +28,7 @@ public class MarketUpgradeButton : MonoBehaviour
 
     void Start()
     {
+        startCost = cost;
         titleText.text = "Upgrade Shears";
         CheckCost();
         costText.text = "Upgrade Cost: " + cost.ToString();
@@ -128,19 +130,19 @@ public class MarketUpgradeButton : MonoBehaviour
     {
         if (PlayerManager.instance.playerSave.shearLevel == 0)
         {
-            cost = 1000;
+            cost = startCost;
         }
         else if (PlayerManager.instance.playerSave.shearLevel == 1)
         {
-            cost = 1500;
+            cost = startCost + costIncreaseOne;
         }
         else if (PlayerManager.instance.playerSave.shearLevel == 2)
         {
-            cost = 3000;
+            cost = startCost + costIncreaseTwo;
         }
         else if (PlayerManager.instance.playerSave.shearLevel == 3)
         {
-            cost = 5000;
+            cost = startCost + costIncreaseThree;
         }
     }
 }

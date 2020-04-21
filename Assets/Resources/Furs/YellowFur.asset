@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Yellow Fur
   furID: 1006
-  cost: 100
+  cost: 8000
   sellPrice: 100
   isPurchased: 0
   buttonImage: {fileID: 21300000, guid: edb52521afe41b94380a22ead23b35c4, type: 3}

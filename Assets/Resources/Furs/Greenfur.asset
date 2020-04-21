@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Green Fur
   furID: 1007
-  cost: 100
+  cost: 8000
+  sellPrice: 100
   isPurchased: 0
   buttonImage: {fileID: 21300000, guid: 724edd2b97af9c04ca8a686a70e98f81, type: 3}
   furMaterial: {fileID: 2100000, guid: e767e68221ad6d344a73f6611b61239a, type: 2}

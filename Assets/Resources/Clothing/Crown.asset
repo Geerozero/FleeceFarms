@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Crown
   m_EditorClassIdentifier: 
   name: Crown
-  clothingID: 2005
+  clothingID: 2010
   clothingType: 0
-  cost: 100
-  isPurchased: 1
+  cost: 25000
+  isPurchased: 0
   buttonImage: {fileID: 21300000, guid: 2530759b32a1a6140b46f3a7e1a593a2, type: 3}
   item: {fileID: 5973448550119189928, guid: 05308824c3ecab948802446697d9c066, type: 3}
   spawnPositionAlpaca: {x: 0.8352814, y: 12.208, z: 2.23}

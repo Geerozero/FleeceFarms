@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Sunglasses
   clothingID: 2011
   clothingType: 0
-  cost: 100
-  isPurchased: 1
+  cost: 16000
+  isPurchased: 0
   buttonImage: {fileID: 21300000, guid: 65b50f56a351796478eebe27a31ea91c, type: 3}
   item: {fileID: 7213647759009442377, guid: a078086bf26d5dc4f8fc52408af7b9a6, type: 3}
   spawnPositionAlpaca: {x: 0.8433514, y: 10.996, z: 2.649}

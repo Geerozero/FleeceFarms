@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Sailor Hat
   clothingID: 2006
   clothingType: 0
-  cost: 100
-  isPurchased: 1
+  cost: 8000
+  isPurchased: 0
   buttonImage: {fileID: 21300000, guid: eac09a6de3150e745805d458b29f6a6a, type: 3}
   item: {fileID: 8427596082850665326, guid: f740f9e267f0ef54780d8ac642381059, type: 3}
   spawnPositionAlpaca: {x: 0.8043747, y: 11.672, z: 2.028}

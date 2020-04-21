@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pink Fur
   furID: 1008
-  cost: 100
+  cost: 10000
+  sellPrice: 100
   isPurchased: 0
   buttonImage: {fileID: 21300000, guid: aa314b2afedc59f4a90972468da1911b, type: 3}
   furMaterial: {fileID: 2100000, guid: f4fb59663d0031c4e8fcd8a533638f75, type: 2}

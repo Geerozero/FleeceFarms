@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.058303963, g: 0.07662388, b: 0.11042092, a: 1}
+  m_IndirectSpecularColor: {r: 0.058303874, g: 0.07662388, b: 0.11042095, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eefef1a13e8acc47a8dced86c0d8deb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costOfNewPen: 1000
+  costOfNewPen: 25000
   pen01Selection: {fileID: 1148812409}
   pen02Selection: {fileID: 2111336880}
   pen03Selection: {fileID: 2066241023}

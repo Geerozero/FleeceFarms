@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rainbow Fur
   furID: 1010
-  cost: 100
+  cost: 20000
+  sellPrice: 100
   isPurchased: 0
   buttonImage: {fileID: 21300000, guid: 27c94d85ba9ba2847b6d10a42a74f4b2, type: 3}
   furMaterial: {fileID: 2100000, guid: 5ccfd58d745352744af57a528e09ff3f, type: 2}

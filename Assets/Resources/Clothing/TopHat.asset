@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Top Hat
   clothingID: 2003
   clothingType: 0
-  cost: 100
-  isPurchased: 1
+  cost: 4000
+  isPurchased: 0
   buttonImage: {fileID: 21300000, guid: e3597096c0d093345bcd1c9763f3755e, type: 3}
   item: {fileID: 2572394088765648286, guid: 25e8605112327f94d857ab82b4d93f49, type: 3}
   spawnPositionAlpaca: {x: 0.8497925, y: 11.413, z: 1.95}
