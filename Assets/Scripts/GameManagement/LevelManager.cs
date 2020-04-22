@@ -229,7 +229,7 @@ public class LevelManager : MonoBehaviour
             animalInfo.animalID += 1;
         }
 
-        animalInfo.name = "NewAnimal";
+        animalInfo.name = GenerateRandomName();
         animalInfo.animalType = animalType;
         animalInfo.fur = startingFurItem;
         animalInfo.slot01 = startingAccessory;
@@ -270,6 +270,29 @@ public class LevelManager : MonoBehaviour
             newOutfitItem.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+    public string GenerateRandomName()
+    {
+        string[] names = {"Anastasia", "Sia", "Austin", "Brent", "Cheyenne", "Chris",
+                           "Danielle", "Hannah", "Josh", "Kaitlin", "Katie", "Kate", "Selena",
+                           "Rick", "Dave", "Sebastian", "Sam", "Samantha", "Greg", "Mickey",
+                           "Carly", "Carlos", "Milly", "Sally", "Sandro", "Lizzy", "Mike",
+                           "Aaron", "Joe", "Jo Jo", "Martha", "Gertrude", "Mary", "Cary",
+                           "Alex", "Alexis", "Marhta", "Yoda", "Luke", "Leia", "Han", "Chewy",
+                           "Chloe", "Tony", "Zach", "Cody", "Lara", "Max", "Sampson", "Marley",
+                           "Bob", "Liam", "Noah", "William", "Prince", "Princess", "Queen", "King",
+                           "Legend", "James", "Oliver", "Benjamin", "Benjie", "Elijah", "Lucas", "Mason",
+                           "Logan", "Jake", "Emma", "Olivia", "Ava", "Isabelle", "Sophia", "Charlotte",
+                           "Mia", "Maya", "Harper", "Evelyn", "Colleen", "Mickey", "Dylan", "Luna", "Penelope",
+                           "Ellie", "Stella", "Natalie", "Zoey", "Xavier", "Anna", "Elena", "Christie", "Terra",
+                           "Jasmine", "Ariana", "Ethan", "Hila", "Felix", "Marzia", "Jackson", "Jack", "Jackie",
+                           "Hunter", "Jon", "Jonathon", "Steve", "Ty", "Tyler", "Santi", "Santiago", "Rox", "Ren"};
+
+        int random = UnityEngine.Random.Range(0, names.Length);
+        
+        return names[random];
+    }
+
 
     /*----------------Animal Management------------------------------------------------------*/
 
