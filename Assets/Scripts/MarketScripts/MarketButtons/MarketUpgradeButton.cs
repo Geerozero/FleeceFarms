@@ -10,6 +10,7 @@ public class MarketUpgradeButton : MonoBehaviour
     public Image greyedImage;
     public GameObject titleContainer;
     public Text titleText;
+    public Text titleText2;
     public Text costText;
     public Text levelText;
     
@@ -19,8 +20,10 @@ public class MarketUpgradeButton : MonoBehaviour
     public int costIncreaseOne;
     public int costIncreaseTwo;
     public int costIncreaseThree;
+    public int costIncreaseFour;
 
     [Header("Fur Sale Price Increases")]
+    public int levelOne;
     public int levelTwo;
     public int levelThree;
     public int levelFour;
@@ -30,6 +33,7 @@ public class MarketUpgradeButton : MonoBehaviour
     {
         startCost = cost;
         titleText.text = "Upgrade Shears";
+        titleText2.text = "Upgrade Shears";
         CheckCost();
         costText.text = "Upgrade Cost: " + cost.ToString();
         levelText.text = "Shear Level: " + (PlayerManager.instance.playerSave.shearLevel + 1).ToString();
@@ -37,9 +41,9 @@ public class MarketUpgradeButton : MonoBehaviour
 
     void Update()
     {
-        if (InventoryManager.instance.money < cost || PlayerManager.instance.playerSave.shearLevel >= 4)
+        if (InventoryManager.instance.money < cost || PlayerManager.instance.playerSave.shearLevel >= 5)
         {
-            if(PlayerManager.instance.playerSave.shearLevel >= 4)
+            if(PlayerManager.instance.playerSave.shearLevel >= 5)
             {
                 FinalUpgrade();
             }
@@ -63,7 +67,7 @@ public class MarketUpgradeButton : MonoBehaviour
         {
             for(int i = 0; i < FurManager.instance.furs.Count; i++)
             {
-                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelTwo;
+                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelOne;
             }
 
             PlayerManager.instance.playerSave.shearLevel++;
@@ -76,7 +80,7 @@ public class MarketUpgradeButton : MonoBehaviour
         {
             for (int i = 0; i < FurManager.instance.furs.Count; i++)
             {
-                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelThree;
+                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelTwo;
             }
 
             PlayerManager.instance.playerSave.shearLevel++;
@@ -89,7 +93,7 @@ public class MarketUpgradeButton : MonoBehaviour
         {
             for (int i = 0; i < FurManager.instance.furs.Count; i++)
             {
-                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelFour;
+                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelThree;
             }
 
             PlayerManager.instance.playerSave.shearLevel++;
@@ -99,6 +103,19 @@ public class MarketUpgradeButton : MonoBehaviour
             UpdateCostText(cost, PlayerManager.instance.playerSave.shearLevel + 1);
         }
         else if (PlayerManager.instance.playerSave.shearLevel == 3)
+        {
+            for (int i = 0; i < FurManager.instance.furs.Count; i++)
+            {
+                FurManager.instance.furs.ElementAt(i).Value.sellPrice = levelFour;
+            }
+
+            PlayerManager.instance.playerSave.shearLevel++;
+            InventoryManager.instance.money -= cost;
+
+            cost += costIncreaseFour;
+            UpdateCostText(cost, PlayerManager.instance.playerSave.shearLevel + 1);
+        }
+        else if (PlayerManager.instance.playerSave.shearLevel == 4)
         {
             for (int i = 0; i < FurManager.instance.furs.Count; i++)
             {
@@ -122,6 +139,7 @@ public class MarketUpgradeButton : MonoBehaviour
     void FinalUpgrade()
     {
         titleText.text = "Fully Upgraded";
+        titleText2.text = "Fully Upgraded";
         costText.gameObject.SetActive(false);
         levelText.text = "Shear Level: 5";
     }
@@ -143,6 +161,10 @@ public class MarketUpgradeButton : MonoBehaviour
         else if (PlayerManager.instance.playerSave.shearLevel == 3)
         {
             cost = startCost + costIncreaseThree;
+        }
+        else if (PlayerManager.instance.playerSave.shearLevel == 4)
+        {
+            cost = startCost + costIncreaseFour;
         }
     }
 }

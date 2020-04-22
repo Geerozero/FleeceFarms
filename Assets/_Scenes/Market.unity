@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04997886, g: 0.070084535, b: 0.10862592, a: 1}
+  m_IndirectSpecularColor: {r: 0.05243803, g: 0.07022493, b: 0.10747574, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8741,16 +8741,19 @@ MonoBehaviour:
   greyedImage: {fileID: 1216042372}
   titleContainer: {fileID: 503770890}
   titleText: {fileID: 8668814881034828384}
+  titleText2: {fileID: 17244279}
   costText: {fileID: 8018977330633311816}
   levelText: {fileID: 1965077514}
-  cost: 2000
+  cost: 1500
   costIncreaseOne: 1500
   costIncreaseTwo: 3000
   costIncreaseThree: 4000
-  levelTwo: 200
-  levelThree: 300
-  levelFour: 400
-  levelFive: 500
+  costIncreaseFour: 5000
+  levelOne: 200
+  levelTwo: 300
+  levelThree: 400
+  levelFour: 500
+  levelFive: 600
 --- !u!222 &8018977329375211562
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -105,7 +105,7 @@ public class BasicInteractions : MonoBehaviour
                 assigningPens = false;
             }
 
-            MoneyCheat();
+            KaitlinsCheats();
         }
     }
 
@@ -193,11 +193,19 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
-    void MoneyCheat()
+    void KaitlinsCheats()
     {
-        if(Input.GetKey(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             InventoryManager.instance.AddMoney(1000);
+        }
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            for(int i = 0; i < LevelManager.instance.animals.Count; i++)
+            {
+                LevelManager.instance.animals[i].ChangeAnimalFood(100);
+                LevelManager.instance.animals[i].ChangeAnimalClean(100);
+            }
         }
     }
 }
