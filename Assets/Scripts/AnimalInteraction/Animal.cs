@@ -136,6 +136,7 @@ public class Animal : MonoBehaviour
         transform.eulerAngles = save.rotation;
     }
 
+    
     /*------------------------------Animal Stat Management----------------------------*/
 
     void Start()
@@ -143,7 +144,7 @@ public class Animal : MonoBehaviour
       
         currentScene = SceneManager.GetActiveScene();
         statsTickDelay = statsTickDelayInput;
-
+        
 
         /*-------Movement*------*/
         //get navmesh agent of this object
@@ -548,5 +549,8 @@ public class Animal : MonoBehaviour
         particleEffectGameobject.GetComponent<ParticleSystem>().Stop();
         isParticlePlaying = false;
     }
+    
+
+    
 
 }

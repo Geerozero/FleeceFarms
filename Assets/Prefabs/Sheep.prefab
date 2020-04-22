@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 4834798839007403337}
   - component: {fileID: 6170581004073862605}
   - component: {fileID: 580757908632211845}
+  - component: {fileID: 2034384926771614035}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Animal
@@ -131,12 +132,12 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3474891033442944095}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b6447eac2d077444791da0266ca5923e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.652
+  m_Volume: 0.058
   m_Pitch: 0.76
   Loop: 0
   Mute: 0
@@ -220,6 +221,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2034384926771614035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474891033442944095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6bd28444cfc4e44e95557a165f8e4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4834798840388942670
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +541,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Animal
       objectReference: {fileID: 0}
+    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -598,11 +616,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1130458189511976880, guid: f443c513104b9404cbd9287b1f68afb3,
-        type: 3}
-      propertyPath: m_TagString
-      value: Animal
-      objectReference: {fileID: 0}
     - target: {fileID: 1269532907765345264, guid: f443c513104b9404cbd9287b1f68afb3,
         type: 3}
       propertyPath: m_TagString
@@ -640,16 +653,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: sheepBody
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 22d5e219cdb1ee64e90db78f2354348d,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e621e227c9ebe484ca9086c955194fbc, type: 2}
-    - target: {fileID: -4823560465561637948, guid: 22d5e219cdb1ee64e90db78f2354348d,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 462f5bfc568679846beba4b2bc53f42d, type: 2}
     - target: {fileID: -4216859302048453862, guid: 22d5e219cdb1ee64e90db78f2354348d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -720,6 +723,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 22d5e219cdb1ee64e90db78f2354348d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e621e227c9ebe484ca9086c955194fbc, type: 2}
+    - target: {fileID: -4823560465561637948, guid: 22d5e219cdb1ee64e90db78f2354348d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 462f5bfc568679846beba4b2bc53f42d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22d5e219cdb1ee64e90db78f2354348d, type: 3}
 --- !u!4 &3221896980592918817 stripped

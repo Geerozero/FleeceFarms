@@ -51,6 +51,7 @@ public class InventoryManager : MonoBehaviour
     public void SubtractMoney(int decreaseAmount)
     {
         money -= decreaseAmount;
+        FindObjectOfType<AudioManager>().Play("Money");
         UpdateText();
     }
 

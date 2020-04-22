@@ -49,9 +49,9 @@ public class ShoppingManager : MonoBehaviour
         //Player has enough money
         else
         {
-  
-                //see text display below
-                SetAnnounceText("Got index in Index: " + itemIndex);
+            //FindObjectOfType<AudioManager>().Play("Money");
+            //see text display below
+            SetAnnounceText("Got index in Index: " + itemIndex);
 
             //subtract money, add ONE to inventory in given index
             InventoryManager.instance.SubtractMoney(itemBuyCost);
@@ -124,6 +124,7 @@ public class ShoppingManager : MonoBehaviour
     //subtracts money from passed in amount
     public void SubtractMoney()
     {
+        
         InventoryManager.instance.money -= 1000;
         //UpdateText();
     }
